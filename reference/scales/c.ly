@@ -34,7 +34,7 @@
 }
 
 \markup { "C Minor Harmonic" }
-\markup { "whole, half, whole, whole, half, augmented second, half" }
+\markup { "whole, half, whole, whole, half, whole + half, half" }
 \score {
   \new PianoStaff {
     \clef "treble"

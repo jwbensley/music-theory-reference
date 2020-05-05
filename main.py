@@ -7,7 +7,7 @@ import sys
 
 file_loader = FileSystemLoader('.')
 env = Environment(loader=file_loader)
-template = env.get_template('note.j2')
+template = env.get_template('./templates/scales.j2')
 
 notes = ['a', 'b♭', 'b', 'c', 'd♭', 'd', 'e♭', 'e', 'f', 'g♭', 'g', 'a♭']
 
@@ -32,5 +32,22 @@ for note in notes:
             else:
                 data['lily_scale'].append(s)
 
-        output = template.render(data)
-        print(output)
+        render_output = template.render(data)
+        #print(output)
+
+        output_file = "render/scales/" + data['root'] + ".ly"
+
+        try:
+            render_file = open(output_file, 'w')
+        except Exception as e:
+            print("Couldn't open output file {}: {}".format(output_file, e))
+            ###return False
+
+        try:
+            render_file.write(render_output)
+        except Exception as e:
+            print("Couldn't write to output file {}: {}".format(output_file, e))
+            ###return False
+
+        render_file.close()
+

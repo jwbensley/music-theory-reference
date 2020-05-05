@@ -1,0 +1,295 @@
+\version "2.18.2"
+\language "english"
+
+\header {
+  title = "{{ root.upper() }}"
+  composer = "J. W. Bensley"
+}
+
+\markup { "Diatonic Heptatonic Scales" }
+\markup { \vspace #1 }
+
+\markup { "{{ root.upper() }} Major" }
+\markup { "whole, whole, half, whole, whole, whole, half" }
+\score {
+  \new PianoStaff {
+    \clef "treble"
+    {{lily_scale[0]}}'4-"{{scale[0]}}"
+    {{lily_scale[2]}}'-"{{scale[2]}}"
+    {{lily_scale[4]}}'-"{{scale[4]}}"
+    {{lily_scale[5]}}'-"{{scale[5]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[9]}}'-"{{scale[9]}}"
+    {{lily_scale[11]}}'-"{{scale[11]}}"
+    {{lily_scale[12]}}''-"{{scale[12]}}" |
+    {{lily_scale[12]}}''-"{{scale[12]}}"
+    {{lily_scale[11]}}'-"{{scale[11]}}"
+    {{lily_scale[9]}}'-"{{scale[9]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[5]}}'-"{{scale[5]}}"
+    {{lily_scale[4]}}'-"{{scale[4]}}"
+    {{lily_scale[2]}}'-"{{scale[2]}}"
+    {{lily_scale[0]}}'4-"{{scale[0]}}"
+  }
+}
+
+\markup { "{{ root.upper() }} Minor Natural" }
+\markup { "whole, half, whole, whole, half, whole, whole" }
+\score {
+  \new PianoStaff {
+    \clef "treble"
+    {{lily_scale[0]}}'4-"{{scale[0]}}"
+    {{lily_scale[2]}}'-"{{scale[2]}}"
+    {{lily_scale[3]}}'-"{{scale[3]}}"
+    {{lily_scale[5]}}'-"{{scale[5]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[8]}}'-"{{scale[8]}}"
+    {{lily_scale[10]}}'-"{{scale[10]}}"
+    {{lily_scale[12]}}''-"{{scale[12]}}" |
+    {{lily_scale[12]}}''-"{{scale[12]}}"
+    {{lily_scale[10]}}'-"{{scale[10]}}"
+    {{lily_scale[8]}}'-"{{scale[8]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[5]}}'-"{{scale[5]}}"
+    {{lily_scale[3]}}'-"{{scale[3]}}"
+    {{lily_scale[2]}}'-"{{scale[2]}}"
+    {{lily_scale[0]}}'4-"{{scale[0]}}"
+  }
+}
+
+
+\markup { "{{ root.upper() }} Minor Harmonic" }
+\markup { "whole, half, whole, whole, half, whole + half, half" }
+\score {
+  \new PianoStaff {
+    \clef "treble"
+    {{lily_scale[0]}}'4-"{{scale[0]}}"
+    {{lily_scale[2]}}'-"{{scale[2]}}"
+    {{lily_scale[3]}}'-"{{scale[3]}}"
+    {{lily_scale[5]}}'-"{{scale[5]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[8]}}'-"{{scale[8]}}"
+    {{lily_scale[10]}}'-"{{scale[11]}}"
+    {{lily_scale[12]}}''-"{{scale[12]}}" |
+    {{lily_scale[12]}}''-"{{scale[12]}}"
+    {{lily_scale[10]}}'-"{{scale[11]}}"
+    {{lily_scale[8]}}'-"{{scale[8]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[5]}}'-"{{scale[5]}}"
+    {{lily_scale[3]}}'-"{{scale[3]}}"
+    {{lily_scale[2]}}'-"{{scale[2]}}"
+    {{lily_scale[0]}}'4-"{{scale[0]}}"
+  }
+}
+
+\markup { "{{ root.upper() }} Minor Melodic - Ascending" }
+\markup { "whole, half, whole, whole, whole, whole, half" }
+\score {
+  \new PianoStaff {
+    \clef "treble"
+    {{lily_scale[0]}}'4-"{{scale[0]}}"
+    {{lily_scale[2]}}'-"{{scale[2]}}"
+    {{lily_scale[3]}}'-"{{scale[3]}}"
+    {{lily_scale[5]}}'-"{{scale[5]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[9]}}'-"{{scale[9]}}"
+    {{lily_scale[10]}}'-"{{scale[11]}}"
+    {{lily_scale[12]}}''-"{{scale[12]}}" |
+    {{lily_scale[12]}}''-"{{scale[12]}}"
+    {{lily_scale[10]}}'-"{{scale[11]}}"
+    {{lily_scale[8]}}'-"{{scale[9]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[5]}}'-"{{scale[5]}}"
+    {{lily_scale[3]}}'-"{{scale[3]}}"
+    {{lily_scale[2]}}'-"{{scale[2]}}"
+    {{lily_scale[0]}}'4-"{{scale[0]}}"
+  }
+}
+
+\markup { "{{ root.upper() }} Minor Melodic - Descending" }
+\markup { "whole, half, whole, whole, half, whole, whole" }
+\score {
+  \new PianoStaff {
+    \clef "treble"
+    {{lily_scale[0]}}'4-"{{scale[0]}}"
+    {{lily_scale[2]}}'-"{{scale[2]}}"
+    {{lily_scale[3]}}'-"{{scale[3]}}"
+    {{lily_scale[5]}}'-"{{scale[5]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[8]}}'-"{{scale[8]}}"
+    {{lily_scale[10]}}'-"{{scale[11]}}"
+    {{lily_scale[12]}}''-"{{scale[12]}}" |
+    {{lily_scale[12]}}''-"{{scale[12]}}"
+    {{lily_scale[10]}}'-"{{scale[11]}}"
+    {{lily_scale[8]}}'-"{{scale[8]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[5]}}'-"{{scale[5]}}"
+    {{lily_scale[3]}}'-"{{scale[3]}}"
+    {{lily_scale[2]}}'-"{{scale[2]}}"
+    {{lily_scale[0]}}'4-"{{scale[0]}}"
+  }
+}
+
+
+\markup { "Hexatonic Scales" }
+\markup { \vspace #1 }
+
+\markup { "{{ root.upper() }} Major Hexatonic \"Blues\"" }
+\markup { "whole, half, half, whole + half, whole, whole + half" }
+\score {
+  \new PianoStaff {
+    \clef "treble"
+    {{lily_scale[0]}}'4-"{{scale[0]}}"
+    {{lily_scale[2]}}'-"{{scale[2]}}"
+    {{lily_scale[3]}}'-"{{scale[3]}}"
+    {{lily_scale[4]}}'-"{{scale[4]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[9]}}'-"{{scale[9]}}"
+    {{lily_scale[12]}}''-"{{scale[12]}}" 
+    r1 |
+    {{lily_scale[12]}}''4-"{{scale[12]}}"
+    {{lily_scale[9]}}'-"{{scale[9]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[5]}}'-"{{scale[4]}}"
+    {{lily_scale[3]}}'-"{{scale[3]}}"
+    {{lily_scale[2]}}'-"{{scale[2]}}"
+    {{lily_scale[0]}}'-"{{scale[0]}}"
+  }
+}
+
+\markup { "{{ root.upper() }} Minor Hexatonic \"Blues\"" }
+\markup { "whole + half, whole, half, half, whole + half, whole" }
+\score {
+  \new PianoStaff {
+    \clef "treble"
+    {{lily_scale[0]}}'4-"{{scale[0]}}"
+    {{lily_scale[3]}}'-"{{scale[3]}}"
+    {{lily_scale[5]}}'-"{{scale[5]}}"
+    {{lily_scale[6]}}'-"{{scale[6]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[10]}}'-"{{scale[10]}}"
+    {{lily_scale[12]}}''-"{{scale[12]}}"
+    r1 |
+    {{lily_scale[12]}}''4-"{{scale[12]}}"
+    {{lily_scale[10]}}'-"{{scale[10]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[6]}}'-"{{scale[6]}}"
+    {{lily_scale[5]}}'-"{{scale[5]}}"
+    {{lily_scale[3]}}'-"{{scale[3]}}"
+    {{lily_scale[0]}}'-"{{scale[0]}}"
+  }
+}
+
+
+\markup { "Pentatonic Scales" }
+\markup { \vspace #1 }
+
+\markup { "{{ root.upper() }} Major Pentatonic" }
+\markup { "whole, whole, whole + half, whole, whole + half" }
+\score {
+  \new PianoStaff {
+    \clef "treble"
+    {{lily_scale[0]}}'4-"{{scale[0]}}"
+    {{lily_scale[2]}}'-"{{scale[2]}}"
+    {{lily_scale[4]}}'-"{{scale[4]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[9]}}'-"{{scale[9]}}"
+    {{lily_scale[12]}}''-"{{scale[12]}}"
+    r2 |
+    {{lily_scale[12]}}''4-"{{scale[12]}}"
+    {{lily_scale[9]}}'-"{{scale[9]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[4]}}'-"{{scale[4]}}"
+    {{lily_scale[2]}}'-"{{scale[2]}}"
+    {{lily_scale[0]}}'-"{{scale[0]}}"
+    r2
+  }
+}
+
+\markup { "{{ root.upper() }} \"Egyptian Suspended\" Pentatonic" }
+\markup { "whole, whole + half, whole, whole + half, whole" }
+\score {
+  \new PianoStaff {
+    \clef "treble"
+    {{lily_scale[0]}}'4-"{{scale[0]}}"
+    {{lily_scale[2]}}'-"{{scale[2]}}"
+    {{lily_scale[4]}}'-"{{scale[4]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[9]}}'-"{{scale[9]}}"
+    {{lily_scale[12]}}''-"{{scale[12]}}"
+    r2 |
+    {{lily_scale[12]}}''4-"{{scale[12]}}"
+    {{lily_scale[9]}}'-"{{scale[9]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[4]}}'-"{{scale[4]}}"
+    {{lily_scale[2]}}'-"{{scale[2]}}"
+    {{lily_scale[0]}}'-"{{scale[0]}}"
+    r2
+  }
+}
+
+\markup { "{{ root.upper() }} \"Blues Minor\" Pentatonic" }
+\markup { "whole + half, whole, whole + half, whole, whole" }
+\score {
+  \new PianoStaff {
+    \clef "treble"
+    {{lily_scale[0]}}'4-"{{scale[0]}}"
+    {{lily_scale[3]}}'-"{{scale[3]}}"
+    {{lily_scale[5]}}'-"{{scale[5]}}"
+    {{lily_scale[8]}}'-"{{scale[8]}}"
+    {{lily_scale[10]}}'-"{{scale[10]}}"
+    {{lily_scale[12]}}''4-"{{scale[12]}}"
+    r2 |
+    {{lily_scale[12]}}''4-"{{scale[12]}}"
+    {{lily_scale[10]}}'-"{{scale[10]}}"
+    {{lily_scale[8]}}'-"{{scale[8]}}"
+    {{lily_scale[5]}}'-"{{scale[5]}}"
+    {{lily_scale[3]}}'-"{{scale[3]}}"
+    {{lily_scale[0]}}'-"{{scale[0]}}"
+    r2
+  }
+}
+
+\markup { "{{ root.upper() }} \"Blues Major\" Pentatonic" }
+\markup { "whole, whole + half, whole, whole, whole + half" }
+\score {
+  \new PianoStaff {
+    \clef "treble"
+    {{lily_scale[0]}}'4-"{{scale[0]}}"
+    {{lily_scale[2]}}'-"{{scale[2]}}"
+    {{lily_scale[5]}}'-"{{scale[5]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[9]}}'-"{{scale[9]}}"
+    {{lily_scale[12]}}''-"{{scale[12]}}"
+    r2 |
+    {{lily_scale[12]}}''4-"{{scale[12]}}"
+    {{lily_scale[9]}}'-"{{scale[9]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[5]}}'-"{{scale[5]}}"
+    {{lily_scale[2]}}'-"{{scale[2]}}"
+    {{lily_scale[0]}}'-"{{scale[0]}}"
+    r2
+  }
+}
+
+\markup { "{{ root.upper() }} Minor Pentatonic" }
+\markup { "whole + half, whole, whole, whole + half, whole" }
+\score {
+  \new PianoStaff {
+    \clef "treble"
+    {{lily_scale[0]}}'4-"{{scale[0]}}"
+    {{lily_scale[3]}}'-"{{scale[3]}}"
+    {{lily_scale[5]}}'-"{{scale[5]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[10]}}'-"{{scale[10]}}"
+    {{lily_scale[12]}}''-"{{scale[12]}}"
+    r2 |
+    {{lily_scale[12]}}''4-"{{scale[12]}}"
+    {{lily_scale[10]}}'-"{{scale[10]}}"
+    {{lily_scale[7]}}'-"{{scale[7]}}"
+    {{lily_scale[5]}}'-"{{scale[5]}}"
+    {{lily_scale[3]}}'-"{{scale[3]}}"
+    {{lily_scale[0]}}'-"{{scale[0]}}"
+    r2
+  }
+}

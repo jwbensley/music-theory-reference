@@ -1,0 +1,24 @@
+\markup { "Triads and Inversions" }
+\markup { \vspace #1 }
+
+\markup { "{{ root.upper() }} Major Triads" }
+\markup { "root, major third, minor third" }
+\score {
+  \new PianoStaff {
+    \clef "treble"
+    <{{lily_scale[0]}}' {{lily_scale[4]}}' {{lily_scale[7]}}'>1-"root"
+    <{{lily_scale[4]}}' {{lily_scale[7]}}' {{lily_scale[0]}}''>1-"1st"
+    <{{lily_scale[7]}}' {{lily_scale[0]}}'' {{lily_scale[4]}}''>1-"2nd"
+  }
+}
+
+\markup { "{{ root.upper() }} Minor Triads" }
+\markup { "root, minor third, major third" }
+\score {
+  \new PianoStaff {
+    \clef "treble"
+    <{{lily_scale[0]}}' {{lily_scale[3]}}' {{lily_scale[7]}}'>1-"root"
+    <{{lily_scale[3]}}' {{lily_scale[7]}}' {{lily_scale[0]}}''>1-"1st"
+    <{{lily_scale[7]}}' {{lily_scale[0]}}'' {{lily_scale[3]}}''>1-"2nd"
+  }
+}

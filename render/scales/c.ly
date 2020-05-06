@@ -4,9 +4,7 @@
 \header {
   title = "C"
   composer = "J. W. Bensley"
-}
-
-\markup { "Diatonic Heptatonic Scales" }
+}\markup { "Diatonic Heptatonic Scales" }
 \markup { \vspace #1 }
 
 \markup { "C Major" }
@@ -128,10 +126,7 @@
     d'-"d"
     c'4-"c"
   }
-}
-
-
-\markup { "Hexatonic Scales" }
+}\markup { "Hexatonic Scales" }
 \markup { \vspace #1 }
 
 \markup { "C Major Hexatonic \"Blues\"" }
@@ -178,10 +173,7 @@
     eflat'-"e♭"
     c'-"c"
   }
-}
-
-
-\markup { "Pentatonic Scales" }
+}\markup { "Pentatonic Scales" }
 \markup { \vspace #1 }
 
 \markup { "C Major Pentatonic" }

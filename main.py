@@ -140,7 +140,7 @@ def main():
 
         data['root'] = note #E.g. "b♭"
 
-        data['scale'] = notes[notes.index(note):] + notes[:notes.index(note)] + list(note)
+        data['scale'] = notes[notes.index(note):] + notes[:notes.index(note)] + [note]
 
         data['lily_scale'] = []
         for s in data['scale']:

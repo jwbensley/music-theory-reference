@@ -19,8 +19,8 @@
     f'-"f"
     g'-"g"
     a'-"a"
-    b''-"b" |
-    b''-"b"
+    bflat''-"b♭" |
+    bflat''-"b♭"
     a'-"a"
     g'-"g"
     f'-"f"
@@ -43,8 +43,8 @@
     f'-"f"
     gflat'-"g♭"
     aflat'-"a♭"
-    b''-"b" |
-    b''-"b"
+    bflat''-"b♭" |
+    bflat''-"b♭"
     aflat'-"a♭"
     gflat'-"g♭"
     f'-"f"
@@ -68,8 +68,8 @@
     f'-"f"
     gflat'-"g♭"
     aflat'-"a"
-    b''-"b" |
-    b''-"b"
+    bflat''-"b♭" |
+    bflat''-"b♭"
     aflat'-"a"
     gflat'-"g♭"
     f'-"f"
@@ -92,8 +92,8 @@
     f'-"f"
     g'-"g"
     aflat'-"a"
-    b''-"b" |
-    b''-"b"
+    bflat''-"b♭" |
+    bflat''-"b♭"
     aflat'-"a"
     gflat'-"g"
     f'-"f"
@@ -116,8 +116,8 @@
     f'-"f"
     gflat'-"g♭"
     aflat'-"a"
-    b''-"b" |
-    b''-"b"
+    bflat''-"b♭" |
+    bflat''-"b♭"
     aflat'-"a"
     gflat'-"g♭"
     f'-"f"
@@ -140,9 +140,9 @@
     d'-"d"
     f'-"f"
     g'-"g"
-    b''-"b" 
+    bflat''-"b♭" 
     r1 |
-    b''4-"b"
+    bflat''4-"b♭"
     g'-"g"
     f'-"f"
     eflat'-"d"
@@ -163,9 +163,9 @@
     e'-"e"
     f'-"f"
     aflat'-"a♭"
-    b''-"b"
+    bflat''-"b♭"
     r1 |
-    b''4-"b"
+    bflat''4-"b♭"
     aflat'-"a♭"
     f'-"f"
     e'-"e"
@@ -186,9 +186,9 @@
     d'-"d"
     f'-"f"
     g'-"g"
-    b''-"b"
+    bflat''-"b♭"
     r2 |
-    b''4-"b"
+    bflat''4-"b♭"
     g'-"g"
     f'-"f"
     d'-"d"
@@ -208,9 +208,9 @@
     d'-"d"
     f'-"f"
     g'-"g"
-    b''-"b"
+    bflat''-"b♭"
     r2 |
-    b''4-"b"
+    bflat''4-"b♭"
     g'-"g"
     f'-"f"
     d'-"d"
@@ -230,9 +230,9 @@
     eflat'-"e♭"
     gflat'-"g♭"
     aflat'-"a♭"
-    b''4-"b"
+    bflat''4-"b♭"
     r2 |
-    b''4-"b"
+    bflat''4-"b♭"
     aflat'-"a♭"
     gflat'-"g♭"
     eflat'-"e♭"
@@ -252,9 +252,9 @@
     eflat'-"e♭"
     f'-"f"
     g'-"g"
-    b''-"b"
+    bflat''-"b♭"
     r2 |
-    b''4-"b"
+    bflat''4-"b♭"
     g'-"g"
     f'-"f"
     eflat'-"e♭"
@@ -274,9 +274,9 @@
     eflat'-"e♭"
     f'-"f"
     aflat'-"a♭"
-    b''-"b"
+    bflat''-"b♭"
     r2 |
-    b''4-"b"
+    bflat''4-"b♭"
     aflat'-"a♭"
     f'-"f"
     eflat'-"e♭"

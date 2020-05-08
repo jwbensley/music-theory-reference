@@ -19,8 +19,8 @@
     aflat'-"a♭"
     bflat'-"b♭"
     c'-"c"
-    d''-"d" |
-    d''-"d"
+    dflat''-"d♭" |
+    dflat''-"d♭"
     c'-"c"
     bflat'-"b♭"
     aflat'-"a♭"
@@ -43,8 +43,8 @@
     aflat'-"a♭"
     a'-"a"
     b'-"b"
-    d''-"d" |
-    d''-"d"
+    dflat''-"d♭" |
+    dflat''-"d♭"
     b'-"b"
     a'-"a"
     aflat'-"a♭"
@@ -68,8 +68,8 @@
     aflat'-"a♭"
     a'-"a"
     b'-"c"
-    d''-"d" |
-    d''-"d"
+    dflat''-"d♭" |
+    dflat''-"d♭"
     b'-"c"
     a'-"a"
     aflat'-"a♭"
@@ -92,8 +92,8 @@
     aflat'-"a♭"
     bflat'-"b♭"
     b'-"c"
-    d''-"d" |
-    d''-"d"
+    dflat''-"d♭" |
+    dflat''-"d♭"
     b'-"c"
     a'-"b♭"
     aflat'-"a♭"
@@ -116,8 +116,8 @@
     aflat'-"a♭"
     a'-"a"
     b'-"c"
-    d''-"d" |
-    d''-"d"
+    dflat''-"d♭" |
+    dflat''-"d♭"
     b'-"c"
     a'-"a"
     aflat'-"a♭"
@@ -140,9 +140,9 @@
     f'-"f"
     aflat'-"a♭"
     bflat'-"b♭"
-    d''-"d" 
+    dflat''-"d♭" 
     r1 |
-    d''4-"d"
+    dflat''4-"d♭"
     bflat'-"b♭"
     aflat'-"a♭"
     gflat'-"f"
@@ -163,9 +163,9 @@
     g'-"g"
     aflat'-"a♭"
     b'-"b"
-    d''-"d"
+    dflat''-"d♭"
     r1 |
-    d''4-"d"
+    dflat''4-"d♭"
     b'-"b"
     aflat'-"a♭"
     g'-"g"
@@ -186,9 +186,9 @@
     f'-"f"
     aflat'-"a♭"
     bflat'-"b♭"
-    d''-"d"
+    dflat''-"d♭"
     r2 |
-    d''4-"d"
+    dflat''4-"d♭"
     bflat'-"b♭"
     aflat'-"a♭"
     f'-"f"
@@ -208,9 +208,9 @@
     f'-"f"
     aflat'-"a♭"
     bflat'-"b♭"
-    d''-"d"
+    dflat''-"d♭"
     r2 |
-    d''4-"d"
+    dflat''4-"d♭"
     bflat'-"b♭"
     aflat'-"a♭"
     f'-"f"
@@ -230,9 +230,9 @@
     gflat'-"g♭"
     a'-"a"
     b'-"b"
-    d''4-"d"
+    dflat''4-"d♭"
     r2 |
-    d''4-"d"
+    dflat''4-"d♭"
     b'-"b"
     a'-"a"
     gflat'-"g♭"
@@ -252,9 +252,9 @@
     gflat'-"g♭"
     aflat'-"a♭"
     bflat'-"b♭"
-    d''-"d"
+    dflat''-"d♭"
     r2 |
-    d''4-"d"
+    dflat''4-"d♭"
     bflat'-"b♭"
     aflat'-"a♭"
     gflat'-"g♭"
@@ -274,9 +274,9 @@
     gflat'-"g♭"
     aflat'-"a♭"
     b'-"b"
-    d''-"d"
+    dflat''-"d♭"
     r2 |
-    d''4-"d"
+    dflat''4-"d♭"
     b'-"b"
     aflat'-"a♭"
     gflat'-"g♭"

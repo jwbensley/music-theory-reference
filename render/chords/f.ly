@@ -4,7 +4,9 @@
 \header {
   title = "F"
   composer = "J. W. Bensley"
-}\markup { "Triads and Inversions" }
+}
+
+\markup { "Triads and Inversions" }
 \markup { \vspace #1 }
 
 \markup { "F Major Triads" }

@@ -1,13 +1,32 @@
 #!/usr/bin/env python3
 
-# pip3 install jinja2
 
+import argparse
 from jinja2 import Environment, FileSystemLoader
 import os
 import shlex
 import shutil
 import subprocess
 import sys
+
+
+def parse_cli_args():
+
+    parser = argparse.ArgumentParser(
+        description="Generate reference stave music files",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+    )
+
+    parser.add_argument(
+        "-k",
+        "--key",
+        help="Only generate for a specific key",
+        type=str,
+        default=None,
+        required=False,
+    )
+
+    return vars(parser.parse_args())
 
 
 def render_chords(data, chords_j2, chords_root, j2env, lily_path):
@@ -118,6 +137,10 @@ def setup_dirs(render_root, chords_root, scales_root):
 
 def main():
 
+    args = parse_cli_args()
+    if args == False:
+        return 1
+
     lily_path = shlex.quote("/Applications/LilyPond 2.18.2.app/Contents/Resources/bin/lilypond")
     render_root = "./render"
     chords_root = render_root + "/chords"
@@ -132,17 +155,22 @@ def main():
     if not setup_dirs(render_root, chords_root, scales_root):
         return 1
 
+    if args['key']:
+        keys = [args['key']]
+    else:
+        keys = ['a', 'b♭', 'b', 'c', 'd♭', 'd', 'e♭', 'e', 'f', 'g♭', 'g', 'a♭']
+
     notes = ['a', 'b♭', 'b', 'c', 'd♭', 'd', 'e♭', 'e', 'f', 'g♭', 'g', 'a♭']
 
-    for note in notes:
+    for key in keys:
 
-        if note: # note == "a♭" or note == "c":
+        if key: # key == "a♭" or key == "c":
 
             data = {}
 
-            data['root'] = note #E.g. "b♭"
+            data['root'] = key #E.g. "b♭"
 
-            data['scale'] = notes[notes.index(note):] + notes[:notes.index(note)] + [note]
+            data['scale'] = notes[notes.index(key):] + notes[:notes.index(key)] + [key]
 
             data['lily_scale'] = []
             for s in data['scale']:
@@ -155,7 +183,7 @@ def main():
                 else:
                     data['lily_scale'].append(s)
 
-            data['root_lily'] = data['lily_scale'][data['scale'].index(note)] #E.g. "bflat"
+            data['root_lily'] = data['lily_scale'][data['scale'].index(key)] #E.g. "bflat"
 
             if not render_chords(data, chords_j2, chords_root, j2env, lily_path):
                 return 1

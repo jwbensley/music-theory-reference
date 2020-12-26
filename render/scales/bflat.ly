@@ -12,22 +12,24 @@
 \score {
   \new PianoStaff {
     \clef "treble"
-    bflat'4-"b♭"
-    c'-"c"
-    d'-"d"
-    eflat'-"e♭"
-    f'-"f"
-    g'-"g"
-    a'-"a"
-    bflat''-"b♭" |
-    bflat''-"b♭"
-    a'-"a"
-    g'-"g"
-    f'-"f"
-    eflat'-"e♭"
-    d'-"d"
-    c'-"c"
-    bflat'4-"b♭"
+    \relative bflat' {
+        bflat4-"b♭"
+        c-"c"
+        d-"d"
+        eflat-"e♭"
+        f-"f"
+        g-"g"
+        a-"a"
+        bflat-"b♭" |
+        bflat-"b♭"
+        a-"a"
+        g-"g"
+        f-"f"
+        eflat-"e♭"
+        d-"d"
+        c-"c"
+        bflat4-"b♭"
+    }
   }
 }
 
@@ -36,22 +38,24 @@
 \score {
   \new PianoStaff {
     \clef "treble"
-    bflat'4-"b♭"
-    c'-"c"
-    dflat'-"d♭"
-    eflat'-"e♭"
-    f'-"f"
-    gflat'-"g♭"
-    aflat'-"a♭"
-    bflat''-"b♭" |
-    bflat''-"b♭"
-    aflat'-"a♭"
-    gflat'-"g♭"
-    f'-"f"
-    eflat'-"e♭"
-    dflat'-"d♭"
-    c'-"c"
-    bflat'4-"b♭"
+    \relative bflat' {
+        bflat4-"b♭"
+        c-"c"
+        dflat-"d♭"
+        eflat-"e♭"
+        f-"f"
+        gflat-"g♭"
+        aflat-"a♭"
+        bflat-"b♭" |
+        bflat-"b♭"
+        aflat-"a♭"
+        gflat-"g♭"
+        f-"f"
+        eflat-"e♭"
+        dflat-"d♭"
+        c-"c"
+        bflat4-"b♭"
+    }
   }
 }
 
@@ -61,22 +65,24 @@
 \score {
   \new PianoStaff {
     \clef "treble"
-    bflat'4-"b♭"
-    c'-"c"
-    dflat'-"d♭"
-    eflat'-"e♭"
-    f'-"f"
-    gflat'-"g♭"
-    aflat'-"a"
-    bflat''-"b♭" |
-    bflat''-"b♭"
-    aflat'-"a"
-    gflat'-"g♭"
-    f'-"f"
-    eflat'-"e♭"
-    dflat'-"d♭"
-    c'-"c"
-    bflat'4-"b♭"
+    \relative bflat' {
+        bflat4-"b♭"
+        c-"c"
+        dflat-"d♭"
+        eflat-"e♭"
+        f-"f"
+        gflat-"g♭"
+        aflat-"a"
+        bflat-"b♭" |
+        bflat-"b♭"
+        aflat-"a"
+        gflat-"g♭"
+        f-"f"
+        eflat-"e♭"
+        dflat-"d♭"
+        c-"c"
+        bflat4-"b♭"
+    }
   }
 }
 
@@ -85,22 +91,24 @@
 \score {
   \new PianoStaff {
     \clef "treble"
-    bflat'4-"b♭"
-    c'-"c"
-    dflat'-"d♭"
-    eflat'-"e♭"
-    f'-"f"
-    g'-"g"
-    aflat'-"a"
-    bflat''-"b♭" |
-    bflat''-"b♭"
-    aflat'-"a"
-    gflat'-"g"
-    f'-"f"
-    eflat'-"e♭"
-    dflat'-"d♭"
-    c'-"c"
-    bflat'4-"b♭"
+    \relative bflat' {
+        bflat4-"b♭"
+        c-"c"
+        dflat-"d♭"
+        eflat-"e♭"
+        f-"f"
+        g-"g"
+        aflat-"a"
+        bflat-"b♭" |
+        bflat-"b♭"
+        aflat-"a"
+        gflat-"g"
+        f-"f"
+        eflat-"e♭"
+        dflat-"d♭"
+        c-"c"
+        bflat4-"b♭"
+    }
   }
 }
 
@@ -109,24 +117,28 @@
 \score {
   \new PianoStaff {
     \clef "treble"
-    bflat'4-"b♭"
-    c'-"c"
-    dflat'-"d♭"
-    eflat'-"e♭"
-    f'-"f"
-    gflat'-"g♭"
-    aflat'-"a"
-    bflat''-"b♭" |
-    bflat''-"b♭"
-    aflat'-"a"
-    gflat'-"g♭"
-    f'-"f"
-    eflat'-"e♭"
-    dflat'-"d♭"
-    c'-"c"
-    bflat'4-"b♭"
+    \relative bflat' {
+        bflat4-"b♭"
+        c-"c"
+        dflat-"d♭"
+        eflat-"e♭"
+        f-"f"
+        gflat-"g♭"
+        aflat-"a"
+        bflat-"b♭" |
+        bflat-"b♭"
+        aflat-"a"
+        gflat-"g♭"
+        f-"f"
+        eflat-"e♭"
+        dflat-"d♭"
+        c-"c"
+        bflat4-"b♭"
+    }
   }
-}\markup { "Hexatonic Scales" }
+}
+
+\markup { "Hexatonic Scales" }
 \markup { \vspace #1 }
 
 \markup { "B♭ Major Hexatonic \"Blues\"" }
@@ -134,21 +146,23 @@
 \score {
   \new PianoStaff {
     \clef "treble"
-    bflat'4-"b♭"
-    c'-"c"
-    dflat'-"d♭"
-    d'-"d"
-    f'-"f"
-    g'-"g"
-    bflat''-"b♭" 
-    r1 |
-    bflat''4-"b♭"
-    g'-"g"
-    f'-"f"
-    eflat'-"d"
-    dflat'-"d♭"
-    c'-"c"
-    bflat'-"b♭"
+    \relative bflat' {
+        bflat4-"b♭"
+        c-"c"
+        dflat-"d♭"
+        d-"d"
+        f-"f"
+        g-"g"
+        bflat-"b♭"
+        r4
+        bflat4-"b♭"
+        g-"g"
+        f-"f"
+        eflat-"d"
+        dflat-"d♭"
+        c-"c"
+        bflat-"b♭"
+    }
   }
 }
 
@@ -156,24 +170,29 @@
 \markup { "whole + half, whole, half, half, whole + half, whole" }
 \score {
   \new PianoStaff {
+    \time 4/4
     \clef "treble"
-    bflat'4-"b♭"
-    dflat'-"d♭"
-    eflat'-"e♭"
-    e'-"e"
-    f'-"f"
-    aflat'-"a♭"
-    bflat''-"b♭"
-    r1 |
-    bflat''4-"b♭"
-    aflat'-"a♭"
-    f'-"f"
-    e'-"e"
-    eflat'-"e♭"
-    dflat'-"d♭"
-    bflat'-"b♭"
+    \relative bflat' {
+        bflat4-"b♭"
+        dflat-"d♭"
+        eflat-"e♭"
+        e-"e"
+        f-"f"
+        aflat-"a♭"
+        bflat-"b♭"
+        r4
+        bflat4-"b♭"
+        aflat-"a♭"
+        f-"f"
+        e-"e"
+        eflat-"e♭"
+        dflat-"d♭"
+        bflat-"b♭"
+    }
   }
-}\markup { "Pentatonic Scales" }
+}
+
+\markup { "Pentatonic Scales" }
 \markup { \vspace #1 }
 
 \markup { "B♭ Major Pentatonic" }
@@ -181,20 +200,21 @@
 \score {
   \new PianoStaff {
     \clef "treble"
-    bflat'4-"b♭"
-    c'-"c"
-    d'-"d"
-    f'-"f"
-    g'-"g"
-    bflat''-"b♭"
-    r2 |
-    bflat''4-"b♭"
-    g'-"g"
-    f'-"f"
-    d'-"d"
-    c'-"c"
-    bflat'-"b♭"
-    r2
+    \relative bflat' {
+        bflat4-"b♭"
+        c-"c"
+        d-"d"
+        f-"f"
+        g-"g"
+        bflat-"b♭"
+        r2 |
+        bflat4-"b♭"
+        g-"g"
+        f-"f"
+        d-"d"
+        c-"c"
+        bflat-"b♭"
+    }
   }
 }
 
@@ -203,20 +223,21 @@
 \score {
   \new PianoStaff {
     \clef "treble"
-    bflat'4-"b♭"
-    c'-"c"
-    d'-"d"
-    f'-"f"
-    g'-"g"
-    bflat''-"b♭"
-    r2 |
-    bflat''4-"b♭"
-    g'-"g"
-    f'-"f"
-    d'-"d"
-    c'-"c"
-    bflat'-"b♭"
-    r2
+    \relative bflat' {
+        bflat4-"b♭"
+        c-"c"
+        d-"d"
+        f-"f"
+        g-"g"
+        bflat-"b♭"
+        r2 |
+        bflat4-"b♭"
+        g-"g"
+        f-"f"
+        d-"d"
+        c-"c"
+        bflat-"b♭"
+    }
   }
 }
 
@@ -225,20 +246,21 @@
 \score {
   \new PianoStaff {
     \clef "treble"
-    bflat'4-"b♭"
-    dflat'-"d♭"
-    eflat'-"e♭"
-    gflat'-"g♭"
-    aflat'-"a♭"
-    bflat''4-"b♭"
-    r2 |
-    bflat''4-"b♭"
-    aflat'-"a♭"
-    gflat'-"g♭"
-    eflat'-"e♭"
-    dflat'-"d♭"
-    bflat'-"b♭"
-    r2
+    \relative bflat' {
+        bflat4-"b♭"
+        dflat-"d♭"
+        eflat-"e♭"
+        gflat-"g♭"
+        aflat-"a♭"
+        bflat-"b♭"
+        r2 |
+        bflat4-"b♭"
+        aflat-"a♭"
+        gflat-"g♭"
+        eflat-"e♭"
+        dflat-"d♭"
+        bflat-"b♭"
+    }
   }
 }
 
@@ -247,20 +269,21 @@
 \score {
   \new PianoStaff {
     \clef "treble"
-    bflat'4-"b♭"
-    c'-"c"
-    eflat'-"e♭"
-    f'-"f"
-    g'-"g"
-    bflat''-"b♭"
-    r2 |
-    bflat''4-"b♭"
-    g'-"g"
-    f'-"f"
-    eflat'-"e♭"
-    c'-"c"
-    bflat'-"b♭"
-    r2
+    \relative bflat' {
+        bflat4-"b♭"
+        c-"c"
+        eflat-"e♭"
+        f-"f"
+        g-"g"
+        bflat-"b♭"
+        r2 |
+        bflat4-"b♭"
+        g-"g"
+        f-"f"
+        eflat-"e♭"
+        c-"c"
+        bflat-"b♭"
+    }
   }
 }
 
@@ -269,19 +292,20 @@
 \score {
   \new PianoStaff {
     \clef "treble"
-    bflat'4-"b♭"
-    dflat'-"d♭"
-    eflat'-"e♭"
-    f'-"f"
-    aflat'-"a♭"
-    bflat''-"b♭"
-    r2 |
-    bflat''4-"b♭"
-    aflat'-"a♭"
-    f'-"f"
-    eflat'-"e♭"
-    dflat'-"d♭"
-    bflat'-"b♭"
-    r2
+    \relative bflat' {
+        bflat4-"b♭"
+        dflat-"d♭"
+        eflat-"e♭"
+        f-"f"
+        aflat-"a♭"
+        bflat-"b♭"
+        r2 |
+        bflat4-"b♭"
+        aflat-"a♭"
+        f-"f"
+        eflat-"e♭"
+        dflat-"d♭"
+        bflat-"b♭"
+    }
   }
 }

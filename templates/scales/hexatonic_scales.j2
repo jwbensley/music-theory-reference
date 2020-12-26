@@ -6,21 +6,23 @@
 \score {
   \new PianoStaff {
     \clef "treble"
-    {{lily_scale[0]}}'4-"{{scale[0]}}"
-    {{lily_scale[2]}}'-"{{scale[2]}}"
-    {{lily_scale[3]}}'-"{{scale[3]}}"
-    {{lily_scale[4]}}'-"{{scale[4]}}"
-    {{lily_scale[7]}}'-"{{scale[7]}}"
-    {{lily_scale[9]}}'-"{{scale[9]}}"
-    {{lily_scale[12]}}''-"{{scale[12]}}" 
-    r1 |
-    {{lily_scale[12]}}''4-"{{scale[12]}}"
-    {{lily_scale[9]}}'-"{{scale[9]}}"
-    {{lily_scale[7]}}'-"{{scale[7]}}"
-    {{lily_scale[5]}}'-"{{scale[4]}}"
-    {{lily_scale[3]}}'-"{{scale[3]}}"
-    {{lily_scale[2]}}'-"{{scale[2]}}"
-    {{lily_scale[0]}}'-"{{scale[0]}}"
+    \relative {{lily_scale[0]}}' {
+        {{lily_scale[0]}}4-"{{scale[0]}}"
+        {{lily_scale[2]}}-"{{scale[2]}}"
+        {{lily_scale[3]}}-"{{scale[3]}}"
+        {{lily_scale[4]}}-"{{scale[4]}}"
+        {{lily_scale[7]}}-"{{scale[7]}}"
+        {{lily_scale[9]}}-"{{scale[9]}}"
+        {{lily_scale[12]}}-"{{scale[12]}}"
+        r4
+        {{lily_scale[12]}}4-"{{scale[12]}}"
+        {{lily_scale[9]}}-"{{scale[9]}}"
+        {{lily_scale[7]}}-"{{scale[7]}}"
+        {{lily_scale[5]}}-"{{scale[4]}}"
+        {{lily_scale[3]}}-"{{scale[3]}}"
+        {{lily_scale[2]}}-"{{scale[2]}}"
+        {{lily_scale[0]}}-"{{scale[0]}}"
+    }
   }
 }
 
@@ -28,21 +30,26 @@
 \markup { "whole + half, whole, half, half, whole + half, whole" }
 \score {
   \new PianoStaff {
+    \time 4/4
     \clef "treble"
-    {{lily_scale[0]}}'4-"{{scale[0]}}"
-    {{lily_scale[3]}}'-"{{scale[3]}}"
-    {{lily_scale[5]}}'-"{{scale[5]}}"
-    {{lily_scale[6]}}'-"{{scale[6]}}"
-    {{lily_scale[7]}}'-"{{scale[7]}}"
-    {{lily_scale[10]}}'-"{{scale[10]}}"
-    {{lily_scale[12]}}''-"{{scale[12]}}"
-    r1 |
-    {{lily_scale[12]}}''4-"{{scale[12]}}"
-    {{lily_scale[10]}}'-"{{scale[10]}}"
-    {{lily_scale[7]}}'-"{{scale[7]}}"
-    {{lily_scale[6]}}'-"{{scale[6]}}"
-    {{lily_scale[5]}}'-"{{scale[5]}}"
-    {{lily_scale[3]}}'-"{{scale[3]}}"
-    {{lily_scale[0]}}'-"{{scale[0]}}"
+    \relative {{lily_scale[0]}}' {
+        {{lily_scale[0]}}4-"{{scale[0]}}"
+        {{lily_scale[3]}}-"{{scale[3]}}"
+        {{lily_scale[5]}}-"{{scale[5]}}"
+        {{lily_scale[6]}}-"{{scale[6]}}"
+        {{lily_scale[7]}}-"{{scale[7]}}"
+        {{lily_scale[10]}}-"{{scale[10]}}"
+        {{lily_scale[12]}}-"{{scale[12]}}"
+        r4
+        {{lily_scale[12]}}4-"{{scale[12]}}"
+        {{lily_scale[10]}}-"{{scale[10]}}"
+        {{lily_scale[7]}}-"{{scale[7]}}"
+        {{lily_scale[6]}}-"{{scale[6]}}"
+        {{lily_scale[5]}}-"{{scale[5]}}"
+        {{lily_scale[3]}}-"{{scale[3]}}"
+        {{lily_scale[0]}}-"{{scale[0]}}"
+    }
   }
 }
+
+

@@ -136,30 +136,32 @@ def main():
 
     for note in notes:
 
-        data = {}
+        if note: # note == "a♭" or note == "c":
 
-        data['root'] = note #E.g. "b♭"
+            data = {}
 
-        data['scale'] = notes[notes.index(note):] + notes[:notes.index(note)] + [note]
+            data['root'] = note #E.g. "b♭"
 
-        data['lily_scale'] = []
-        for s in data['scale']:
-            if '♭' in s:
-                data['lily_scale'].append(s.replace('♭', 'flat'))
-            elif '#' in s:
-                data['lily_scale'].append(s.replace('#', 'sharp'))
-            elif '♮' in s:
-                data['lily_scale'].append(s.replace('♮', ''))
-            else:
-                data['lily_scale'].append(s)
+            data['scale'] = notes[notes.index(note):] + notes[:notes.index(note)] + [note]
 
-        data['root_lily'] = data['lily_scale'][data['scale'].index(note)] #E.g. "bflat"
+            data['lily_scale'] = []
+            for s in data['scale']:
+                if '♭' in s:
+                    data['lily_scale'].append(s.replace('♭', 'flat'))
+                elif '#' in s:
+                    data['lily_scale'].append(s.replace('#', 'sharp'))
+                elif '♮' in s:
+                    data['lily_scale'].append(s.replace('♮', ''))
+                else:
+                    data['lily_scale'].append(s)
 
-        if not render_chords(data, chords_j2, chords_root, j2env, lily_path):
-            return 1
+            data['root_lily'] = data['lily_scale'][data['scale'].index(note)] #E.g. "bflat"
 
-        if not render_scales(data, scales_j2, scales_root, j2env, lily_path):
-            return 1
+            if not render_chords(data, chords_j2, chords_root, j2env, lily_path):
+                return 1
+
+            if not render_scales(data, scales_j2, scales_root, j2env, lily_path):
+                return 1
 
     return 0
 

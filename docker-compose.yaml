@@ -1,0 +1,14 @@
+---
+version: "3.9"
+
+services:
+  music_theory:
+    container_name: music_theory
+    image: music_theory:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./templates/:/templates:z
+      - ./render/:/render:z
+    command: tail -F foo

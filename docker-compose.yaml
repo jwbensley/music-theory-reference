@@ -8,7 +8,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - LILLY_VERSION=$LILLY_VERSION
+    env_file:
+      - .env
     volumes:
-      - ./templates/:/templates:z
-      - ./render/:/render:z
+      - ./reference/:/reference/:z
     command: tail -F foo

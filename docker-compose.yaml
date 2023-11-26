@@ -10,8 +10,13 @@ services:
       dockerfile: Dockerfile
       args:
         - LILLY_VERSION=$LILLY_VERSION
+        - APP_PATH=$APP_PATH
+    entrypoint:
+      - python3
+      - ${APP_PATH}/main.py
     env_file:
       - .env
     volumes:
       - ./reference/:/reference/:z
-    command: tail -F foo
+    command:
+      - --debug

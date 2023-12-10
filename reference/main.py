@@ -21,6 +21,7 @@ def gen_key_data(key: str) -> dict[str, Union[str, list]]:
     - and a LilyPond formatted root note of the key
     """
     data: dict[str, Union[str, list]] = {}
+    data["lily_version"] = Settings.lily_version
     data["root"] = key  # E.g. "b♭" or "c"
     data["scale"] = (
         Settings.notes[Settings.notes.index(key) :]

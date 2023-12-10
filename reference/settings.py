@@ -8,6 +8,7 @@ class Settings:
     try:
         debug = bool(os.environ["DEBUG"])
         lily_path = shlex.quote(os.environ["LILY_PATH"])
+        lily_version = os.environ["LILY_VERSION"]
         render_root = os.path.join(os.environ["APP_PATH"], "render")
         chords_root = os.path.join(render_root, "chords")
         scales_root = os.path.join(render_root, "scales")

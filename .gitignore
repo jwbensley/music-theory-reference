@@ -1,0 +1,26 @@
+# Linux
+*.swp
+**/*.swp
+.Trash-*
+
+# Mac OS X
+._*
+.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store
+.Trashes
+
+# Python
+.mypy_cache/
+__pycache__/
+.tox/
+.venv/
+venv/
+
+# Windows
+[Dd]esktop.ini
+**/desktop.ini
+*.lnk
+$RECYCLE.BIN/
+Thumbs.db

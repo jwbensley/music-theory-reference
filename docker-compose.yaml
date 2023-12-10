@@ -1,0 +1,22 @@
+---
+version: "3.9"
+
+services:
+  renderer:
+    container_name: renderer
+    image: renderer:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - LILY_VERSION=$LILY_VERSION
+        - APP_PATH=$APP_PATH
+    entrypoint:
+      - python3
+      - ${APP_PATH}/main.py
+    env_file:
+      - .env
+    volumes:
+      - ./reference/:/reference/:z
+    command:
+      - --debug

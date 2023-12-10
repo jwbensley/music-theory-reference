@@ -1,0 +1,13 @@
+\version "{{ lily_version }}"
+\language "english"
+
+\header {
+  title = "{{ root.upper() }}"
+  composer = "J. W. Bensley"
+}
+
+{%- include './templates/scales/heptatonic_scales.j2' -%}
+
+{%- include './templates/scales/hexatonic_scales.j2' -%}
+
+{%- include './templates/scales/pentatonic_scales.j2' -%}

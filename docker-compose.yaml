@@ -2,14 +2,14 @@
 version: "3.9"
 
 services:
-  music_theory:
-    container_name: music_theory
-    image: music_theory:latest
+  renderer:
+    container_name: renderer
+    image: renderer:latest
     build:
       context: .
       dockerfile: Dockerfile
       args:
-        - LILLY_VERSION=$LILLY_VERSION
+        - LILY_VERSION=$LILY_VERSION
         - APP_PATH=$APP_PATH
     entrypoint:
       - python3

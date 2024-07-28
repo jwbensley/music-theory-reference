@@ -9,10 +9,12 @@
 
 \markup { "D♭ Major" }
 \markup { "whole, whole, half, whole, whole, whole, half" }
+\markup { "M2, M3, P4, P5, M6, M7, P1 " }
 \score {
   \new PianoStaff {
     \clef "treble"
     \relative df' {
+        \key df \major
         df4-"d♭"
         ef-"e♭"
         f-"f"
@@ -35,10 +37,12 @@
 
 \markup { "D♭ Minor Natural" }
 \markup { "whole, half, whole, whole, half, whole, whole" }
+\markup { "M2, m3, P4, P5, m6, m7, P1 " }
 \score {
   \new PianoStaff {
     \clef "treble"
     \relative df' {
+        \key df \minor
         df4-"d♭"
         ef-"e♭"
         e-"e"
@@ -62,10 +66,12 @@
 
 \markup { "D♭ Minor Harmonic" }
 \markup { "whole, half, whole, whole, half, whole + half, half" }
+\markup { "M2, m3, P4, P5, m6, M7, P1 " }
 \score {
   \new PianoStaff {
     \clef "treble"
     \relative df' {
+        \key df \minor
         df4-"d♭"
         ef-"e♭"
         e-"e"
@@ -86,23 +92,26 @@
   }
 }
 
+minor_melodic_asc = #`((0 . ,NATURAL) (1 . ,NATURAL) (2 . ,FLAT) (3 . ,NATURAL) (4 . ,NATURAL) (5 . ,NATURAL) (6 . ,FLAT))
 \markup { "D♭ Minor Melodic - Ascending" }
-\markup { "whole, half, whole, whole, whole, whole, half" }
+\markup { "whole, half, whole, whole, whole, half, whole / whole, whole, half, whole, whole, half, whole" }
+\markup { "M2, m3, P4, P5, M6, m7, P1 " }
 \score {
   \new PianoStaff {
     \clef "treble"
     \relative df' {
+        \key df \minor_melodic_asc
         df4-"d♭"
         ef-"e♭"
         e-"e"
         gf-"g♭"
         af-"a♭"
         bf-"b♭"
-        b-"c"
+        b-"b"
         df-"d♭" |
         df-"d♭"
-        b-"c"
-        a-"b♭"
+        b-"b"
+        a-"a"
         af-"a♭"
         gf-"g♭"
         e-"e"
@@ -112,22 +121,25 @@
   }
 }
 
+minor_melodic_des = #`((0 . ,NATURAL) (1 . ,NATURAL) (2 . ,FLAT) (3 . ,NATURAL) (4 . ,NATURAL) (5 . ,FLAT) (6 . ,FLAT))
 \markup { "D♭ Minor Melodic - Descending" }
 \markup { "whole, half, whole, whole, half, whole, whole" }
+\markup { "M2, m3, P4, P5, m6, m7, P1 " }
 \score {
   \new PianoStaff {
     \clef "treble"
     \relative df' {
+        \key df \minor_melodic_des
         df4-"d♭"
         ef-"e♭"
         e-"e"
         gf-"g♭"
         af-"a♭"
         a-"a"
-        b-"c"
+        b-"b"
         df-"d♭" |
         df-"d♭"
-        b-"c"
+        b-"b"
         a-"a"
         af-"a♭"
         gf-"g♭"
@@ -138,7 +150,7 @@
   }
 }
 
-\markup { "Hexatonic Scales" }
+\pageBreak\markup { "Hexatonic Scales" }
 \markup { \vspace #1 }
 
 \markup { "D♭ Major Hexatonic \"Blues\"" }

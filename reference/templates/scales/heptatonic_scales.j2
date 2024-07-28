@@ -3,10 +3,12 @@
 
 \markup { "{{ root.upper() }} Major" }
 \markup { "whole, whole, half, whole, whole, whole, half" }
+\markup { "{{ interval_types[2] }}, {{ interval_types[4] }}, {{ interval_types[5] }}, {{ interval_types[7] }}, {{ interval_types[9] }}, {{ interval_types[11] }}, {{ interval_types[12] }} " }
 \score {
   \new PianoStaff {
     \clef "treble"
     \relative {{lily_scale[0]}}' {
+        \key {{lily_scale[0]}} \major
         {{lily_scale[0]}}4-"{{scale[0]}}"
         {{lily_scale[2]}}-"{{scale[2]}}"
         {{lily_scale[4]}}-"{{scale[4]}}"
@@ -29,10 +31,12 @@
 
 \markup { "{{ root.upper() }} Minor Natural" }
 \markup { "whole, half, whole, whole, half, whole, whole" }
+\markup { "{{ interval_types[2] }}, {{ interval_types[3] }}, {{ interval_types[5] }}, {{ interval_types[7] }}, {{ interval_types[8] }}, {{ interval_types[10] }}, {{ interval_types[12] }} " }
 \score {
   \new PianoStaff {
     \clef "treble"
     \relative {{lily_scale[0]}}' {
+        \key {{lily_scale[0]}} \minor
         {{lily_scale[0]}}4-"{{scale[0]}}"
         {{lily_scale[2]}}-"{{scale[2]}}"
         {{lily_scale[3]}}-"{{scale[3]}}"
@@ -56,10 +60,12 @@
 
 \markup { "{{ root.upper() }} Minor Harmonic" }
 \markup { "whole, half, whole, whole, half, whole + half, half" }
+\markup { "{{ interval_types[2] }}, {{ interval_types[3] }}, {{ interval_types[5] }}, {{ interval_types[7] }}, {{ interval_types[8] }}, {{ interval_types[11] }}, {{ interval_types[12] }} " }
 \score {
   \new PianoStaff {
     \clef "treble"
     \relative {{lily_scale[0]}}' {
+        \key {{lily_scale[0]}} \minor
         {{lily_scale[0]}}4-"{{scale[0]}}"
         {{lily_scale[2]}}-"{{scale[2]}}"
         {{lily_scale[3]}}-"{{scale[3]}}"
@@ -80,23 +86,26 @@
   }
 }
 
+minor_melodic_asc = #`((0 . ,NATURAL) (1 . ,NATURAL) (2 . ,FLAT) (3 . ,NATURAL) (4 . ,NATURAL) (5 . ,NATURAL) (6 . ,FLAT))
 \markup { "{{ root.upper() }} Minor Melodic - Ascending" }
-\markup { "whole, half, whole, whole, whole, whole, half" }
+\markup { "whole, half, whole, whole, whole, half, whole / whole, whole, half, whole, whole, half, whole" }
+\markup { "{{ interval_types[2] }}, {{ interval_types[3] }}, {{ interval_types[5] }}, {{ interval_types[7] }}, {{ interval_types[9] }}, {{ interval_types[10] }}, {{ interval_types[12] }} " }
 \score {
   \new PianoStaff {
     \clef "treble"
     \relative {{lily_scale[0]}}' {
+        \key {{lily_scale[0]}} \minor_melodic_asc
         {{lily_scale[0]}}4-"{{scale[0]}}"
         {{lily_scale[2]}}-"{{scale[2]}}"
         {{lily_scale[3]}}-"{{scale[3]}}"
         {{lily_scale[5]}}-"{{scale[5]}}"
         {{lily_scale[7]}}-"{{scale[7]}}"
         {{lily_scale[9]}}-"{{scale[9]}}"
-        {{lily_scale[10]}}-"{{scale[11]}}"
+        {{lily_scale[10]}}-"{{scale[10]}}"
         {{lily_scale[12]}}-"{{scale[12]}}" |
         {{lily_scale[12]}}-"{{scale[12]}}"
-        {{lily_scale[10]}}-"{{scale[11]}}"
-        {{lily_scale[8]}}-"{{scale[9]}}"
+        {{lily_scale[10]}}-"{{scale[10]}}"
+        {{lily_scale[8]}}-"{{scale[8]}}"
         {{lily_scale[7]}}-"{{scale[7]}}"
         {{lily_scale[5]}}-"{{scale[5]}}"
         {{lily_scale[3]}}-"{{scale[3]}}"
@@ -106,22 +115,25 @@
   }
 }
 
+minor_melodic_des = #`((0 . ,NATURAL) (1 . ,NATURAL) (2 . ,FLAT) (3 . ,NATURAL) (4 . ,NATURAL) (5 . ,FLAT) (6 . ,FLAT))
 \markup { "{{ root.upper() }} Minor Melodic - Descending" }
 \markup { "whole, half, whole, whole, half, whole, whole" }
+\markup { "{{ interval_types[2] }}, {{ interval_types[3] }}, {{ interval_types[5] }}, {{ interval_types[7] }}, {{ interval_types[8] }}, {{ interval_types[10] }}, {{ interval_types[12] }} " }
 \score {
   \new PianoStaff {
     \clef "treble"
     \relative {{lily_scale[0]}}' {
+        \key {{lily_scale[0]}} \minor_melodic_des
         {{lily_scale[0]}}4-"{{scale[0]}}"
         {{lily_scale[2]}}-"{{scale[2]}}"
         {{lily_scale[3]}}-"{{scale[3]}}"
         {{lily_scale[5]}}-"{{scale[5]}}"
         {{lily_scale[7]}}-"{{scale[7]}}"
         {{lily_scale[8]}}-"{{scale[8]}}"
-        {{lily_scale[10]}}-"{{scale[11]}}"
+        {{lily_scale[10]}}-"{{scale[10]}}"
         {{lily_scale[12]}}-"{{scale[12]}}" |
         {{lily_scale[12]}}-"{{scale[12]}}"
-        {{lily_scale[10]}}-"{{scale[11]}}"
+        {{lily_scale[10]}}-"{{scale[10]}}"
         {{lily_scale[8]}}-"{{scale[8]}}"
         {{lily_scale[7]}}-"{{scale[7]}}"
         {{lily_scale[5]}}-"{{scale[5]}}"

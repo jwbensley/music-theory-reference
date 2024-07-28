@@ -9,10 +9,12 @@
 
 \markup { "D Major" }
 \markup { "whole, whole, half, whole, whole, whole, half" }
+\markup { "M2, M3, P4, P5, M6, M7, P1 " }
 \score {
   \new PianoStaff {
     \clef "treble"
     \relative d' {
+        \key d \major
         d4-"d"
         e-"e"
         gf-"g♭"
@@ -35,10 +37,12 @@
 
 \markup { "D Minor Natural" }
 \markup { "whole, half, whole, whole, half, whole, whole" }
+\markup { "M2, m3, P4, P5, m6, m7, P1 " }
 \score {
   \new PianoStaff {
     \clef "treble"
     \relative d' {
+        \key d \minor
         d4-"d"
         e-"e"
         f-"f"
@@ -62,10 +66,12 @@
 
 \markup { "D Minor Harmonic" }
 \markup { "whole, half, whole, whole, half, whole + half, half" }
+\markup { "M2, m3, P4, P5, m6, M7, P1 " }
 \score {
   \new PianoStaff {
     \clef "treble"
     \relative d' {
+        \key d \minor
         d4-"d"
         e-"e"
         f-"f"
@@ -86,23 +92,26 @@
   }
 }
 
+minor_melodic_asc = #`((0 . ,NATURAL) (1 . ,NATURAL) (2 . ,FLAT) (3 . ,NATURAL) (4 . ,NATURAL) (5 . ,NATURAL) (6 . ,FLAT))
 \markup { "D Minor Melodic - Ascending" }
-\markup { "whole, half, whole, whole, whole, whole, half" }
+\markup { "whole, half, whole, whole, whole, half, whole / whole, whole, half, whole, whole, half, whole" }
+\markup { "M2, m3, P4, P5, M6, m7, P1 " }
 \score {
   \new PianoStaff {
     \clef "treble"
     \relative d' {
+        \key d \minor_melodic_asc
         d4-"d"
         e-"e"
         f-"f"
         g-"g"
         a-"a"
         b-"b"
-        c-"d♭"
+        c-"c"
         d-"d" |
         d-"d"
-        c-"d♭"
-        bf-"b"
+        c-"c"
+        bf-"b♭"
         a-"a"
         g-"g"
         f-"f"
@@ -112,22 +121,25 @@
   }
 }
 
+minor_melodic_des = #`((0 . ,NATURAL) (1 . ,NATURAL) (2 . ,FLAT) (3 . ,NATURAL) (4 . ,NATURAL) (5 . ,FLAT) (6 . ,FLAT))
 \markup { "D Minor Melodic - Descending" }
 \markup { "whole, half, whole, whole, half, whole, whole" }
+\markup { "M2, m3, P4, P5, m6, m7, P1 " }
 \score {
   \new PianoStaff {
     \clef "treble"
     \relative d' {
+        \key d \minor_melodic_des
         d4-"d"
         e-"e"
         f-"f"
         g-"g"
         a-"a"
         bf-"b♭"
-        c-"d♭"
+        c-"c"
         d-"d" |
         d-"d"
-        c-"d♭"
+        c-"c"
         bf-"b♭"
         a-"a"
         g-"g"
@@ -138,7 +150,7 @@
   }
 }
 
-\markup { "Hexatonic Scales" }
+\pageBreak\markup { "Hexatonic Scales" }
 \markup { \vspace #1 }
 
 \markup { "D Major Hexatonic \"Blues\"" }

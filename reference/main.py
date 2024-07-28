@@ -4,7 +4,6 @@ from settings import Settings
 
 from typing import Union
 import argparse
-from jinja2 import Environment
 import logging
 import os
 import shlex
@@ -29,6 +28,12 @@ def gen_key_data(key: str) -> dict[str, Union[str, list]]:
         + [key]
     )
 
+    data["interval_types"] = []
+    for i in range(0, len(data['scale'])):
+        data["interval_types"].append(
+            Settings.interval_types[data["scale"].index(data['scale'][i])]
+        )
+
     data["lily_scale"] = []
     assert isinstance(data["lily_scale"], list)  # mypy
     for note in data["scale"]:
@@ -41,7 +46,7 @@ def gen_key_data(key: str) -> dict[str, Union[str, list]]:
         else:
             data["lily_scale"].append(note)
 
-    data["root_lily"] = data["lily_scale"][
+    data["root_lily"]: str = data["lily_scale"][
         data["scale"].index(key)
     ]  # E.g. "bflat"
 
@@ -88,9 +93,6 @@ def render():
 
             render_chords(
                 key_data,
-                Settings.chords_j2,
-                Settings.chords_root,
-                Settings.j2env,
             )
 
             render_scales(
@@ -100,46 +102,14 @@ def render():
 
 def render_chords(
     data: dict,
-    chords_j2: str,
-    chords_root: str,
-    j2env: Environment,
 ) -> None:
-    j2 = j2env.get_template(chords_j2 + "/main.j2")
-    logging.debug(f"Using chords template {j2.filename}")
-    j2_output = j2.render(data)
-    output_file: str = os.path.join(chords_root, data["root_lily"] + ".ly")
-
-    try:
-        render_file = open(output_file, 'w')
-    except Exception as e:
-        raise IOError(f"Couldn't open output file {output_file}: {e}")
-
-    try:
-        render_file.write(j2_output)
-    except Exception as e:
-        raise IOError(f"Couldn't write to output file {j2_output}: {e}")
-
-    render_file.close()
-
-    cmd = (
-        Settings.lily_path + " -o " + shlex.quote(os.path.abspath(chords_root))
+    template_file = Settings.chords_entry
+    logging.debug(f"Using chords template {template_file}")
+    lily_file = os.path.join(Settings.chords_root, data["root_lily"] + ".ly")
+    render_template(
+        data=data, output_file=lily_file, template_file=template_file
     )
-    cmd += (
-        " "
-        + shlex.quote(os.path.abspath(chords_root))
-        + "/"
-        + data["root_lily"]
-        + ".ly"
-    )
-
-    try:
-        ret = subprocess.getstatusoutput(cmd)
-        if ret[0] != 0:
-            print(ret[1])
-    except Exception as e:
-        raise ChildProcessError(
-            f"Unable to render LilyPond file to PDF: {cmd}\n{e}"
-        )
+    run_lily_pond(data=data, root_path=Settings.chords_root)
 
 
 def render_template(data: dict, output_file: str, template_file: str):
@@ -147,7 +117,7 @@ def render_template(data: dict, output_file: str, template_file: str):
         f"Rendering template: {data=}, {output_file=}, {template_file=}"
     )
     j2 = Settings.j2env.get_template(template_file)
-    logging.debug(f"Using temaple {j2.filename}")
+    logging.debug(f"Using template {j2.filename}")
     j2_output = j2.render(data)
 
     try:
@@ -169,9 +139,10 @@ def render_scales(
 ) -> None:
     """
     Jinja template paths need to be relative paths.
-    LilyPond paths need be abolute paths.
+    LilyPond paths need be absolute paths.
     """
-    template_file = os.path.join(Settings.scales_j2, "main.j2")
+    template_file = Settings.scales_entry
+    logging.debug(f"Using scales template {template_file}")
     lily_file = os.path.join(Settings.scales_root, data["root_lily"] + ".ly")
     render_template(
         data=data, output_file=lily_file, template_file=template_file
@@ -181,7 +152,7 @@ def render_scales(
 
 def run_lily_pond(data: dict, root_path: str):
     """
-    Run LilyPond to redner a PDF
+    Run LilyPond to render a PDF
     """
     root_path_abs = shlex.quote(os.path.abspath(root_path))
     lily_file_abs = os.path.join(root_path_abs, f"{data['root_lily']}.ly")

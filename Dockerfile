@@ -2,6 +2,7 @@ FROM ubuntu:22.04
 LABEL description="music_theory"
 ARG ARCH="x64"
 ARG OS="linux"
+ARG APP_PATH
 ARG LILY_VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends wget ca-certificates python3 pip
@@ -12,4 +13,4 @@ RUN wget https://gitlab.com/lilypond/lilypond/-/releases/v${LILY_VERSION}/downlo
 tar -xvf lilypond-${LILY_VERSION}-linux-x86_64.tar.gz && \
 /lilypond-${LILY_VERSION}/bin/lilypond -v
 
-COPY reference /
+COPY reference ${APP_PATH}

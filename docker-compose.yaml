@@ -15,6 +15,6 @@ services:
     env_file:
       - .env
     volumes:
-      - ./reference/:/reference/:z
-    command:
-      - --debug
+      - ./$APP_PATH/:/$APP_PATH/:rw
+    # command:
+    #   - --debug

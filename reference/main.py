@@ -2,7 +2,7 @@
 
 from settings import Settings
 
-from typing import Union
+from typing import Any, Union
 import argparse
 import logging
 import os
@@ -11,7 +11,7 @@ import shutil
 import subprocess
 
 
-def gen_key_data(key: str) -> dict[str, Union[str, list]]:
+def gen_key_data(key: str) -> dict[str, Union[str, list[Any]]]:
     """import
     Generate the data for a key we want to render:
     - the root of the key
@@ -19,7 +19,7 @@ def gen_key_data(key: str) -> dict[str, Union[str, list]]:
     - then create a LilyPond formatted version of the scale
     - and a LilyPond formatted root note of the key
     """
-    data: dict[str, Union[str, list]] = {}
+    data: dict[str, Union[str, list[Any]]] = {}
     data["lily_version"] = Settings.lily_version
     data["root"] = key  # E.g. "b♭" or "c"
     data["scale"] = (
@@ -35,7 +35,6 @@ def gen_key_data(key: str) -> dict[str, Union[str, list]]:
         )
 
     data["lily_scale"] = []
-    assert isinstance(data["lily_scale"], list)  # mypy
     for note in data["scale"]:
         if '♭' in note:
             data["lily_scale"].append(note.replace('♭', 'f'))
@@ -46,17 +45,14 @@ def gen_key_data(key: str) -> dict[str, Union[str, list]]:
         else:
             data["lily_scale"].append(note)
 
-    data["root_lily"]: str = data["lily_scale"][
+    data["root_lily"] = str(data["lily_scale"][
         data["scale"].index(key)
-    ]  # E.g. "bflat"
+    ])  # E.g. "bflat"
 
     return data
 
 
-def parse_cli_args() -> dict:
-    """
-    Parse CLI args
-    """
+def parse_cli_args() -> dict[str, Any]:
     parser = argparse.ArgumentParser(
         description="Generate reference stave music files",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
@@ -83,7 +79,7 @@ def parse_cli_args() -> dict:
     return vars(parser.parse_args())
 
 
-def render():
+def render() -> None:
     """
     Render chords and scales for each key
     """
@@ -101,7 +97,7 @@ def render():
 
 
 def render_chords(
-    data: dict,
+    data: dict[str, Any],
 ) -> None:
     template_file = Settings.chords_entry
     logging.debug(f"Using chords template {template_file}")
@@ -112,7 +108,7 @@ def render_chords(
     run_lily_pond(data=data, root_path=Settings.chords_root)
 
 
-def render_template(data: dict, output_file: str, template_file: str):
+def render_template(data: dict[str, Any], output_file: str, template_file: str) -> None:
     logging.debug(
         f"Rendering template: {data=}, {output_file=}, {template_file=}"
     )
@@ -135,7 +131,7 @@ def render_template(data: dict, output_file: str, template_file: str):
 
 
 def render_scales(
-    data: dict,
+    data: dict[str ,Any],
 ) -> None:
     """
     Jinja template paths need to be relative paths.
@@ -150,7 +146,7 @@ def render_scales(
     run_lily_pond(data=data, root_path=Settings.scales_root)
 
 
-def run_lily_pond(data: dict, root_path: str):
+def run_lily_pond(data: dict[str, Any], root_path: str) -> None:
     """
     Run LilyPond to render a PDF
     """

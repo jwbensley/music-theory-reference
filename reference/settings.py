@@ -21,7 +21,7 @@ class Settings:
     except KeyError as e:
         raise KeyError(f"Required ENV var is not set: {e}")
 
-    keys = [
+    keys: list[str] = [
         'a',
         'b♭',
         'b',
@@ -36,7 +36,7 @@ class Settings:
         'a♭',
     ]
 
-    notes = [
+    notes: list[str] = [
         'a',
         'b♭',
         'b',
@@ -51,7 +51,7 @@ class Settings:
         'a♭',
     ]
 
-    interval_types = {
+    interval_types: dict[int, str] = {
         0: "P1",
         1: "m2",
         2: "M2",

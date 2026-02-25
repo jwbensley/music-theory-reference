@@ -1,0 +1,50 @@
+\markup { "Seventh Chords and Inversions" }
+\markup { \vspace #1 }
+
+\markup { "{{ root.upper() }} Major Sevenths" }
+\markup { "root, major third, minor third, major third" }
+\score {
+  \new PianoStaff {
+    \clef "treble"
+    <{{lily_scale[0]}}' {{lily_scale[4]}}' {{lily_scale[7]}}' {{lily_scale[11]}}'>1-"root"
+    <{{lily_scale[4]}}' {{lily_scale[7]}}' {{lily_scale[11]}}' {{lily_scale[0]}}'' >1-"1st"
+    <{{lily_scale[7]}}' {{lily_scale[11]}}' {{lily_scale[0]}}'' {{lily_scale[4]}}''>1-"2nd"
+    <{{lily_scale[11]}}' {{lily_scale[0]}}'' {{lily_scale[4]}}'' {{lily_scale[7]}}''>1-"3rd"
+  }
+}
+
+\markup { "{{ root.upper() }} Minor Sevenths" }
+\markup { "root, minor third, major third, minor third" }
+\score {
+  \new PianoStaff {
+    \clef "treble"
+    <{{lily_scale[0]}}' {{lily_scale[3]}}' {{lily_scale[7]}}' {{lily_scale[10]}}'>1-"root"
+    <{{lily_scale[3]}}' {{lily_scale[7]}}' {{lily_scale[10]}}' {{lily_scale[0]}}'' >1-"1st"
+    <{{lily_scale[7]}}' {{lily_scale[10]}}' {{lily_scale[0]}}'' {{lily_scale[3]}}''>1-"2nd"
+    <{{lily_scale[10]}}' {{lily_scale[0]}}'' {{lily_scale[3]}}'' {{lily_scale[7]}}''>1-"3rd"
+  }
+}
+
+\markup { "{{ root.upper() }} Dominant Sevenths" }
+\markup { "root, major third, minor third, minor third" }
+\score {
+  \new PianoStaff {
+    \clef "treble"
+    <{{lily_scale[0]}}' {{lily_scale[4]}}' {{lily_scale[7]}}' {{lily_scale[10]}}'>1-"root"
+    <{{lily_scale[4]}}' {{lily_scale[7]}}' {{lily_scale[10]}}' {{lily_scale[0]}}'' >1-"1st"
+    <{{lily_scale[7]}}' {{lily_scale[10]}}' {{lily_scale[0]}}'' {{lily_scale[4]}}''>1-"2nd"
+    <{{lily_scale[10]}}' {{lily_scale[0]}}'' {{lily_scale[4]}}'' {{lily_scale[7]}}''>1-"3rd"
+  }
+}
+
+\markup { "{{ root.upper() }} Diminished Sevenths" }
+\markup { "root, minor third, minor third, minor third" }
+\score {
+  \new PianoStaff {
+    \clef "treble"
+    <{{lily_scale[0]}}' {{lily_scale[3]}}' {{lily_scale[6]}}' {{lily_scale[9]}}'>1-"root"
+    <{{lily_scale[3]}}' {{lily_scale[6]}}' {{lily_scale[9]}}' {{lily_scale[0]}}'' >1-"1st"
+    <{{lily_scale[6]}}' {{lily_scale[9]}}' {{lily_scale[0]}}'' {{lily_scale[3]}}''>1-"2nd"
+    <{{lily_scale[9]}}' {{lily_scale[0]}}'' {{lily_scale[3]}}'' {{lily_scale[6]}}''>1-"3rd"
+  }
+}

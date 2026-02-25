@@ -1,11 +1,11 @@
 ---
 services:
-  renderer:
-    container_name: renderer
-    image: renderer:latest
+  reference_sheets:
+    container_name: reference_sheets
+    image: reference_sheets:latest
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./reference_sheets/Dockerfile
       args:
         - LILY_VERSION=$LILY_VERSION
         - APP_PATH=$APP_PATH
@@ -13,8 +13,8 @@ services:
       - python3
       - ${APP_PATH}/main.py
     env_file:
-      - .env
+      - ./reference_sheets/.env
     volumes:
       - ./$APP_PATH/:/$APP_PATH/:rw
-    # command:
-    #   - --debug
+    command:
+      - --debug

@@ -1,0 +1,10 @@
+certifi==2026.2.25
+charset-normalizer==3.4.4
+click==8.1.8
+gTTS==2.5.4
+idna==3.11
+midi2audio==0.1.1
+MIDIUtil==1.2.1
+pydub==0.25.1
+requests==2.32.5
+urllib3==2.6.3

@@ -15,9 +15,7 @@ def generate_silence(duration_ms: int, output_file: str) -> None:
         print(f"Skipping existing file {output_file}")
         return
 
-    silence = AudioSegment.silent(duration=duration_ms).export(
-        output_file, format="mp3"
-    )
+    AudioSegment.silent(duration=duration_ms).export(output_file, format="mp3")
     print(f"Wrote to {output_file}")
 
 

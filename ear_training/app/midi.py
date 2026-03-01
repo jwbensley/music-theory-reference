@@ -22,17 +22,17 @@ class Midi:
 
     @staticmethod
     def _add_note(
-        midi: MIDIFile, notes: list[int], time: int, track: int
+        midi: MIDIFile, notes: list[int], time: int, track: int, duration: int
     ) -> None:
         """
         Adds a note to the MIDI file.
         :param midi: The MIDIFile object to add the note to.
-        :param notes: A list of MIDI note numbers to add as a chord.
+        :param notes: A list of MIDI note numbers played together.
         :param time: The start time for the notes in beats.
         :param track: The track number to add the notes to.
+        :param duration: The duration of the notes in beats.
         """
         channel = 0
-        duration = 1  # In beats
         volume = 100  # 0-127, as per the MIDI standard
         for note in notes:
             midi.addNote(  # type: ignore
@@ -84,7 +84,7 @@ class Midi:
 
         track = 0
         midi = Midi._new_midi_file(track)
-        Midi._add_note(midi, notes, time=time, track=track)
+        Midi._add_note(midi, notes, time=time, track=track, duration=4)
         Midi._write_midi(midi, os.path.join(out_dir, f"{name}.mid"))
         Midi._midi_to_wav(os.path.join(out_dir, f"{name}.mid"))
         Audio.wav_to_mp3(os.path.join(out_dir, f"{name}.wav"))
@@ -98,20 +98,27 @@ class Midi:
         Write each file to disk as mp3 with the name of the note/chord.
         """
         for octave in Octaves:
+            if octave.value.get_name() != "4":
+                continue
+
             octave_midi = octave.value.get_midi_start()
 
             for key in Keys:
-                # Generate a MIDI file for the single note
+                # Generate a MIDI file for a single note
+                note_name = (
+                    octave.value.get_name() + "_" + key.value.get_name()
+                )
                 note_midi = octave_midi + key.value.get_midi_offset()
                 Midi._generate_midi_file(
                     [note_midi],
                     time=0,
-                    name=key.value.get_display_name(),
+                    name=note_name,
                     out_dir=out_dir,
                 )
 
-                # Generate a MIDI file for every chords type at each root note
+                # Generate a MIDI file for every chord type at each root note
                 for chord in Chords:
+                    chord_name = note_name + "_" + chord.value.get_name()
                     chord_midi: list[int] = []
                     for interval in chord.value.get_intervals():
                         chord_midi.append(
@@ -121,6 +128,6 @@ class Midi:
                     Midi._generate_midi_file(
                         chord_midi,
                         time=0,
-                        name=chord.value.get_display_name(),
+                        name=chord_name,
                         out_dir=out_dir,
                     )

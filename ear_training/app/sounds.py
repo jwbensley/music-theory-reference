@@ -40,17 +40,29 @@ class Intervals(Enum):
     perfect_fourth = Interval(
         name="perfect_fourth", display_name="perfect fourth", semitones=5
     )
-    tritone = Interval(
-        name="tritone", display_name="tritone", semitones=6
-    )  # a.k.a diminished fifth or augmented fourth
+    augmented_fourth = Interval(
+        name="augmented_fourth", display_name="augmented fourth", semitones=6
+    )
+    diminished_fifth = Interval(
+        name="diminished_fifth", display_name="diminished fifth", semitones=6
+    )
+    tritone = Interval(name="tritone", display_name="tritone", semitones=6)
     perfect_fifth = Interval(
         name="perfect_fifth", display_name="perfect fifth", semitones=7
     )
+    augmented_fifth = Interval(
+        name="augmented_fifth", display_name="augmented fifth", semitones=8
+    )
     minor_sixth = Interval(
         name="minor_sixth", display_name="minor sixth", semitones=8
-    )  # a.k.a augmented fifth
+    )
     major_sixth = Interval(
         name="major_sixth", display_name="major sixth", semitones=9
+    )
+    diminished_seventh = Interval(
+        name="diminished_seventh",
+        display_name="diminished seventh",
+        semitones=9,
     )
     minor_seventh = Interval(
         name="minor_seventh", display_name="minor seventh", semitones=10
@@ -107,7 +119,7 @@ class Chords(Enum):
         intervals=[
             Intervals.unison.value,
             Intervals.minor_third.value,
-            Intervals.tritone.value,
+            Intervals.diminished_fifth.value,
         ],
     )
     augmented = Chord(
@@ -116,23 +128,58 @@ class Chords(Enum):
         intervals=[
             Intervals.unison.value,
             Intervals.major_third.value,
-            Intervals.minor_sixth.value,
+            Intervals.augmented_fifth.value,
         ],
     )
-    fifth = Chord(
-        name="fifth",
-        display_name="fifth",
-        intervals=[Intervals.unison.value, Intervals.perfect_fifth.value],
+    major_seventh = Chord(
+        name="major_seventh",
+        display_name="major seventh",
+        intervals=[
+            Intervals.unison.value,
+            Intervals.major_third.value,
+            Intervals.perfect_fifth.value,
+            Intervals.major_seventh.value,
+        ],
     )
-    seventh = Chord(
-        name="seventh",
-        display_name="seventh",
-        intervals=[Intervals.unison.value, Intervals.minor_seventh.value],
+    minor_seventh = Chord(
+        name="minor_seventh",
+        display_name="minor seventh",
+        intervals=[
+            Intervals.unison.value,
+            Intervals.minor_third.value,
+            Intervals.perfect_fifth.value,
+            Intervals.minor_seventh.value,
+        ],
     )
-    ninth = Chord(
-        name="ninth",
-        display_name="ninth",
-        intervals=[Intervals.unison.value, Intervals.major_second.value],
+    dominant_seventh = Chord(
+        name="dominant_seventh",
+        display_name="dominant seventh",
+        intervals=[
+            Intervals.unison.value,
+            Intervals.major_third.value,
+            Intervals.perfect_fifth.value,
+            Intervals.minor_seventh.value,
+        ],
+    )
+    diminished_seventh = Chord(
+        name="diminished_seventh",
+        display_name="diminished seventh",
+        intervals=[
+            Intervals.unison.value,
+            Intervals.minor_third.value,
+            Intervals.diminished_fifth.value,
+            Intervals.diminished_seventh.value,
+        ],
+    )
+    augmented_major_seventh = Chord(
+        name="augmented_major_seventh",
+        display_name="augmented major seventh",
+        intervals=[
+            Intervals.unison.value,
+            Intervals.major_third.value,
+            Intervals.augmented_fifth.value,
+            Intervals.major_seventh.value,
+        ],
     )
 
 
@@ -374,32 +421,32 @@ class Keys(Enum):
 
 
 class Octave:
-    number: int
+    name: str
     midi_start: int
 
-    def __init__(self, number: int, midi_start: int = 0) -> None:
-        self.number = number
+    def __init__(self, name: str, midi_start: int = 0) -> None:
+        self.name = name
         self.midi_start = midi_start
 
     def __str__(self) -> str:
-        return str(self.number)
+        return str(self.name)
 
     def get_midi_start(self) -> int:
         return self.midi_start
 
-    def get_number(self) -> int:
-        return self.number
+    def get_name(self) -> str:
+        return self.name
 
 
 class Octaves(Enum):
-    octave_1 = Octave(number=0, midi_start=21)
-    octave_2 = Octave(number=1, midi_start=33)
-    octave_3 = Octave(number=2, midi_start=45)
-    octave_4 = Octave(number=3, midi_start=57)
-    octave_5 = Octave(number=4, midi_start=69)
-    octave_6 = Octave(number=5, midi_start=81)
-    octave_7 = Octave(number=6, midi_start=93)
-    octave_8 = Octave(number=7, midi_start=105)
+    octave_1 = Octave(name="0", midi_start=21)
+    octave_2 = Octave(name="1", midi_start=33)
+    octave_3 = Octave(name="2", midi_start=45)
+    octave_4 = Octave(name="3", midi_start=57)
+    octave_5 = Octave(name="4", midi_start=69)
+    octave_6 = Octave(name="5", midi_start=81)
+    octave_7 = Octave(name="6", midi_start=93)
+    octave_8 = Octave(name="7", midi_start=105)
 
 
 """

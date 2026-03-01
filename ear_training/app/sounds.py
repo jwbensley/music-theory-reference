@@ -1,22 +1,17 @@
 from enum import Enum
-from typing import Protocol
+from pydantic import BaseModel
 
 
-class NarratedSound(Protocol):
-    def get_pronunciation(self) -> str: ...
-    def get_sanitized_name(self) -> str: ...
-
-
-class Interval:
+class Interval(BaseModel):
     name: str
+    display_name: str
     semitones: int
-
-    def __init__(self, name: str, semitones: int) -> None:
-        self.name = name
-        self.semitones = semitones
 
     def __str__(self) -> str:
         return self.name
+
+    def get_display_name(self) -> str:
+        return self.display_name
 
     def get_name(self) -> str:
         return self.name
@@ -24,36 +19,53 @@ class Interval:
     def get_pronunciation(self) -> str:
         return self.get_name()
 
-    def get_sanitized_name(self) -> str:
-        return self.get_name().replace(" ", "_").lower()
-
 
 class Intervals(Enum):
-    unison = Interval("unison", 0)
-    minor_second = Interval("minor second", 1)
-    major_second = Interval("major second", 2)
-    minor_third = Interval("minor third", 3)
-    major_third = Interval("major third", 4)
-    perfect_fourth = Interval("perfect fourth", 5)
-    tritone = Interval("tritone", 6)
-    perfect_fifth = Interval("perfect fifth", 7)
-    minor_sixth = Interval("minor sixth", 8)
-    major_sixth = Interval("major sixth", 9)
-    minor_seventh = Interval("minor seventh", 10)
-    major_seventh = Interval("major seventh", 11)
-    octave = Interval("octave", 12)
+    unison = Interval(name="unison", display_name="unison", semitones=0)
+    minor_second = Interval(
+        name="minor_second", display_name="minor second", semitones=1
+    )
+    major_second = Interval(
+        name="major_second", display_name="major second", semitones=2
+    )
+    minor_third = Interval(
+        name="minor_third", display_name="minor third", semitones=3
+    )
+    major_third = Interval(
+        name="major_third", display_name="major third", semitones=4
+    )
+    perfect_fourth = Interval(
+        name="perfect_fourth", display_name="perfect fourth", semitones=5
+    )
+    tritone = Interval(name="tritone", display_name="tritone", semitones=6)
+    perfect_fifth = Interval(
+        name="perfect_fifth", display_name="perfect fifth", semitones=7
+    )
+    minor_sixth = Interval(
+        name="minor_sixth", display_name="minor sixth", semitones=8
+    )
+    major_sixth = Interval(
+        name="major_sixth", display_name="major sixth", semitones=9
+    )
+    minor_seventh = Interval(
+        name="minor_seventh", display_name="minor seventh", semitones=10
+    )
+    major_seventh = Interval(
+        name="major_seventh", display_name="major seventh", semitones=11
+    )
+    octave = Interval(name="octave", display_name="octave", semitones=12)
 
 
-class Chord:
+class Chord(BaseModel):
     name: str
+    display_name: str
     interval: Interval
-
-    def __init__(self, name: str, interval: Interval) -> None:
-        self.name = name
-        self.interval = interval
 
     def __str__(self) -> str:
         return self.name
+
+    def get_display_name(self) -> str:
+        return self.display_name
 
     def get_name(self) -> str:
         return self.name
@@ -64,30 +76,55 @@ class Chord:
     def get_pronunciation(self) -> str:
         return self.get_name()
 
-    def get_sanitized_name(self) -> str:
-        return self.get_name().replace(" ", "_").lower()
-
 
 class Chords(Enum):
-    major = Chord("major", Intervals.major_third.value)
-    minor = Chord("minor", Intervals.minor_third.value)
-    diminished = Chord("diminished", Intervals.minor_third.value)
-    augmented = Chord("augmented", Intervals.major_third.value)
-    fifth = Chord("fifth", Intervals.perfect_fifth.value)
-    seventh = Chord("seventh", Intervals.minor_seventh.value)
-    ninth = Chord("ninth", Intervals.major_second.value)
+    major = Chord(
+        name="major",
+        display_name="major",
+        interval=Intervals.major_third.value,
+    )
+    minor = Chord(
+        name="minor",
+        display_name="minor",
+        interval=Intervals.minor_third.value,
+    )
+    diminished = Chord(
+        name="diminished",
+        display_name="diminished",
+        interval=Intervals.minor_third.value,
+    )
+    augmented = Chord(
+        name="augmented",
+        display_name="augmented",
+        interval=Intervals.major_third.value,
+    )
+    fifth = Chord(
+        name="fifth",
+        display_name="fifth",
+        interval=Intervals.perfect_fifth.value,
+    )
+    seventh = Chord(
+        name="seventh",
+        display_name="seventh",
+        interval=Intervals.minor_seventh.value,
+    )
+    ninth = Chord(
+        name="ninth",
+        display_name="ninth",
+        interval=Intervals.major_second.value,
+    )
 
 
-class Scale:
+class Scale(BaseModel):
     name: str
+    display_name: str
     intervals: list[Interval]
-
-    def __init__(self, name: str, intervals: list[Interval]) -> None:
-        self.name = name
-        self.intervals = intervals
 
     def __str__(self) -> str:
         return self.name
+
+    def get_display_name(self) -> str:
+        return self.display_name
 
     def get_name(self) -> str:
         return self.name
@@ -98,14 +135,12 @@ class Scale:
     def get_pronunciation(self) -> str:
         return self.get_name()
 
-    def get_sanitized_name(self) -> str:
-        return self.get_name().replace(" ", "_").lower()
-
 
 class Scales(Enum):
     major = Scale(
-        "major",
-        [
+        name="major",
+        display_name="major",
+        intervals=[
             Intervals.major_second.value,
             Intervals.major_second.value,
             Intervals.minor_second.value,
@@ -116,8 +151,9 @@ class Scales(Enum):
         ],
     )
     minor = Scale(
-        "minor",
-        [
+        name="minor",
+        display_name="minor",
+        intervals=[
             Intervals.major_second.value,
             Intervals.minor_second.value,
             Intervals.major_second.value,
@@ -128,8 +164,9 @@ class Scales(Enum):
         ],
     )
     harmonic_minor = Scale(
-        "harmonic minor",
-        [
+        name="harmonic_minor",
+        display_name="harmonic minor",
+        intervals=[
             Intervals.major_second.value,
             Intervals.minor_second.value,
             Intervals.major_second.value,
@@ -140,8 +177,9 @@ class Scales(Enum):
         ],
     )
     melodic_minor = Scale(
-        "melodic minor",
-        [
+        name="melodic_minor",
+        display_name="melodic minor",
+        intervals=[
             Intervals.major_second.value,
             Intervals.minor_second.value,
             Intervals.major_second.value,
@@ -152,8 +190,9 @@ class Scales(Enum):
         ],
     )
     pentatonic_major = Scale(
-        "pentatonic major",
-        [
+        name="pentatonic_major",
+        display_name="pentatonic major",
+        intervals=[
             Intervals.major_second.value,
             Intervals.major_second.value,
             Intervals.minor_third.value,
@@ -162,8 +201,9 @@ class Scales(Enum):
         ],
     )
     pentatonic_minor = Scale(
-        "pentatonic minor",
-        [
+        name="pentatonic_minor",
+        display_name="pentatonic minor",
+        intervals=[
             Intervals.minor_third.value,
             Intervals.major_second.value,
             Intervals.major_second.value,
@@ -173,15 +213,10 @@ class Scales(Enum):
     )
 
 
-class SoundType:
+class SoundType(BaseModel):
     name: str
+    display_name: str
     types: list[Chord | Interval | Scale]
-
-    def __init__(
-        self, name: str, types: list[Chord | Interval | Scale]
-    ) -> None:
-        self.name = name
-        self.types = types
 
     def __str__(self) -> str:
         return self.name
@@ -191,9 +226,6 @@ class SoundType:
 
     def get_pronunciation(self) -> str:
         return self.get_name()
-
-    def get_sanitized_name(self) -> str:
-        return self.get_name().replace(" ", "_").lower()
 
     def get_types(
         self, filter: list[str] | None = None
@@ -209,21 +241,29 @@ class SoundType:
 
 
 class SoundTypes(Enum):
-    chords = SoundType("chords", [e.value for e in Chords])
-    intervals = SoundType("intervals", [i.value for i in Intervals])
-    scales = SoundType("scales", [s.value for s in Scales])
+    chords = SoundType(
+        name="chords", display_name="chords", types=[e.value for e in Chords]
+    )
+    intervals = SoundType(
+        name="intervals",
+        display_name="intervals",
+        types=[i.value for i in Intervals],
+    )
+    scales = SoundType(
+        name="scales", display_name="scales", types=[s.value for s in Scales]
+    )
 
 
-class Key:
+class Key(BaseModel):
     name: str
+    display_name: str
     pronunciation: str
-
-    def __init__(self, name: str, pronunciation: str) -> None:
-        self.name = name
-        self.pronunciation = pronunciation
 
     def __str__(self) -> str:
         return self.name
+
+    def get_display_name(self) -> str:
+        return self.display_name
 
     def get_name(self) -> str:
         return self.name
@@ -231,32 +271,22 @@ class Key:
     def get_pronunciation(self) -> str:
         return self.pronunciation
 
-    def get_sanitized_name(self) -> str:
-        x = self.get_name().lower()
-        if x == "b":
-            return x
-        elif x.endswith("#"):
-            x = x.replace("#", "_sharp")
-        elif x.endswith("b"):
-            x = x.removesuffix("b") + "_flat"
-        return x
-
 
 class Keys(Enum):
-    a_flat = Key("ab", "Ay flat")
-    a = Key("a", "A")
-    a_sharp = Key("a#", "Ay sharp")
-    b_flat = Key("bb", "Bee flat")
-    b = Key("b", "Bee")
-    c = Key("c", "Cee")
-    c_sharp = Key("c#", "Cee sharp")
-    d_flat = Key("db", "Dee flat")
-    d = Key("d", "Dee")
-    d_sharp = Key("d#", "Dee sharp")
-    e_flat = Key("eb", "Ee flat")
-    e = Key("e", "Ee")
-    f = Key("f", "Ef")
-    f_sharp = Key("f#", "Ef sharp")
-    g_flat = Key("gb", "Gee flat")
-    g = Key("g", "Gee")
-    g_sharp = Key("g#", "Gee sharp")
+    a_flat = Key(name="a_flat", display_name="ab", pronunciation="Ay flat")
+    a = Key(name="a", display_name="a", pronunciation="A")
+    a_sharp = Key(name="a_sharp", display_name="a#", pronunciation="Ay sharp")
+    b_flat = Key(name="b_flat", display_name="bb", pronunciation="Bee flat")
+    b = Key(name="b", display_name="b", pronunciation="Bee")
+    c = Key(name="c", display_name="c", pronunciation="Cee")
+    c_sharp = Key(name="c_sharp", display_name="c#", pronunciation="Cee sharp")
+    d_flat = Key(name="d_flat", display_name="db", pronunciation="Dee flat")
+    d = Key(name="d", display_name="d", pronunciation="Dee")
+    d_sharp = Key(name="d_sharp", display_name="d#", pronunciation="Dee sharp")
+    e_flat = Key(name="e_flat", display_name="eb", pronunciation="Ee flat")
+    e = Key(name="e", display_name="e", pronunciation="Ee")
+    f = Key(name="f", display_name="f", pronunciation="Ef")
+    f_sharp = Key(name="f_sharp", display_name="f#", pronunciation="Ef sharp")
+    g_flat = Key(name="g_flat", display_name="gb", pronunciation="Gee flat")
+    g = Key(name="g", display_name="g", pronunciation="Gee")
+    g_sharp = Key(name="g_sharp", display_name="g#", pronunciation="Gee sharp")

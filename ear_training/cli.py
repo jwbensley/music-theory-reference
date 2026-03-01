@@ -3,7 +3,7 @@
 import argparse
 import logging
 from app.sounds import Chords, Intervals, Scales, SoundTypes, Keys
-from app.app import EarTraining
+from app.app import EarTraining, generate_audio
 
 cli_args: argparse.Namespace
 
@@ -16,6 +16,14 @@ def parse_cli_args() -> None:
     parser.add_argument(
         "--debug",
         help="run with debug level logging.",
+        default=False,
+        action="store_true",
+        required=False,
+    )
+    parser.add_argument(
+        "--generate-audio",
+        help="generate audio files for all sound types, chords, intervals, scales, and keys. "
+        "This will be skipped if the files already exist.",
         default=False,
         action="store_true",
         required=False,
@@ -70,6 +78,10 @@ def parse_cli_args() -> None:
 
 def main() -> None:
     parse_cli_args()
+
+    if cli_args.generate_audio:
+        generate_audio()
+        exit(0)
 
     if cli_args.debug:
         logging.basicConfig(level=logging.DEBUG)

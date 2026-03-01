@@ -16,6 +16,19 @@ from app.sounds import (
 from app.narration import Narration
 from pathlib import Path
 
+from app.midi import Midi
+
+
+def generate_audio() -> None:
+    Narration.generate_all_narrations(
+        out_dir=os.path.join(
+            Path(__file__).parent.parent, "audio", "narration"
+        )
+    )
+    Midi.generate_all_sounds(
+        out_dir=os.path.join(Path(__file__).parent.parent, "audio", "sounds")
+    )
+
 
 class EarTraining:
     key: Key
@@ -32,11 +45,6 @@ class EarTraining:
         self.sound_type = sound_type
         self.sound_choices = sound_type_choices
         self._print_config()
-        Narration.generate_narration(
-            out_dir=os.path.join(
-                Path(__file__).parent.parent, "audio", "narration"
-            )
-        )
 
     def _print_config(self) -> None:
         logging.info(f"Key: {self.key.get_name()}")

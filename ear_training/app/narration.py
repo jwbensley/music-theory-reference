@@ -11,7 +11,7 @@ class Narration:
     """
 
     @staticmethod
-    def generate_narration(out_dir: str) -> None:
+    def generate_all_narrations(out_dir: str) -> None:
         """
         Generate narration audio files for all sound types, chords, intervals, scales, and keys.
         """

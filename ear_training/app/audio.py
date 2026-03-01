@@ -1,4 +1,5 @@
 from pydub import AudioSegment  # type: ignore
+import logging
 
 
 class Audio:
@@ -15,4 +16,4 @@ class Audio:
         audio: AudioSegment = AudioSegment.from_wav(wav_filename)  # type: ignore
         mp3_filename = wav_filename.replace(".wav", ".mp3")
         audio.export(mp3_filename, format="mp3")  # type: ignore
-        print(f"Wrote to {mp3_filename}")
+        logging.debug(f"Wrote to {mp3_filename}")

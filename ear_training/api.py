@@ -7,12 +7,9 @@ from pydantic import BaseModel
 from fastapi.responses import HTMLResponse
 from app.form import form_html
 from app.sounds import (
-    Chord,
     Chords,
-    Interval,
     Key,
     Keys,
-    Scale,
     SoundTypes,
     Intervals,
     Scales,
@@ -94,6 +91,11 @@ async def download(args: args) -> args:
 @app.get("/", response_class=HTMLResponse)
 def return_form():
     return HTMLResponse(content=form_html, status_code=200)
+
+
+@app.get("/a")
+def a():
+    pass
 
 
 # uvicorn ear_training.api:app --reload --port 8000

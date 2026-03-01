@@ -18,35 +18,25 @@ from pathlib import Path
 
 
 class EarTraining:
-    debug: bool
     key: Key
     sound_type: SoundType
     sound_choices: list[Chord | Interval | Scale]
 
     def __init__(
         self,
-        debug: bool,
         key: Key,
         sound_type: SoundType,
         sound_type_choices: list[Chord | Interval | Scale],
     ) -> None:
-        self.debug = debug
         self.key = key
         self.sound_type = sound_type
         self.sound_choices = sound_type_choices
-        self._setup_logging(debug)
         self._print_config()
         Narration.generate_narration(
             out_dir=os.path.join(
                 Path(__file__).parent.parent, "audio", "narration"
             )
         )
-
-    def _setup_logging(self, debug: bool) -> None:
-        if debug:
-            logging.basicConfig(level=logging.DEBUG)
-        else:
-            logging.basicConfig(level=logging.INFO)
 
     def _print_config(self) -> None:
         logging.info(f"Key: {self.key.get_name()}")
@@ -94,7 +84,6 @@ class EarTraining:
 
     @staticmethod
     def from_args(
-        debug: bool = False,
         key_name: str | None = None,
         sound_type_name: str | None = None,
         sound_type_choice_names: list[str] = [],
@@ -108,7 +97,6 @@ class EarTraining:
         )
 
         return EarTraining(
-            debug=debug,
             key=key,
             sound_type=sound_type,
             sound_type_choices=sound_type_choices,

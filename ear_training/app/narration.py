@@ -41,4 +41,4 @@ class Narration:
             + [e.value for e in Scales]
             + [e.value for e in Keys]
         ):
-            _generate_audio(obj.get_pronunciation(), obj.get_sanitized_name())
+            _generate_audio(obj.get_pronunciation(), obj.get_name())

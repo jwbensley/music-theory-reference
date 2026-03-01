@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import logging
 from app.sounds import Chords, Intervals, Scales, SoundTypes, Keys
 from app.app import EarTraining
 
@@ -70,6 +71,13 @@ def parse_cli_args() -> None:
 def main() -> None:
     parse_cli_args()
 
+    if cli_args.debug:
+        logging.basicConfig(level=logging.DEBUG)
+        logging.debug("Debug logging started")
+    else:
+        logging.basicConfig(level=logging.INFO)
+        logging.info("Info logging started")
+
     if cli_args.sound_type == SoundTypes.chords.value.get_name():
         sound_type_choices = cli_args.chord_types
     elif cli_args.sound_type == SoundTypes.intervals.value.get_name():
@@ -80,7 +88,6 @@ def main() -> None:
         sound_type_choices = []
 
     _ = EarTraining.from_args(
-        cli_args.debug,
         cli_args.key,
         cli_args.sound_type,
         sound_type_choices,

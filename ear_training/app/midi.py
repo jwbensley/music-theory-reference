@@ -2,11 +2,47 @@ import os
 from midiutil import MIDIFile
 from midi2audio import FluidSynth
 from app.audio import Audio
-from app.sounds import Keys, Octaves, Chords
+from app.sounds import (
+    Chord,
+    Interval,
+    Key,
+    Keys,
+    Octave,
+    Octaves,
+    Chords,
+    Scale,
+)
 import logging
 
 
 class Midi:
+
+    sub_dir = "sounds"
+
+    @staticmethod
+    def get_filename(
+        octave: Octave, key: Key, obj: Chord | Interval | Scale | None = None
+    ) -> str:
+        if obj:
+            return os.path.join(
+                Midi.get_sub_dir(),
+                (
+                    octave.get_name()
+                    + "_"
+                    + key.get_name()
+                    + "_"
+                    + obj.get_name()
+                ),
+            )
+
+        return os.path.join(
+            Midi.get_sub_dir(),
+            (octave.get_name() + "_" + key.get_name()),
+        )
+
+    @staticmethod
+    def get_sub_dir() -> str:
+        return Midi.sub_dir
 
     @staticmethod
     def _new_midi_file(track: int) -> MIDIFile:
@@ -53,6 +89,8 @@ class Midi:
         """
         if not os.path.exists(os.path.dirname(filename)):
             os.makedirs(os.path.dirname(filename))
+            logging.debug(f"Created directory {os.path.dirname(filename)}")
+
         with open(filename, "wb") as output_file:
             midi.writeFile(output_file)  # type: ignore
         logging.debug(f"Wrote to {filename}")
@@ -97,6 +135,9 @@ class Midi:
         Generates a MIDI file for every single note and chord on a standard piano.
         Write each file to disk as mp3 with the name of the note/chord.
         """
+
+        out_dir = os.path.join(out_dir, Midi.sub_dir)
+
         for octave in Octaves:
             if octave.value.get_name() != "4":
                 continue
@@ -105,9 +146,7 @@ class Midi:
 
             for key in Keys:
                 # Generate a MIDI file for a single note
-                note_name = (
-                    octave.value.get_name() + "_" + key.value.get_name()
-                )
+                note_name = Midi.get_filename(octave.value, key.value)
                 note_midi = octave_midi + key.value.get_midi_offset()
                 Midi._generate_midi_file(
                     [note_midi],
@@ -118,7 +157,9 @@ class Midi:
 
                 # Generate a MIDI file for every chord type at each root note
                 for chord in Chords:
-                    chord_name = note_name + "_" + chord.value.get_name()
+                    chord_name = Midi.get_filename(
+                        octave.value, key.value, chord.value
+                    )
                     chord_midi: list[int] = []
                     for interval in chord.value.get_intervals():
                         chord_midi.append(

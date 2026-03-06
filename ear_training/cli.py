@@ -3,26 +3,47 @@
 import argparse
 import logging
 from app.sounds import Chords, Intervals, Scales, SoundTypes, Keys
-from app.app import EarTraining, generate_audio
+from app.app import EarTraining
 
 cli_args: argparse.Namespace
 
 
 def parse_cli_args() -> None:
+    class CustomFormatter(argparse.HelpFormatter):
+        """
+        This custom formatter class removes the duplicated choices from the help text for each argument.
+        """
+
+        def _format_action(self, action: argparse.Action) -> str:
+            if action.choices:
+                text = f"  {action.option_strings[0]}"
+
+                if len(action.option_strings[0]) <= 5:
+                    text += "\t\t"
+                elif len(action.option_strings[0]) <= 14:
+                    text += "\t"
+                text += (
+                    f"\t{action.help}:\n\t\t\t{[c for c in action.choices]}\n"
+                )
+                return text
+            else:
+                return super()._format_action(action)
+
     parser = argparse.ArgumentParser(
         description="Generate audio files for ear training",
+        formatter_class=CustomFormatter,
         usage="%(prog)s [options]",
     )
     parser.add_argument(
         "--debug",
-        help="run with debug level logging.",
+        help="Run with debug level logging.",
         default=False,
         action="store_true",
         required=False,
     )
     parser.add_argument(
         "--generate-audio",
-        help="generate audio files for all sound types, chords, intervals, scales, and keys. "
+        help="Generate audio files for all sound types, chords, intervals, scales, and keys. "
         "This will be skipped if the files already exist.",
         default=False,
         action="store_true",
@@ -33,14 +54,14 @@ def parse_cli_args() -> None:
         type=str,
         choices=[s.value.get_name() for s in SoundTypes],
         required=False,
-        help="the type of sound to generate",
+        help="The type of sound to generate",
     )
     parser.add_argument(
         "--key",
         type=str,
         choices=[k.value.get_name() for k in Keys],
         required=False,
-        help="the key of the generated sounds. If not specified, a random key will be chosen.",
+        help="The key of the generated sounds. If not specified, a random key will be chosen",
     )
     sound_type_choices = parser.add_argument_group(
         "Sound Type Choices",
@@ -52,7 +73,7 @@ def parse_cli_args() -> None:
         type=str,
         choices=[c.value.get_name() for c in Chords],
         required=False,
-        help="the type(s) of chords to generate",
+        help="The type(s) of chords to generate",
         nargs="+",
     )
     sound_type_choices.add_argument(
@@ -60,7 +81,7 @@ def parse_cli_args() -> None:
         type=str,
         choices=[i.value.get_name() for i in Intervals],
         required=False,
-        help="the type(s) of intervals to generate",
+        help="The type(s) of intervals to generate",
         nargs="+",
     )
     sound_type_choices.add_argument(
@@ -68,7 +89,7 @@ def parse_cli_args() -> None:
         type=str,
         choices=[s.value.get_name() for s in Scales],
         required=False,
-        help="the type(s) of scales to generate",
+        help="The type(s) of scales to generate",
         nargs="+",
     )
 
@@ -80,8 +101,7 @@ def main() -> None:
     parse_cli_args()
 
     if cli_args.generate_audio:
-        generate_audio()
-        exit(0)
+        EarTraining.generate_audio()
 
     if cli_args.debug:
         logging.basicConfig(level=logging.DEBUG)
@@ -99,11 +119,13 @@ def main() -> None:
     else:
         sound_type_choices = []
 
-    _ = EarTraining.from_args(
+    et = EarTraining.from_args(
         cli_args.key,
         cli_args.sound_type,
         sound_type_choices,
     )
+
+    et.generate_sound()
 
 
 if __name__ == "__main__":

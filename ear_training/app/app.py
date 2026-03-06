@@ -9,28 +9,21 @@ from app.sounds import (
     Interval,
     Key,
     Keys,
+    Octaves,
     Scale,
     SoundType,
     SoundTypes,
 )
-from app.narration import Narration
+from app.narration import Narration, Phrases
 from pathlib import Path
-
+from app.audio import Audio
 from app.midi import Midi
 
 
-def generate_audio() -> None:
-    Narration.generate_all_narrations(
-        out_dir=os.path.join(
-            Path(__file__).parent.parent, "audio", "narration"
-        )
-    )
-    Midi.generate_all_sounds(
-        out_dir=os.path.join(Path(__file__).parent.parent, "audio", "sounds")
-    )
-
-
 class EarTraining:
+    base_dir = os.path.join(Path(__file__).parent.parent, "audio")
+    rendered_dir = os.path.join(base_dir, "rendered")
+
     key: Key
     sound_type: SoundType
     sound_choices: list[Chord | Interval | Scale]
@@ -109,3 +102,42 @@ class EarTraining:
             sound_type=sound_type,
             sound_type_choices=sound_type_choices,
         )
+
+    @staticmethod
+    def generate_audio() -> None:
+        Narration.generate_all_narrations(out_dir=EarTraining.base_dir)
+        Midi.generate_all_sounds(out_dir=EarTraining.base_dir)
+        Audio.generate_all_silences(out_dir=EarTraining.base_dir)
+
+    def generate_sound(self) -> None:
+        # match self.sound_type.get_name():
+        #     case SoundTypes.chords.value.get_name():
+        #         ...
+        #     case SoundTypes.intervals.value.get_name():
+        #         ...
+        #     case SoundTypes.scales.value.get_name():
+        #         ...
+
+        sound_files = [
+            Narration.get_filename(self.sound_type),
+            Narration.get_filename(Phrases.in_the_key_of.value),
+            Narration.get_filename(self.key),
+            Audio.get_filename(1000),
+        ]
+
+        octave = Octaves.octave_4.value
+
+        for chord in self.sound_choices:
+            sound_files.append(Narration.get_filename(chord))
+            sound_files.append(Midi.get_filename(octave, self.key, chord))
+
+        for i in range(len(sound_files)):
+            sound_files[i] = os.path.join(EarTraining.base_dir, sound_files[i])
+
+        if not os.path.exists(EarTraining.rendered_dir):
+            os.makedirs(EarTraining.rendered_dir)
+            logging.debug(f"Created directory {EarTraining.rendered_dir}")
+
+        output_file = os.path.join(EarTraining.rendered_dir, f"test.mp3")
+        Audio.splice(input_files=sound_files, output_file=output_file)
+        logging.info(f"Generated sound at {output_file}")

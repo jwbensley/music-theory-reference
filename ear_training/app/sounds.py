@@ -13,6 +13,9 @@ class Interval(BaseModel):
     def get_display_name(self) -> str:
         return self.display_name
 
+    def get_filename(self) -> str:
+        return f"{self.get_name()}.mp3"
+
     def get_name(self) -> str:
         return self.name
 
@@ -83,6 +86,9 @@ class Chord(BaseModel):
 
     def get_display_name(self) -> str:
         return self.display_name
+
+    def get_filename(self) -> str:
+        return f"{self.get_name()}.mp3"
 
     def get_name(self) -> str:
         return self.name
@@ -194,6 +200,9 @@ class Scale(BaseModel):
     def get_display_name(self) -> str:
         return self.display_name
 
+    def get_filename(self) -> str:
+        return f"{self.get_name()}.mp3"
+
     def get_name(self) -> str:
         return self.name
 
@@ -295,6 +304,9 @@ class SoundType(BaseModel):
     def __str__(self) -> str:
         return self.name
 
+    def get_filename(self) -> str:
+        return f"{self.get_name()}.mp3"
+
     def get_name(self) -> str:
         return self.name
 
@@ -342,6 +354,9 @@ class Key(BaseModel):
 
     def get_midi_offset(self) -> int:
         return self.midi_offset
+
+    def get_filename(self) -> str:
+        return f"{self.get_name()}.mp3"
 
     def get_name(self) -> str:
         return self.name
@@ -449,96 +464,21 @@ class Octaves(Enum):
     octave_8 = Octave(name="7", midi_start=105)
 
 
-"""
-    # Add every note on an 88 key piano, from A0 (MIDI note 21) to C8 (MIDI note 108)
-    notes: list[tuple[str, int]] = [
-        ("A", 21),
-        ("A#", 22),
-        ("B", 23),
-        ("C", 24),  # C1
-        ("C#", 25),
-        ("D", 26),
-        ("D#", 27),
-        ("E", 28),
-        ("F", 29),
-        ("F#", 30),
-        ("G", 31),
-        ("G#", 32),
-        ("A", 33),
-        ("A#", 34),
-        ("B", 35),
-        ("C", 36),  # C2
-        ("C#", 37),
-        ("D", 38),
-        ("D#", 39),
-        ("E", 40),
-        ("F", 41),
-        ("F#", 42),
-        ("G", 43),
-        ("G#", 44),
-        ("A", 45),
-        ("A#", 46),
-        ("B", 47),
-        ("C", 48),  # C3
-        ("C#", 49),
-        ("D", 50),
-        ("D#", 51),
-        ("E", 52),
-        ("F", 53),
-        ("F#", 54),
-        ("G", 55),
-        ("G#", 56),
-        ("A", 57),
-        ("A#", 58),
-        ("B", 59),
-        ("C", 60),  # C4 (Middle C)
-        ("C#", 61),
-        ("D", 62),
-        ("D#", 63),
-        ("E", 64),
-        ("F", 65),
-        ("F#", 66),
-        ("G", 67),
-        ("G#", 68),
-        ("A", 69),
-        ("A#", 70),
-        ("B", 71),
-        ("C", 72),  # C5
-        ("C#", 73),
-        ("D", 74),
-        ("D#", 75),
-        ("E", 76),
-        ("F", 77),
-        ("F#", 78),
-        ("G", 79),
-        ("G#", 80),
-        ("A", 81),
-        ("A#", 82),
-        ("B", 83),
-        ("C", 84),  # C6
-        ("C#", 85),
-        ("D", 86),
-        ("D#", 87),
-        ("E", 88),
-        ("F", 89),
-        ("F#", 90),
-        ("G", 91),
-        ("G#", 92),
-        ("A", 93),
-        ("A#", 94),
-        ("B", 95),
-        ("C", 96),  # C7
-        ("C#", 97),
-        ("D", 98),
-        ("D#", 99),
-        ("E", 100),
-        ("F", 101),
-        ("F#", 102),
-        ("G", 103),
-        ("G#", 104),
-        ("A", 105),
-        ("A#", 106),
-        ("B", 107),
-        ("C", 108),  # C8
-    ]
-"""
+class Phrase:
+    name: str
+
+    def __init__(self, name: str) -> None:
+        self.name = name
+
+    def get_filename(self) -> str:
+        return f"{self.get_name().replace(' ', '_')}.mp3"
+
+    def get_name(self) -> str:
+        return self.name
+
+    def get_pronunciation(self) -> str:
+        return self.get_name()
+
+
+class Phrases(Enum):
+    in_the_key_of = Phrase("in the key of")

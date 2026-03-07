@@ -1,4 +1,7 @@
+from __future__ import annotations
 from enum import Enum
+import logging
+import random
 from pydantic import BaseModel
 
 
@@ -325,6 +328,24 @@ class SoundType(BaseModel):
             return types
         return self.types
 
+    def get_or_random(
+        self: SoundType,
+        sound_type_choices: list[str],
+    ) -> list[Chord | Interval | Scale]:
+
+        if not sound_type_choices:
+            random_sound_type_choices: list[Chord | Interval | Scale] = (
+                random.sample(
+                    [t for t in self.get_types()],
+                    k=random.randint(1, len(self.get_types())),
+                )
+            )
+            logging.debug(
+                f"No {self.get_name()} specified, using {random_sound_type_choices}"
+            )
+            return random_sound_type_choices
+        return self.get_types(sound_type_choices)
+
 
 class SoundTypes(Enum):
     chords = SoundType(
@@ -338,6 +359,18 @@ class SoundTypes(Enum):
     scales = SoundType(
         name="scales", display_name="scales", types=[s.value for s in Scales]
     )
+
+    @staticmethod
+    def get_or_random(sound_type: str | None) -> SoundType:
+        if not sound_type:
+            rnd = random.choice(list(SoundTypes)).value
+            logging.debug(f"No sound type specified, using {rnd.get_name()}")
+            return rnd
+        return next(
+            s.value
+            for s in SoundTypes
+            if s.value.get_name() == sound_type.lower()
+        )
 
 
 class Key(BaseModel):
@@ -434,6 +467,16 @@ class Keys(Enum):
         midi_offset=11,
     )
 
+    @staticmethod
+    def get_or_random(name: str | None) -> Key:
+        if not name:
+            rnd = random.choice(list(Keys)).value
+            logging.debug(f"No key specified, using {rnd.get_name()}")
+            return rnd
+        return next(
+            k.value for k in Keys if k.value.get_name() == name.lower()
+        )
+
 
 class Octave:
     name: str
@@ -454,14 +497,24 @@ class Octave:
 
 
 class Octaves(Enum):
-    octave_1 = Octave(name="0", midi_start=21)
-    octave_2 = Octave(name="1", midi_start=33)
-    octave_3 = Octave(name="2", midi_start=45)
-    octave_4 = Octave(name="3", midi_start=57)
-    octave_5 = Octave(name="4", midi_start=69)
-    octave_6 = Octave(name="5", midi_start=81)
-    octave_7 = Octave(name="6", midi_start=93)
-    octave_8 = Octave(name="7", midi_start=105)
+    zero = Octave(name="0", midi_start=21)
+    one = Octave(name="1", midi_start=33)
+    two = Octave(name="2", midi_start=45)
+    three = Octave(name="3", midi_start=57)
+    four = Octave(name="4", midi_start=69)
+    five = Octave(name="5", midi_start=81)
+    six = Octave(name="6", midi_start=93)
+    seven = Octave(name="7", midi_start=105)
+
+    @staticmethod
+    def get_or_random(name: str | None) -> Octave:
+        if not name:
+            rnd = random.choice(list(Octaves)).value
+            logging.debug(f"No octave specified, using {rnd.get_name()}")
+            return rnd
+        return next(
+            o.value for o in Octaves if o.value.get_name() == name.lower()
+        )
 
 
 class Phrase:
@@ -481,4 +534,6 @@ class Phrase:
 
 
 class Phrases(Enum):
+    in_ = Phrase("in")
     in_the_key_of = Phrase("in the key of")
+    that_was = Phrase("that was")

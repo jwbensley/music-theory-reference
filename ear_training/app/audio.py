@@ -1,6 +1,6 @@
 import os
 
-from pydub import AudioSegment  # type: ignore
+from pydub import AudioSegment, effects  # type: ignore
 import logging
 
 
@@ -50,15 +50,21 @@ class Audio:
             Audio.generate_silence(duration_ms=i, output_file=filename)
 
     @staticmethod
-    def splice(input_files: list[str], output_file: str) -> None:
+    def splice(
+        input_files: list[str], output_file: str, overwrite: bool = False
+    ) -> None:
         """
         Splices multiple MP3 files together into a single MP3 file.
         :param input_files: A list of input MP3 file paths to be spliced together.
         :param output_file: The name of the output MP3 file.
+        :param overwrite: Whether to overwrite the output file if it already exists.
         """
         if os.path.exists(output_file):
-            logging.info(f"Skipping existing file {output_file}")
-            return
+            if not overwrite:
+                logging.info(f"Skipping existing file {output_file}")
+                return
+
+        logging.debug(f"Splicing files {input_files} into {output_file}")
 
         combined = AudioSegment.empty()
         for file in input_files:
@@ -69,12 +75,18 @@ class Audio:
         logging.info(f"Wrote to {output_file}")
 
     @staticmethod
-    def wav_to_mp3(wav_filename: str) -> None:
+    def wav_to_mp3(filename: str, normalise: float | None = None) -> None:
         """
         Converts a WAV file to MP3 format.
-        :param wav_filename: The name of the input WAV file (should end with .wav).
+        :param filename: The name of the input WAV file (should end with .wav).
         """
-        audio: AudioSegment = AudioSegment.from_wav(wav_filename)  # type: ignore
-        mp3_filename = wav_filename.replace(".wav", ".mp3")
+        audio: AudioSegment = AudioSegment.from_wav(filename)  # type: ignore
+        mp3_filename = filename.replace(".wav", ".mp3")
+
+        if normalise:
+            change_in_dBFS = normalise - audio.dBFS
+            normalizedsound = audio.apply_gain(change_in_dBFS)
+            audio = normalizedsound
+
         audio.export(mp3_filename, format="mp3")  # type: ignore
         logging.debug(f"Wrote to {mp3_filename}")

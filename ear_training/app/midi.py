@@ -17,15 +17,18 @@ import logging
 
 class Midi:
 
-    sub_dir = "sounds"
+    sub_dir = "midi"
 
     @staticmethod
     def get_filename(
         octave: Octave, key: Key, obj: Chord | Interval | Scale | None = None
     ) -> str:
+
+        filename = Midi.get_sub_dir()
+
         if obj:
-            return os.path.join(
-                Midi.get_sub_dir(),
+            filename = os.path.join(
+                filename,
                 (
                     octave.get_name()
                     + "_"
@@ -34,11 +37,14 @@ class Midi:
                     + obj.get_name()
                 ),
             )
+        else:
+            filename = os.path.join(
+                filename,
+                (octave.get_name() + "_" + key.get_name()),
+            )
 
-        return os.path.join(
-            Midi.get_sub_dir(),
-            (octave.get_name() + "_" + key.get_name()),
-        )
+        filename += ".mp3"
+        return filename
 
     @staticmethod
     def get_sub_dir() -> str:
@@ -69,7 +75,7 @@ class Midi:
         :param duration: The duration of the notes in beats.
         """
         channel = 0
-        volume = 100  # 0-127, as per the MIDI standard
+        volume = 127  # 0-127, as per the MIDI standard
         for note in notes:
             midi.addNote(  # type: ignore
                 track=track,
@@ -107,27 +113,35 @@ class Midi:
 
     @staticmethod
     def _generate_midi_file(
-        notes: list[int], time: int, name: str, out_dir: str
+        notes: list[int], time: int, filename: str, out_dir: str
     ) -> None:
         """
         Generates a MIDI file with the given notes at the specified time.
         Write the file to disk as mp3.
         :param notes: A list of MIDI note numbers to add as a chord.
         :param time: The start time for the notes in beats.
-        :param output_file: The name of the output file (without extension).
+        :param filename: The name of the output file (with extension).
+        :param out_dir: The directory where the output file will be saved.
         """
-        if os.path.exists(os.path.join(out_dir, f"{name}.mp3")):
-            logging.debug(f"{name}.mp3 already exists, skipping generation.")
+        if os.path.exists(os.path.join(out_dir, filename)):
+            logging.debug(f"{filename} already exists, skipping generation.")
             return
 
         track = 0
         midi = Midi._new_midi_file(track)
         Midi._add_note(midi, notes, time=time, track=track, duration=4)
-        Midi._write_midi(midi, os.path.join(out_dir, f"{name}.mid"))
-        Midi._midi_to_wav(os.path.join(out_dir, f"{name}.mid"))
-        Audio.wav_to_mp3(os.path.join(out_dir, f"{name}.wav"))
-        os.unlink(os.path.join(out_dir, f"{name}.mid"))
-        os.unlink(os.path.join(out_dir, f"{name}.wav"))
+        Midi._write_midi(
+            midi, os.path.join(out_dir, f"{filename.replace('.mp3', '.mid')}")
+        )
+        Midi._midi_to_wav(
+            os.path.join(out_dir, f"{filename.replace('.mp3', '.mid')}")
+        )
+        Audio.wav_to_mp3(
+            os.path.join(out_dir, f"{filename.replace('.mp3', '.wav')}"),
+            normalise=-25.0,
+        )
+        os.unlink(os.path.join(out_dir, f"{filename.replace('.mp3', '.mid')}"))
+        os.unlink(os.path.join(out_dir, f"{filename.replace('.mp3', '.wav')}"))
 
     @staticmethod
     def generate_all_sounds(out_dir: str) -> None:
@@ -135,8 +149,6 @@ class Midi:
         Generates a MIDI file for every single note and chord on a standard piano.
         Write each file to disk as mp3 with the name of the note/chord.
         """
-
-        out_dir = os.path.join(out_dir, Midi.sub_dir)
 
         for octave in Octaves:
             if octave.value.get_name() != "4":
@@ -146,18 +158,18 @@ class Midi:
 
             for key in Keys:
                 # Generate a MIDI file for a single note
-                note_name = Midi.get_filename(octave.value, key.value)
+                note_filename = Midi.get_filename(octave.value, key.value)
                 note_midi = octave_midi + key.value.get_midi_offset()
                 Midi._generate_midi_file(
                     [note_midi],
                     time=0,
-                    name=note_name,
+                    filename=note_filename,
                     out_dir=out_dir,
                 )
 
                 # Generate a MIDI file for every chord type at each root note
                 for chord in Chords:
-                    chord_name = Midi.get_filename(
+                    chord_filename = Midi.get_filename(
                         octave.value, key.value, chord.value
                     )
                     chord_midi: list[int] = []
@@ -169,6 +181,6 @@ class Midi:
                     Midi._generate_midi_file(
                         chord_midi,
                         time=0,
-                        name=chord_name,
+                        filename=chord_filename,
                         out_dir=out_dir,
                     )

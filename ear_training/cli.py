@@ -2,7 +2,7 @@
 
 import argparse
 import logging
-from app.sounds import Chords, Intervals, Scales, SoundTypes, Keys
+from app.sounds import Chords, Intervals, Octaves, Scales, SoundTypes, Keys
 from app.app import EarTraining
 
 cli_args: argparse.Namespace
@@ -49,26 +49,40 @@ def parse_cli_args() -> None:
         action="store_true",
         required=False,
     )
-    parser.add_argument(
-        "--sound-type",
-        type=str,
-        choices=[s.value.get_name() for s in SoundTypes],
-        required=False,
-        help="The type of sound to generate",
+    key_scale_group = parser.add_argument_group(
+        title="Key/Scale Options",
+        description="Specify the key or scale for the generated sounds.",
     )
-    parser.add_argument(
+    key_scale_group.add_argument(
+        "--octave",
+        type=str,
+        choices=[o.value.get_name() for o in Octaves],
+        required=False,
+        help="The octave of the chosen key. If not specified, a random octave will be chosen",
+    )
+    key_scale_group.add_argument(
         "--key",
         type=str,
         choices=[k.value.get_name() for k in Keys],
         required=False,
         help="The key of the generated sounds. If not specified, a random key will be chosen",
     )
+    key_scale_group.add_argument(
+        "--sound-type",
+        type=str,
+        choices=[s.value.get_name() for s in SoundTypes],
+        required=False,
+        help="The type of sound to generate. If not specified, a random sound type will be chosen",
+    )
     sound_type_choices = parser.add_argument_group(
-        "Sound Type Choices",
+        title="Sound Type Choices",
         description="Select multiple relevant to the sound type you want to generate. "
         "If no options are selected, a random selection will be chosen.",
     )
-    sound_type_choices.add_argument(
+    sound_type_choices_exclusive = (
+        sound_type_choices.add_mutually_exclusive_group()
+    )
+    sound_type_choices_exclusive.add_argument(
         "--chord-types",
         type=str,
         choices=[c.value.get_name() for c in Chords],
@@ -76,7 +90,7 @@ def parse_cli_args() -> None:
         help="The type(s) of chords to generate",
         nargs="+",
     )
-    sound_type_choices.add_argument(
+    sound_type_choices_exclusive.add_argument(
         "--interval-types",
         type=str,
         choices=[i.value.get_name() for i in Intervals],
@@ -84,7 +98,7 @@ def parse_cli_args() -> None:
         help="The type(s) of intervals to generate",
         nargs="+",
     )
-    sound_type_choices.add_argument(
+    sound_type_choices_exclusive.add_argument(
         "--scale-types",
         type=str,
         choices=[s.value.get_name() for s in Scales],
@@ -120,6 +134,7 @@ def main() -> None:
         sound_type_choices = []
 
     et = EarTraining.from_args(
+        cli_args.octave,
         cli_args.key,
         cli_args.sound_type,
         sound_type_choices,

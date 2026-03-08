@@ -10,7 +10,7 @@ from app.sounds import (
     Octave,
     Octaves,
     Chords,
-    Scale,
+    Durations,
 )
 import logging
 
@@ -21,12 +21,16 @@ class Midi:
 
     @staticmethod
     def get_filename(
-        octave: Octave, key: Key, obj: Chord | Interval | Scale | None = None
+        octave: Octave,
+        key: Key,
+        duration: Durations = Durations.long,
+        chord: Chord | None = None,
+        interval: Interval | None = None,
     ) -> str:
 
         filename = Midi.get_sub_dir()
 
-        if obj:
+        if chord:
             filename = os.path.join(
                 filename,
                 (
@@ -34,13 +38,30 @@ class Midi:
                     + "_"
                     + key.get_name()
                     + "_"
-                    + obj.get_name()
+                    + chord.get_name()
+                ),
+            )
+        elif interval:
+            filename = os.path.join(
+                filename,
+                (
+                    octave.raised_by(key, interval).get_name()
+                    + "_"
+                    + key.raised_by(interval).get_name()
+                    + "_"
+                    + str(duration.value)
                 ),
             )
         else:
             filename = os.path.join(
                 filename,
-                (octave.get_name() + "_" + key.get_name()),
+                (
+                    octave.get_name()
+                    + "_"
+                    + key.get_name()
+                    + "_"
+                    + str(duration.value)
+                ),
             )
 
         filename += ".mp3"
@@ -64,7 +85,11 @@ class Midi:
 
     @staticmethod
     def _add_note(
-        midi: MIDIFile, notes: list[int], time: int, track: int, duration: int
+        midi: MIDIFile,
+        notes: list[int],
+        time: int,
+        track: int,
+        duration: Durations,
     ) -> None:
         """
         Adds a note to the MIDI file.
@@ -82,7 +107,7 @@ class Midi:
                 channel=channel,
                 pitch=note,
                 time=time,
-                duration=duration,
+                duration=duration.value,
                 volume=volume,
             )  # Track 0, Channel 0, Note, Start Time, Duration, Velocity
 
@@ -113,13 +138,18 @@ class Midi:
 
     @staticmethod
     def _generate_midi_file(
-        notes: list[int], time: int, filename: str, out_dir: str
+        notes: list[int],
+        time: int,
+        duration: Durations,
+        filename: str,
+        out_dir: str,
     ) -> None:
         """
         Generates a MIDI file with the given notes at the specified time.
         Write the file to disk as mp3.
         :param notes: A list of MIDI note numbers to add as a chord.
         :param time: The start time for the notes in beats.
+        :param duration: The duration of the notes in beats.
         :param filename: The name of the output file (with extension).
         :param out_dir: The directory where the output file will be saved.
         """
@@ -129,13 +159,14 @@ class Midi:
 
         track = 0
         midi = Midi._new_midi_file(track)
-        Midi._add_note(midi, notes, time=time, track=track, duration=4)
+        Midi._add_note(midi, notes, time=time, track=track, duration=duration)
         Midi._write_midi(
             midi, os.path.join(out_dir, f"{filename.replace('.mp3', '.mid')}")
         )
         Midi._midi_to_wav(
             os.path.join(out_dir, f"{filename.replace('.mp3', '.mid')}")
         )
+        # Increase the volume of the wav file because FluidSynth renders very quiet audio compared to the gTTS narration files
         Audio.wav_to_mp3(
             os.path.join(out_dir, f"{filename.replace('.mp3', '.wav')}"),
             normalise=-25.0,
@@ -151,18 +182,32 @@ class Midi:
         """
 
         for octave in Octaves:
-            if octave.value.get_name() != "4":
-                continue
-
             octave_midi = octave.value.get_midi_start()
 
             for key in Keys:
                 # Generate a MIDI file for a single note
-                note_filename = Midi.get_filename(octave.value, key.value)
+                duration = Durations.long
+                note_filename = Midi.get_filename(
+                    octave=octave.value, key=key.value, duration=duration
+                )
                 note_midi = octave_midi + key.value.get_midi_offset()
                 Midi._generate_midi_file(
                     [note_midi],
                     time=0,
+                    duration=duration,
+                    filename=note_filename,
+                    out_dir=out_dir,
+                )
+
+                # Generate shorter version of the note for use in scales
+                duration = Durations.short
+                note_filename = Midi.get_filename(
+                    octave=octave.value, key=key.value, duration=duration
+                )
+                Midi._generate_midi_file(
+                    [note_midi],
+                    time=0,
+                    duration=duration,
                     filename=note_filename,
                     out_dir=out_dir,
                 )
@@ -170,7 +215,7 @@ class Midi:
                 # Generate a MIDI file for every chord type at each root note
                 for chord in Chords:
                     chord_filename = Midi.get_filename(
-                        octave.value, key.value, chord.value
+                        octave=octave.value, key=key.value, chord=chord.value
                     )
                     chord_midi: list[int] = []
                     for interval in chord.value.get_intervals():
@@ -181,6 +226,7 @@ class Midi:
                     Midi._generate_midi_file(
                         chord_midi,
                         time=0,
+                        duration=Durations.long,
                         filename=chord_filename,
                         out_dir=out_dir,
                     )

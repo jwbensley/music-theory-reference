@@ -5,6 +5,13 @@ import random
 from pydantic import BaseModel
 
 
+class Durations(Enum):
+    very_short = 1
+    short = 2
+    medium = 3
+    long = 4
+
+
 class Interval(BaseModel):
     name: str
     display_name: str
@@ -15,9 +22,6 @@ class Interval(BaseModel):
 
     def get_display_name(self) -> str:
         return self.display_name
-
-    def get_filename(self) -> str:
-        return f"{self.get_name()}.mp3"
 
     def get_name(self) -> str:
         return self.name
@@ -89,9 +93,6 @@ class Chord(BaseModel):
 
     def get_display_name(self) -> str:
         return self.display_name
-
-    def get_filename(self) -> str:
-        return f"{self.get_name()}.mp3"
 
     def get_name(self) -> str:
         return self.name
@@ -203,9 +204,6 @@ class Scale(BaseModel):
     def get_display_name(self) -> str:
         return self.display_name
 
-    def get_filename(self) -> str:
-        return f"{self.get_name()}.mp3"
-
     def get_name(self) -> str:
         return self.name
 
@@ -307,9 +305,6 @@ class SoundType(BaseModel):
     def __str__(self) -> str:
         return self.name
 
-    def get_filename(self) -> str:
-        return f"{self.get_name()}.mp3"
-
     def get_name(self) -> str:
         return self.name
 
@@ -388,14 +383,19 @@ class Key(BaseModel):
     def get_midi_offset(self) -> int:
         return self.midi_offset
 
-    def get_filename(self) -> str:
-        return f"{self.get_name()}.mp3"
-
     def get_name(self) -> str:
         return self.name
 
     def get_pronunciation(self) -> str:
         return self.pronunciation
+
+    def raised_by(self, interval: Interval) -> Key:
+        # If the offset breaks into the next octave, wrap around to the beginning of the octave
+        new_midi_offset = (self.midi_offset + interval.get_semitones()) % 12
+        for key in Keys:
+            if key.value.get_midi_offset() == new_midi_offset:
+                return key.value
+        raise ValueError(f"No key found with MIDI offset {new_midi_offset}")
 
 
 class Keys(Enum):
@@ -495,6 +495,18 @@ class Octave:
     def get_name(self) -> str:
         return self.name
 
+    def raised_by(self, key: Key, interval: Interval) -> Octave:
+        # If the offset breaks into the next octave, return the next octave
+        if key.get_midi_offset() + interval.get_semitones() >= 12:
+            for octave in Octaves:
+                if octave.value.get_midi_start() == self.midi_start + 12:
+                    return octave.value
+            else:
+                raise ValueError(
+                    f"No octave found with MIDI start {self.midi_start + 12}"
+                )
+        return self
+
 
 class Octaves(Enum):
     zero = Octave(name="0", midi_start=21)
@@ -522,9 +534,6 @@ class Phrase:
 
     def __init__(self, name: str) -> None:
         self.name = name
-
-    def get_filename(self) -> str:
-        return f"{self.get_name().replace(' ', '_')}.mp3"
 
     def get_name(self) -> str:
         return self.name

@@ -44,45 +44,52 @@ def parse_cli_args() -> None:
     parser.add_argument(
         "--generate-audio",
         help="Generate audio files for all sound types, chords, intervals, scales, and keys. "
-        "This will be skipped if the files already exist.",
+        "This will be skipped if the files already exist. This only needs to be run once.",
         default=False,
         action="store_true",
         required=False,
     )
-    key_scale_group = parser.add_argument_group(
-        title="Key/Scale Options",
-        description="Specify the key or scale for the generated sounds.",
+    exercise_opts = parser.add_argument_group(
+        title="Exercise Options",
+        description="Choose the listening exercise.",
     )
-    key_scale_group.add_argument(
+    exercise_opts.add_argument(
+        "--exercise",
+        type=str,
+        choices=[s.value.get_name() for s in SoundTypes],
+        required=False,
+        help="The type of exercise to generate. If not specified, a random exercise type will be chosen",
+    )
+    exercise_opts.add_argument(
+        "--repetitions",
+        type=int,
+        required=False,
+        help="The number of repetitions for the chosen exercise.",
+        default=3,
+    )
+    exercise_opts.add_argument(
         "--octave",
         type=str,
         choices=[o.value.get_name() for o in Octaves],
         required=False,
         help="The octave of the chosen key. If not specified, a random octave will be chosen",
     )
-    key_scale_group.add_argument(
+    exercise_opts.add_argument(
         "--key",
         type=str,
         choices=[k.value.get_name() for k in Keys],
         required=False,
-        help="The key of the generated sounds. If not specified, a random key will be chosen",
+        help="The key of the listening exercise. If not specified, a random key will be chosen",
     )
-    key_scale_group.add_argument(
-        "--sound-type",
-        type=str,
-        choices=[s.value.get_name() for s in SoundTypes],
-        required=False,
-        help="The type of sound to generate. If not specified, a random sound type will be chosen",
-    )
-    sound_type_choices = parser.add_argument_group(
-        title="Sound Type Choices",
-        description="Select multiple relevant to the sound type you want to generate. "
+    exercise_choices = parser.add_argument_group(
+        title="Exercise Choices",
+        description="Select multiple relevant to the exercise type. "
         "If no options are selected, a random selection will be chosen.",
     )
-    sound_type_choices_exclusive = (
-        sound_type_choices.add_mutually_exclusive_group()
+    exercise_choices_exclusive = (
+        exercise_choices.add_mutually_exclusive_group()
     )
-    sound_type_choices_exclusive.add_argument(
+    exercise_choices_exclusive.add_argument(
         "--chord-types",
         type=str,
         choices=[c.value.get_name() for c in Chords],
@@ -90,7 +97,7 @@ def parse_cli_args() -> None:
         help="The type(s) of chords to generate",
         nargs="+",
     )
-    sound_type_choices_exclusive.add_argument(
+    exercise_choices_exclusive.add_argument(
         "--interval-types",
         type=str,
         choices=[i.value.get_name() for i in Intervals],
@@ -98,7 +105,7 @@ def parse_cli_args() -> None:
         help="The type(s) of intervals to generate",
         nargs="+",
     )
-    sound_type_choices_exclusive.add_argument(
+    exercise_choices_exclusive.add_argument(
         "--scale-types",
         type=str,
         choices=[s.value.get_name() for s in Scales],
@@ -116,6 +123,7 @@ def main() -> None:
 
     if cli_args.generate_audio:
         EarTraining.generate_audio()
+        exit(0)
 
     if cli_args.debug:
         logging.basicConfig(level=logging.DEBUG)
@@ -124,23 +132,24 @@ def main() -> None:
         logging.basicConfig(level=logging.INFO)
         logging.info("Info logging started")
 
-    if cli_args.sound_type == SoundTypes.chords.value.get_name():
-        sound_type_choices = cli_args.chord_types
-    elif cli_args.sound_type == SoundTypes.intervals.value.get_name():
-        sound_type_choices = cli_args.interval_types
-    elif cli_args.sound_type == SoundTypes.scales.value.get_name():
-        sound_type_choices = cli_args.scale_types
+    if cli_args.exercise == SoundTypes.chords.value.get_name():
+        exercise_choices = cli_args.chord_types
+    elif cli_args.exercise == SoundTypes.intervals.value.get_name():
+        exercise_choices = cli_args.interval_types
+    elif cli_args.exercise == SoundTypes.scales.value.get_name():
+        exercise_choices = cli_args.scale_types
     else:
-        sound_type_choices = []
+        exercise_choices = []
 
     et = EarTraining.from_args(
-        cli_args.octave,
-        cli_args.key,
-        cli_args.sound_type,
-        sound_type_choices,
+        repetitions=cli_args.repetitions,
+        octave_name=cli_args.octave,
+        key_name=cli_args.key,
+        exercise_name=cli_args.exercise,
+        exercise_choice_names=exercise_choices,
     )
 
-    et.generate_sound()
+    et.generate_exercise()
 
 
 if __name__ == "__main__":

@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 
+import os
 from typing import Union
 from enum import Enum
 from fastapi import FastAPI
 from pydantic import BaseModel
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, FileResponse
 from app.form import form_html
 from app.sounds import (
     Chords,
-    Key,
     Keys,
+    Octaves,
     SoundTypes,
     Intervals,
     Scales,
@@ -25,67 +26,80 @@ else:
     logging.basicConfig(level=logging.INFO)
     logging.info("Info logging started")
 
+OctaveName = Enum(
+    "OctaveName",
+    {member.name: member.value.name for member in Octaves},
+    type=str,
+)
+
 KeyName = Enum(
     "KeyName",
     {member.name: member.value.name for member in Keys},
     type=str,
 )
 
-SoundType = Enum(
+SoundTypeName = Enum(
     "SoundType",
     {member.name: member.value.get_name() for member in SoundTypes},
     type=str,
 )
 
-ChordTypes = Enum(
-    "ChordTypes",
+ChordTypeName = Enum(
+    "ChordTypeName",
     {member.name: member.value.get_name() for member in Chords},
     type=str,
 )
 
-IntervalTypes = Enum(
-    "IntervalTypes",
+IntervalTypeName = Enum(
+    "IntervalTypeName",
     {member.name: member.value.get_name() for member in Intervals},
     type=str,
 )
 
-ScaleTypes = Enum(
-    "ScaleTypes",
+
+ScaleTypeName = Enum(
+    "ScaleTypeName",
     {member.name: member.value.get_name() for member in Scales},
     type=str,
 )
 
 
 class args(BaseModel):
-    key: KeyName | None = None
-    sound_type: SoundType | None = None
-    sound_type_choices: (
-        Union[list[ChordTypes], list[IntervalTypes], list[ScaleTypes]] | None
+    model_config = {"arbitrary_types_allowed": True}
+    exercise_type: SoundTypeName | None = None
+    repetitions: int = 3
+    octave: OctaveName | None = "4"
+    key: KeyName | None = "c"
+    exercise_choices: (
+        Union[list[ChordTypeName], list[IntervalTypeName], list[ScaleTypeName]]
+        | None
     ) = None
-
-    class Config:
-        arbitrary_types_allowed = True
-
-    def get_key(self) -> Key:
-        return Keys[self.key.lower()].value
-
-    def get_sound_type(self) -> SoundTypes:
-        return SoundTypes[self.sound_type.lower()].value
 
 
 app = FastAPI()
 
 
+@app.get("/generate")
+def generate_audio():
+    EarTraining.generate_audio()
+    return {"message": "Audio files generated successfully"}
+
+
 @app.post("/download")
-async def download(args: args) -> args:
-
-    _ = EarTraining.from_args(
-        args.key,
-        args.sound_type,
-        args.sound_type_choices,
+def download(args: args) -> FileResponse:
+    et = EarTraining.from_args(
+        repetitions=args.repetitions,
+        octave_name=args.octave,
+        key_name=args.key,
+        exercise_name=args.exercise_type,
+        exercise_choice_names=args.exercise_choices,
     )
-
-    return args
+    et.generate_exercise()
+    return FileResponse(
+        EarTraining.get_output_filename(),
+        media_type="audio/mpeg",
+        filename=os.path.basename(EarTraining.get_output_filename()),
+    )
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -93,9 +107,5 @@ def return_form():
     return HTMLResponse(content=form_html, status_code=200)
 
 
-@app.get("/a")
-def a():
-    pass
-
-
+# fastapi dev api.py
 # uvicorn ear_training.api:app --reload --port 8000

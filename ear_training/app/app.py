@@ -56,11 +56,11 @@ class EarTraining:
 
     @staticmethod
     def from_args(
+        repetitions: int | None = None,
         octave_name: str | None = None,
         key_name: str | None = None,
         exercise_name: str | None = None,
         exercise_choice_names: list[str] = [],
-        repetitions: int | None = None,
     ) -> EarTraining:
         """
         Init an instance using provided args, or random values if args are not provided,
@@ -90,7 +90,7 @@ class EarTraining:
         Midi.generate_all_sounds(out_dir=EarTraining.base_dir)
         Audio.generate_all_silences(out_dir=EarTraining.base_dir)
 
-    def generate_sound(self) -> None:
+    def generate_exercise(self) -> None:
 
         sound_files = [
             Narration.get_filename(self.exercise_type),
@@ -209,8 +209,13 @@ class EarTraining:
             os.makedirs(EarTraining.rendered_dir)
             logging.debug(f"Created directory {EarTraining.rendered_dir}")
 
-        output_file = os.path.join(EarTraining.rendered_dir, f"test.mp3")
         Audio.splice(
-            input_files=sound_files, output_file=output_file, overwrite=True
+            input_files=sound_files,
+            output_file=EarTraining.get_output_filename(),
+            overwrite=True,
         )
-        logging.info(f"Generated sound at {output_file}")
+        logging.info(f"Generated sound at {EarTraining.get_output_filename()}")
+
+    @staticmethod
+    def get_output_filename() -> str:
+        return os.path.join(EarTraining.rendered_dir, f"test.mp3")

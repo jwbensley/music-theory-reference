@@ -4,17 +4,43 @@ services:
     container_name: reference_sheets
     image: reference_sheets:latest
     build:
-      context: .
-      dockerfile: ./reference_sheets/Dockerfile
+      context: ./reference_sheets/
+      dockerfile: ./Dockerfile
       args:
-        - LILY_VERSION=$LILY_VERSION
-        - APP_PATH=$APP_PATH
+        - LILY_VERSION=${LILY_VERSION}
+        - APP_PATH=${SHEETS_PATH}
     entrypoint:
       - python3
-      - ${APP_PATH}/main.py
-    env_file:
-      - ./reference_sheets/.env
+      - ${SHEETS_PATH}/main.py
     volumes:
-      - ./$APP_PATH/:/$APP_PATH/:rw
+      - ./${SHEETS_PATH}:/${SHEETS_PATH}/:rw
     command:
       - --debug
+  ear_training:
+    container_name: ear_training
+    image: ear_training:latest
+    build:
+      context: ./ear_training/
+      dockerfile: Dockerfile
+      args:
+        - APP_PATH=${TRAINING_PATH}
+        - LISTEN_PORT=${LISTEN_PORT}
+    entrypoint:
+      # FastAPI is an asynchronous web framework and requires an ASGI.
+      # Gunicorn is a WSGI, but we can use uvicorn ASGI worker(s).
+      - gunicorn
+      - --bind
+      - ${BIND_ADDRESS}:${LISTEN_PORT}
+      - --workers
+      - ${GUNICORN_WORKERS}
+      - --worker-class
+      - ${GUNICORN_WORKER_CLASS}
+      - --access-logfile
+      - ${GUNICORN_ACCESS_LOG}
+      - --chdir
+      - /${TRAINING_PATH}/
+      - api:app
+    volumes:
+      - ./${TRAINING_PATH}/:/${TRAINING_PATH}/:rw
+    ports:
+      - "${LISTEN_PORT}:${LISTEN_PORT}"

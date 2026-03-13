@@ -5,6 +5,7 @@ from typing import Union
 from enum import Enum
 from fastapi import FastAPI
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, FileResponse
 from app.form import form_html
 from app.sounds import (
@@ -78,6 +79,20 @@ class args(BaseModel):
 
 app = FastAPI()
 
+origins = [
+    "http://localhost:8404",
+    "http://127.0.0.1:8404",
+    "http://0.0.0.0:8404",
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    # allow_origins=[""],
+    allow_credentials=True,
+    allow_methods=[""],
+    allow_headers=["*"],
+)
+
 
 @app.get("/generate")
 def generate_audio():
@@ -105,7 +120,3 @@ def download(args: args) -> FileResponse:
 @app.get("/", response_class=HTMLResponse)
 def return_form():
     return HTMLResponse(content=form_html, status_code=200)
-
-
-# fastapi dev api.py
-# uvicorn ear_training.api:app --reload --port 8000

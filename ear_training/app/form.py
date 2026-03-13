@@ -4,6 +4,13 @@ from app.sounds import (
     Intervals,
     Scales,
 )
+import os
+
+PUBLIC_ADDRESS = os.getenv("PUBLIC_ADDRESS", "127.0.0.1")
+LISTEN_PORT = os.getenv("LISTEN_PORT", "8404")
+
+
+post_url = f"http://{PUBLIC_ADDRESS}:{LISTEN_PORT}/download"
 
 form_html = f"""
 <!doctype html>
@@ -102,7 +109,8 @@ form_html += """         </select>
 """
 for scale in Scales:
     form_html += f'            <option value="{scale.value.get_name()}">{scale.value.get_display_name()}</option>\n'
-form_html += """         </select>
+form_html += (
+    """         </select>
         </div>
         <button type="submit">Submit</button>
       </form>
@@ -131,7 +139,9 @@ form_html += """         </select>
                 data[key] = value;
               }
             }
-            const response = await fetch('http://127.0.0.1:8000/download', {
+            const response = await fetch('"""
+    + post_url
+    + """', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(data)
@@ -174,3 +184,4 @@ form_html += """         </select>
     </body>
   </html>
 """
+)

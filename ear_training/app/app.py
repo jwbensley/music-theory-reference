@@ -3,6 +3,7 @@
 from __future__ import annotations
 import logging
 import os
+from pathlib import Path
 import random
 from app.sounds import (
     Chord,
@@ -17,14 +18,16 @@ from app.sounds import (
     SoundTypes,
 )
 from app.narration import Narration, Phrases
-from pathlib import Path
 from app.audio import Audio
 from app.midi import Midi
+from tempfile import mkdtemp
+from datetime import datetime
 
 
 class EarTraining:
     base_dir = os.path.join(Path(__file__).parent.parent, "audio")
-    rendered_dir = os.path.join(base_dir, "rendered")
+    rendered_dir = mkdtemp()
+    # rendered_dir = os.path.join(base_dir, "rendered")
 
     octave: Octave
     key: Key
@@ -90,7 +93,7 @@ class EarTraining:
         Midi.generate_all_sounds(out_dir=EarTraining.base_dir)
         Audio.generate_all_silences(out_dir=EarTraining.base_dir)
 
-    def generate_exercise(self) -> None:
+    def generate_exercise(self) -> str:
 
         sound_files = [
             Narration.get_filename(self.exercise_type),
@@ -143,10 +146,9 @@ class EarTraining:
                         Midi.get_filename(
                             octave=self.octave,
                             key=self.key,
-                            interval=obj,
+                            duration=Durations.very_short,
                         )
                     )
-                    sound_files.append(Audio.get_filename(1000))
                     sound_files.append(
                         Midi.get_filename(
                             octave=self.octave,
@@ -155,6 +157,28 @@ class EarTraining:
                         )
                     )
                     sound_files.append(Audio.get_filename(1000))
+                    sound_files.append(
+                        Midi.get_filename(
+                            octave=self.octave,
+                            key=self.key,
+                            duration=Durations.very_short,
+                        )
+                    )
+                    sound_files.append(
+                        Midi.get_filename(
+                            octave=self.octave,
+                            key=self.key,
+                            interval=obj,
+                        )
+                    )
+                    sound_files.append(Audio.get_filename(1000))
+                    sound_files.append(
+                        Midi.get_filename(
+                            octave=self.octave,
+                            key=self.key,
+                            duration=Durations.very_short,
+                        )
+                    )
                     sound_files.append(
                         Midi.get_filename(
                             octave=self.octave,
@@ -209,13 +233,21 @@ class EarTraining:
             os.makedirs(EarTraining.rendered_dir)
             logging.debug(f"Created directory {EarTraining.rendered_dir}")
 
+        output_file = EarTraining.get_output_filename(
+            self.exercise_type.get_name(), self.key.get_name()
+        )
         Audio.splice(
             input_files=sound_files,
-            output_file=EarTraining.get_output_filename(),
+            output_file=output_file,
             overwrite=True,
         )
-        logging.info(f"Generated sound at {EarTraining.get_output_filename()}")
+        logging.info(f"Generated sound at {output_file}")
+
+        return output_file
 
     @staticmethod
-    def get_output_filename() -> str:
-        return os.path.join(EarTraining.rendered_dir, f"test.mp3")
+    def get_output_filename(exercise_type: str, key: str) -> str:
+        return os.path.join(
+            EarTraining.rendered_dir,
+            f"et_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{exercise_type}_{key}.mp3",
+        )

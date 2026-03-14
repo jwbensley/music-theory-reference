@@ -83,14 +83,11 @@ origins = [
     "http://localhost:8404",
     "http://127.0.0.1:8404",
     "http://0.0.0.0:8404",
+    "http://[::1]:8404",
 ]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    # allow_origins=[""],
-    allow_credentials=True,
-    allow_methods=[""],
-    allow_headers=["*"],
 )
 
 
@@ -109,11 +106,11 @@ def download(args: args) -> FileResponse:
         exercise_name=args.exercise_type,
         exercise_choice_names=args.exercise_choices,
     )
-    et.generate_exercise()
+    filename = et.generate_exercise()
     return FileResponse(
-        EarTraining.get_output_filename(),
+        filename,
         media_type="audio/mpeg",
-        filename=os.path.basename(EarTraining.get_output_filename()),
+        filename=os.path.basename(filename),
     )
 
 

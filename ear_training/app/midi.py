@@ -64,7 +64,7 @@ class Midi:
                 ),
             )
 
-        filename += ".mp3"
+        filename += ".wav"
         return filename
 
     @staticmethod
@@ -133,8 +133,13 @@ class Midi:
         :param filename: The name of the MIDI file to render.
         """
         fs = FluidSynth()
-        fs.midi_to_audio(midi_file=filename, audio_file=filename.replace(".mid", ".wav"))  # type: ignore
-        logging.debug(f"Wrote to {filename.replace('.mid', '.wav')}")
+        wav_filename = filename.replace(".mid", ".wav")
+        fs.midi_to_audio(midi_file=filename, audio_file=wav_filename)  # type: ignore
+        logging.debug(f"Wrote to {wav_filename}")
+        # These WAV files have trailing silence which needs to be removed
+        Audio.trim_trailing_silence(wav_filename)
+        # The generates WAV files are very quiet compared to the narration files from gTTs, so normalise them
+        Audio.normalise_wav(wav_filename, target_dBFS=-25.0)
 
     @staticmethod
     def _generate_midi_file(
@@ -146,7 +151,7 @@ class Midi:
     ) -> None:
         """
         Generates a MIDI file with the given notes at the specified time.
-        Write the file to disk as mp3.
+        Write the file to disk as wav.
         :param notes: A list of MIDI note numbers to add as a chord.
         :param time: The start time for the notes in beats.
         :param duration: The duration of the notes in beats.
@@ -161,58 +166,49 @@ class Midi:
         midi = Midi._new_midi_file(track)
         Midi._add_note(midi, notes, time=time, track=track, duration=duration)
         Midi._write_midi(
-            midi, os.path.join(out_dir, f"{filename.replace('.mp3', '.mid')}")
+            midi, os.path.join(out_dir, f"{filename.replace('.wav', '.mid')}")
         )
         Midi._midi_to_wav(
-            os.path.join(out_dir, f"{filename.replace('.mp3', '.mid')}")
+            os.path.join(out_dir, f"{filename.replace('.wav', '.mid')}")
         )
-        # Increase the volume of the wav file because FluidSynth renders very quiet audio compared to the gTTS narration files
-        Audio.wav_to_mp3(
-            os.path.join(out_dir, f"{filename.replace('.mp3', '.wav')}"),
-            normalise=-25.0,
-        )
-        os.unlink(os.path.join(out_dir, f"{filename.replace('.mp3', '.mid')}"))
-        os.unlink(os.path.join(out_dir, f"{filename.replace('.mp3', '.wav')}"))
+        os.unlink(os.path.join(out_dir, f"{filename.replace('.wav', '.mid')}"))
 
     @staticmethod
     def generate_all_sounds(out_dir: str) -> None:
         """
         Generates a MIDI file for every single note and chord on a standard piano.
-        Write each file to disk as mp3 with the name of the note/chord.
+        Write each file to disk as wav with the name of the note/chord.
         """
 
         for octave in Octaves:
+
             octave_midi = octave.value.get_midi_start()
 
             for key in Keys:
-                # Generate a MIDI file for a single note
-                duration = Durations.long
-                note_filename = Midi.get_filename(
-                    octave=octave.value, key=key.value, duration=duration
-                )
-                note_midi = octave_midi + key.value.get_midi_offset()
-                Midi._generate_midi_file(
-                    [note_midi],
-                    time=0,
-                    duration=duration,
-                    filename=note_filename,
-                    out_dir=out_dir,
-                )
+                """
+                Generate a MIDI file for a single note.
+                Generate multiple lengths of each note.
+                """
+                for duration in Durations:
 
-                # Generate shorter version of the note for use in scales
-                duration = Durations.short
-                note_filename = Midi.get_filename(
-                    octave=octave.value, key=key.value, duration=duration
-                )
-                Midi._generate_midi_file(
-                    [note_midi],
-                    time=0,
-                    duration=duration,
-                    filename=note_filename,
-                    out_dir=out_dir,
-                )
+                    note_filename = Midi.get_filename(
+                        octave=octave.value,
+                        key=key.value,
+                        duration=duration,
+                    )
+                    note_midi = octave_midi + key.value.get_midi_offset()
+                    Midi._generate_midi_file(
+                        [note_midi],
+                        time=0,
+                        duration=duration,
+                        filename=note_filename,
+                        out_dir=out_dir,
+                    )
 
-                # Generate a MIDI file for every chord type at each root note
+                """
+                Generate a MIDI file for every chord type at each root note.
+                Only one duration is needed for chords.
+                """
                 for chord in Chords:
                     chord_filename = Midi.get_filename(
                         octave=octave.value, key=key.value, chord=chord.value

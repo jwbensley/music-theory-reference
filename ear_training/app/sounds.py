@@ -8,8 +8,8 @@ from pydantic import BaseModel
 class Durations(Enum):
     very_short = 1
     short = 2
-    medium = 3
-    long = 4
+    medium = 4
+    long = 8
 
 
 class Interval(BaseModel):
@@ -27,7 +27,7 @@ class Interval(BaseModel):
         return self.name
 
     def get_pronunciation(self) -> str:
-        return self.get_name()
+        return self.get_display_name()
 
     def get_semitones(self) -> int:
         return self.semitones
@@ -101,7 +101,7 @@ class Chord(BaseModel):
         return self.intervals
 
     def get_pronunciation(self) -> str:
-        return self.get_name()
+        return self.get_display_name()
 
 
 class Chords(Enum):
@@ -211,7 +211,7 @@ class Scale(BaseModel):
         return self.intervals
 
     def get_pronunciation(self) -> str:
-        return self.get_name()
+        return self.get_display_name()
 
 
 class Scales(Enum):
@@ -305,11 +305,14 @@ class SoundType(BaseModel):
     def __str__(self) -> str:
         return self.name
 
+    def get_display_name(self) -> str:
+        return self.display_name
+
     def get_name(self) -> str:
         return self.name
 
     def get_pronunciation(self) -> str:
-        return self.get_name()
+        return self.get_display_name()
 
     def get_types(
         self, filter: list[str] | None = None
@@ -436,10 +439,10 @@ class Keys(Enum):
     e_flat = Key(
         name="e_flat",
         display_name="eb",
-        pronunciation="Ee flat",
+        pronunciation="E flat",
         midi_offset=6,
     )
-    e = Key(name="e", display_name="e", pronunciation="Ee", midi_offset=7)
+    e = Key(name="e", display_name="e", pronunciation="E", midi_offset=7)
     f = Key(name="f", display_name="f", pronunciation="Ef", midi_offset=8)
     f_sharp = Key(
         name="f_sharp",

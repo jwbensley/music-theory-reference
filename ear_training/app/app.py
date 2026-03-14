@@ -27,7 +27,6 @@ from datetime import datetime
 class EarTraining:
     base_dir = os.path.join(Path(__file__).parent.parent, "audio")
     rendered_dir = mkdtemp()
-    # rendered_dir = os.path.join(base_dir, "rendered")
 
     octave: Octave
     key: Key
@@ -95,6 +94,8 @@ class EarTraining:
 
     def generate_exercise(self) -> str:
 
+        random.seed()
+
         sound_files = [
             Narration.get_filename(self.exercise_type),
             Narration.get_filename(Phrases.in_.value),
@@ -141,51 +142,23 @@ class EarTraining:
                     sound_files.append(
                         Midi.get_filename(octave=self.octave, key=self.key)
                     )
-                    sound_files.append(Audio.get_filename(1000))
-                    sound_files.append(
-                        Midi.get_filename(
-                            octave=self.octave,
-                            key=self.key,
-                            duration=Durations.very_short,
+                    for i in range(3):
+                        sound_files.append(Audio.get_filename(1000))
+                        sound_files.append(
+                            Midi.get_filename(
+                                octave=self.octave,
+                                key=self.key,
+                                duration=Durations.very_short,
+                            )
                         )
-                    )
-                    sound_files.append(
-                        Midi.get_filename(
-                            octave=self.octave,
-                            key=self.key,
-                            interval=obj,
+                        sound_files.append(
+                            Midi.get_filename(
+                                octave=self.octave,
+                                key=self.key,
+                                duration=Durations.short,
+                                interval=obj,
+                            )
                         )
-                    )
-                    sound_files.append(Audio.get_filename(1000))
-                    sound_files.append(
-                        Midi.get_filename(
-                            octave=self.octave,
-                            key=self.key,
-                            duration=Durations.very_short,
-                        )
-                    )
-                    sound_files.append(
-                        Midi.get_filename(
-                            octave=self.octave,
-                            key=self.key,
-                            interval=obj,
-                        )
-                    )
-                    sound_files.append(Audio.get_filename(1000))
-                    sound_files.append(
-                        Midi.get_filename(
-                            octave=self.octave,
-                            key=self.key,
-                            duration=Durations.very_short,
-                        )
-                    )
-                    sound_files.append(
-                        Midi.get_filename(
-                            octave=self.octave,
-                            key=self.key,
-                            interval=obj,
-                        )
-                    )
                     sound_files.append(Audio.get_filename(1000))
                     sound_files.append(
                         Narration.get_filename(Phrases.that_was.value)
@@ -200,10 +173,10 @@ class EarTraining:
                 else:
                     for i in range(3):
                         # Alternate between short and long durations for the scale tones
-                        if i % 2 != 0:
+                        if i % 2 == 0:
                             duration = Durations.very_short
                         else:
-                            duration = Durations.short
+                            duration = Durations.medium
 
                         for interval in obj.get_intervals() + list(
                             reversed(obj.get_intervals())

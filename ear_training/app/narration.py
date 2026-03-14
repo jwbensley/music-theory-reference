@@ -16,6 +16,7 @@ from app.sounds import (
     SoundType,
     Phrases,
 )
+from app.audio import Audio
 
 
 class Narration:
@@ -34,7 +35,7 @@ class Narration:
         obj: Chord | Key | Interval | Scale | SoundType | Phrase,
     ) -> str:
         return os.path.join(
-            Narration.get_sub_dir(), f"{obj.get_name().replace(' ', '_')}.mp3"
+            Narration.get_sub_dir(), f"{obj.get_name().replace(' ', '_')}.wav"
         )
 
     @staticmethod
@@ -43,7 +44,7 @@ class Narration:
         Generate an audio file for the given phrase using gTTS.
         If the file already exists, it will be skipped.
         :param phrase: The text to convert to speech
-        :param filename: The name of the output audio file (with extension)
+        :param filename: The name of the output audio file (with file extension)
         :param out_dir: The directory where the output file will be saved
         """
 
@@ -59,8 +60,11 @@ class Narration:
             )
             return
         try:
+            mp3_filename = filename.replace(".wav", ".mp3")
             tts = gTTS(text=phrase, lang="en")
-            tts.save(filename)  # type: ignore
+            tts.save(mp3_filename)  # type: ignore
+            Audio.mp3_to_wav(mp3_filename)
+            os.unlink(mp3_filename)
             logging.info(
                 f"Generated narration: {filename} for phrase '{phrase}'"
             )

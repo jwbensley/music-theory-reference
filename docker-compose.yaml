@@ -40,6 +40,8 @@ services:
       - --chdir
       - /${TRAINING_PATH}/
       - api:app
+    env_file:
+      - ./.env
     volumes:
       - ./${TRAINING_PATH}/:/${TRAINING_PATH}/:rw
     ports:

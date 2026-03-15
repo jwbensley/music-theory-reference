@@ -14,7 +14,7 @@ post_url = f"{PUBLIC_URL}/download"
 
 form_html = f"""
 <!doctype html>
-  <html>
+  <html lang="en">
     <head>
       <meta charset="utf-8">
       <title>Ear Training</title>
@@ -118,24 +118,57 @@ form_html = f"""
           border-radius: 4px;
           border: 1px solid #e0e0e0;
         }}
+
+        /* Spinner overlay */
+        .spinner-overlay {{
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0,0,0,0.35);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 9999;
+        }}
+
+        /* Ensure the hidden attribute actually hides the overlay (overrides display:flex) */
+        .spinner-overlay[hidden] {{
+          display: none;
+        }}
+
+        .spinner {{
+          width: 60px;
+          height: 60px;
+          border: 6px solid rgba(255,255,255,0.3);
+          border-top-color: #ffffff;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }}
+
+        @keyframes spin {{
+          to {{ transform: rotate(360deg); }}
+        }}
       </style>
     </head>
     <body>
-      <h1>Download Sounds</h1>
+      <h1>Ear Training</h1>
       <form id="exercise_form">
-        <input type="hidden" name="exercise_type" id="exercise_type" value=""/>
+        <input type="hidden" name="exercise_type" id="exercise_type" value="">
         <div>
             <label for="repetitions">Repetitions:</label>
-            <input type="number" name="repetitions" id="repetitions" value="3"/>
+            <input type="number" name="repetitions" id="repetitions" value="3">
         </div>
         <div>
             <label for="octave">Octave:</label>
-            <input type="number" name="octave" id="octave" value="4"/>
+            <input type="number" name="octave" id="octave" value="4">
         </div>
         <div>
             <label for="key">Key:</label>
             <select name="key" id="key">
-              <option></option>
+              <option value="" label="Choose a key"></option>
 """
 for key in Keys:
     form_html += f'            <option value="{key.value.get_name()}">{key.value.get_display_name()}</option>\n'
@@ -170,11 +203,19 @@ form_html += (
           <button type="submit">Submit</button>
         </div>
       </form>
+
+      <!-- Loading spinner overlay (hidden by default) -->
+      <div id="loading" class="spinner-overlay" hidden aria-hidden="true" aria-live="polite">
+        <div class="spinner" role="status" aria-label="Loading"></div>
+      </div>
+
       <script>
         const form = document.getElementById('exercise_form');
         const exerciseTypeInput = document.getElementById('exercise_type');
         const multiSelects = form.querySelectorAll('select[multiple]');
-        
+        const spinner = document.getElementById('loading');
+        const submitBtn = form.querySelector('button[type="submit"]');
+
         // When user selects from one multi-select, clear others and set exercise_type
         multiSelects.forEach(select => {
           select.addEventListener('change', function() {
@@ -193,76 +234,91 @@ form_html += (
 
         form.addEventListener('submit', async function (e) {
           e.preventDefault();
-          const fd = new FormData(form);
-          const data = {};
-          
-          // Find which multi-select has selections
-          let activeSelect = null;
-          multiSelects.forEach(select => {
-            if (select.selectedOptions.length > 0) {
-              activeSelect = select;
-            }
-          });
-          
-          if (!activeSelect) {
-            alert('Please select at least one option from Chords, Intervals, or Scales');
-            return;
-          }
-          
-          for (const key of fd.keys()) {
-            const values = fd.getAll(key);
-            const el = form.querySelector(`[name="${key}"]`);
-            const isSelect = el && el.tagName === 'SELECT';
-            const isMultipleSelect = isSelect && el.multiple === true;
+
+          // show spinner and disable form controls
+          spinner.hidden = false;
+          spinner.setAttribute('aria-hidden', 'false');
+          submitBtn.disabled = true;
+          form.querySelectorAll('input, select, button').forEach(el => el.setAttribute('aria-busy', 'true'));
+
+          try {
+            const fd = new FormData(form);
+            const data = {};
             
-            if (isMultipleSelect) {
-              // Only include the active multi-select, rename it to exercise_choices
-              if (el === activeSelect) {
-                data['exercise_choices'] = values;
+            // Find which multi-select has selections
+            let activeSelect = null;
+            multiSelects.forEach(select => {
+              if (select.selectedOptions.length > 0) {
+                activeSelect = select;
               }
-            } else {
-              let value = values[0];
-              if (value === '') {
-                value = null;
-              }
-              data[key] = value;
+            });
+            
+            if (!activeSelect) {
+              alert('Please select at least one option from Chords, Intervals, or Scales');
+              return;
             }
-          }
-          
-          const response = await fetch('"""
+            
+            for (const key of fd.keys()) {
+              const values = fd.getAll(key);
+              const el = form.querySelector(`[name="${key}"]`);
+              const isSelect = el && el.tagName === 'SELECT';
+              const isMultipleSelect = isSelect && el.multiple === true;
+              
+              if (isMultipleSelect) {
+                // Only include the active multi-select, rename it to exercise_choices
+                if (el === activeSelect) {
+                  data['exercise_choices'] = values;
+                }
+              } else {
+                let value = values[0];
+                if (value === '') {
+                  value = null;
+                }
+                data[key] = value;
+              }
+            }
+            
+            const response = await fetch('"""
     + post_url
     + """', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-          });
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data)
+            });
 
-          if (!response.ok) {
-            try {
-              const err = await response.json();
-              alert(err.message || JSON.stringify(err));
-            } catch {
-              alert(await response.text());
+            if (!response.ok) {
+              try {
+                const err = await response.json();
+                alert(err.message || JSON.stringify(err));
+              } catch {
+                alert(await response.text());
+              }
+              return;
             }
-            return;
-          }
 
-          const blob = await response.blob();
-          const disposition = response.headers.get('Content-Disposition') || response.headers.get('content-disposition');
-          let filename = 'download';
-          if (disposition) {
-            const fnMatch = disposition.match(/filename\\*=UTF-8''([^;]+)|filename=\"?([^\";]+)\"?/);
-            if (fnMatch) filename = decodeURIComponent(fnMatch[1] || fnMatch[2]);
-          }
+            const blob = await response.blob();
+            const disposition = response.headers.get('Content-Disposition') || response.headers.get('content-disposition');
+            let filename = 'download';
+            if (disposition) {
+              const fnMatch = disposition.match(/filename\\*=UTF-8''([^;]+)|filename=\\"?([^\\";]+)\\"?/);
+              if (fnMatch) filename = decodeURIComponent(fnMatch[1] || fnMatch[2]);
+            }
 
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = filename;
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-          URL.revokeObjectURL(url);
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+          } finally {
+            // hide spinner and re-enable form controls
+            spinner.hidden = true;
+            spinner.setAttribute('aria-hidden', 'true');
+            submitBtn.disabled = false;
+            form.querySelectorAll('input, select, button').forEach(el => el.removeAttribute('aria-busy'));
+          }
         });
       </script>
     </body>

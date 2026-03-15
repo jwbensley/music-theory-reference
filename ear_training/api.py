@@ -19,8 +19,9 @@ from app.sounds import (
 from app.app import EarTraining
 import logging
 
-PUBLIC_ADDRESS = os.getenv("PUBLIC_ADDRESS", "127.0.0.1")
 LISTEN_PORT = os.getenv("LISTEN_PORT", "8404")
+BINDING_ADDRESS = os.getenv("BINDING_ADDRESS", "127.0.0.1")
+PUBLIC_URL = os.getenv("PUBLIC_URL", f"http://{BINDING_ADDRESS}:{LISTEN_PORT}")
 
 debug = True
 if debug:
@@ -83,7 +84,7 @@ class args(BaseModel):
 app = FastAPI()
 
 origins = [
-    f"http://{PUBLIC_ADDRESS}:{LISTEN_PORT}",
+    PUBLIC_URL,
 ]
 app.add_middleware(
     CORSMiddleware,

@@ -46,3 +46,4 @@ services:
       - ./${TRAINING_PATH}/:/${TRAINING_PATH}/:rw
     ports:
       - "${LISTEN_PORT}:${LISTEN_PORT}"
+    restart: unless-stopped

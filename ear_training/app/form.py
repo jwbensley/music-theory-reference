@@ -6,18 +6,18 @@ from app.sounds import (
 )
 import os
 
-PUBLIC_ADDRESS = os.getenv("PUBLIC_ADDRESS", "127.0.0.1")
 LISTEN_PORT = os.getenv("LISTEN_PORT", "8404")
+BINDING_ADDRESS = os.getenv("BINDING_ADDRESS", "127.0.0.1")
+PUBLIC_URL = os.getenv("PUBLIC_URL", f"http://{BINDING_ADDRESS}:{LISTEN_PORT}")
 
-
-post_url = f"http://{PUBLIC_ADDRESS}:{LISTEN_PORT}/download"
+post_url = f"{PUBLIC_URL}/download"
 
 form_html = f"""
 <!doctype html>
   <html>
     <head>
       <meta charset="utf-8">
-      <title>Download Sounds</title>
+      <title>Ear Training</title>
       <style>
         * {{
           box-sizing: border-box;

@@ -1,9 +1,11 @@
 import os
+from typing import Optional
 from midiutil import MIDIFile
 from midi2audio import FluidSynth
 from app.audio import Audio
 from app.sounds import (
     Chord,
+    Duration,
     Interval,
     Key,
     Keys,
@@ -23,7 +25,7 @@ class Midi:
     def get_filename(
         octave: Octave,
         key: Key,
-        duration: Durations = Durations.long,
+        duration: Duration = Durations.four.value,
         chord: Chord | None = None,
         interval: Interval | None = None,
     ) -> str:
@@ -49,7 +51,7 @@ class Midi:
                     + "_"
                     + key.raised_by(interval).get_name()
                     + "_"
-                    + str(duration.value)
+                    + duration.get_name()
                 ),
             )
         else:
@@ -60,7 +62,7 @@ class Midi:
                     + "_"
                     + key.get_name()
                     + "_"
-                    + str(duration.value)
+                    + duration.get_name()
                 ),
             )
 
@@ -72,13 +74,14 @@ class Midi:
         return Midi.sub_dir
 
     @staticmethod
-    def _new_midi_file(track: int) -> MIDIFile:
+    def _new_midi_file(tempo: int, track: int) -> MIDIFile:
         """
         Creates a new MIDI file with one track and sets the tempo to the specified value.
+        :param tempo: The tempo in beats per minute (BPM) to set for the MIDI file.
+        :param track: The track number to add the tempo event to.
         :return: A MIDIFile object with one track and tempo set.
         """
         midi = MIDIFile(1)
-        tempo = 120  # Tempo in BPM
         time = 0  # In beats
         midi.addTempo(track=track, time=time, tempo=tempo)  # type: ignore
         return midi
@@ -89,7 +92,7 @@ class Midi:
         notes: list[int],
         time: int,
         track: int,
-        duration: Durations,
+        duration: Duration,
     ) -> None:
         """
         Adds a note to the MIDI file.
@@ -107,7 +110,7 @@ class Midi:
                 channel=channel,
                 pitch=note,
                 time=time,
-                duration=duration.value,
+                duration=duration.get_duration(),
                 volume=volume,
             )  # Track 0, Channel 0, Note, Start Time, Duration, Velocity
 
@@ -127,17 +130,22 @@ class Midi:
         logging.debug(f"Wrote to {filename}")
 
     @staticmethod
-    def _midi_to_wav(filename: str) -> None:
+    def _midi_to_wav(
+        filename: str, duration: Optional[Duration] = None
+    ) -> None:
         """
         Renders a MIDI file to an audio file using FluidSynth.
         :param filename: The name of the MIDI file to render.
         """
-        fs = FluidSynth()
+        fs = FluidSynth()  # sound_font="YDP-GrandPiano-20160804.sf2"
         wav_filename = filename.replace(".mid", ".wav")
         fs.midi_to_audio(midi_file=filename, audio_file=wav_filename)  # type: ignore
         logging.debug(f"Wrote to {wav_filename}")
         # These WAV files have trailing silence which needs to be removed
-        Audio.trim_trailing_silence(wav_filename)
+        if duration:
+            Audio.trim_trailing_ms(
+                wav_filename, duration_ms=duration.get_trim()
+            )
         # The generates WAV files are very quiet compared to the narration files from gTTs, so normalise them
         Audio.normalise_wav(wav_filename, target_dBFS=-25.0)
 
@@ -145,7 +153,7 @@ class Midi:
     def _generate_midi_file(
         notes: list[int],
         time: int,
-        duration: Durations,
+        duration: Duration,
         filename: str,
         out_dir: str,
     ) -> None:
@@ -163,13 +171,15 @@ class Midi:
             return
 
         track = 0
-        midi = Midi._new_midi_file(track)
+        tempo = 200  # Tempo in BPM
+        midi = Midi._new_midi_file(tempo=tempo, track=track)
         Midi._add_note(midi, notes, time=time, track=track, duration=duration)
         Midi._write_midi(
             midi, os.path.join(out_dir, f"{filename.replace('.wav', '.mid')}")
         )
         Midi._midi_to_wav(
-            os.path.join(out_dir, f"{filename.replace('.wav', '.mid')}")
+            os.path.join(out_dir, f"{filename.replace('.wav', '.mid')}"),
+            duration,
         )
         os.unlink(os.path.join(out_dir, f"{filename.replace('.wav', '.mid')}"))
 
@@ -194,13 +204,13 @@ class Midi:
                     note_filename = Midi.get_filename(
                         octave=octave.value,
                         key=key.value,
-                        duration=duration,
+                        duration=duration.value,
                     )
                     note_midi = octave_midi + key.value.get_midi_offset()
                     Midi._generate_midi_file(
                         [note_midi],
                         time=0,
-                        duration=duration,
+                        duration=duration.value,
                         filename=note_filename,
                         out_dir=out_dir,
                     )
@@ -222,7 +232,7 @@ class Midi:
                     Midi._generate_midi_file(
                         chord_midi,
                         time=0,
-                        duration=Durations.long,
+                        duration=Durations.eight.value,
                         filename=chord_filename,
                         out_dir=out_dir,
                     )

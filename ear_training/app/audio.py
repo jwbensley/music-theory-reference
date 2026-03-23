@@ -29,8 +29,8 @@ class Audio:
             logging.debug(f"Skipping existing file {output_file}")
             return
 
-        silence = AudioSegment.silent(duration=duration_ms)
-        silence.export(output_file, format="wav")
+        silence = AudioSegment.silent(duration=duration_ms)  # type: ignore
+        silence.export(output_file, format="wav")  # type: ignore
         logging.debug(f"Wrote to {output_file}")
 
     @staticmethod
@@ -65,12 +65,12 @@ class Audio:
 
         logging.debug(f"Splicing files {input_files} into {output_file}")
 
-        combined = AudioSegment.empty()
+        combined = AudioSegment.empty()  # type: ignore
         for file in input_files:
-            audio = AudioSegment.from_wav(file)
-            combined += audio
+            audio = AudioSegment.from_wav(file)  # type: ignore
+            combined += audio  # type: ignore
 
-        combined.export(output_file, format="mp3")
+        combined.export(output_file, format="mp3")  # type: ignore
         logging.info(f"Wrote to {output_file}")
 
     @staticmethod
@@ -79,9 +79,9 @@ class Audio:
         Converts an MP3 file to a WAV file.
         :param filename: The name of the input MP3 file (should end with .mp3)
         """
-        audio = AudioSegment.from_mp3(filename)
+        audio = AudioSegment.from_mp3(filename)  # type: ignore
         outfile = filename.replace(".mp3", ".wav")
-        audio.export(outfile, format="wav")
+        audio.export(outfile, format="wav")  # type: ignore
         logging.debug(f"Wrote to {outfile}")
 
     @staticmethod
@@ -103,8 +103,8 @@ class Audio:
         :param target_dBFS: The target dBFS level to normalise to (e.g. -20.0).
         """
         audio = AudioSegment.from_wav(filename)  # type: ignore
-        change_in_dBFS = target_dBFS - audio.dBFS
-        normalizedsound = audio.apply_gain(change_in_dBFS)
+        change_in_dBFS = target_dBFS - audio.dBFS  # type: ignore
+        normalizedsound = audio.apply_gain(change_in_dBFS)  # type: ignore
         normalizedsound.export(filename, format="wav")  # type: ignore
         logging.debug(f"Normalised {filename} to {target_dBFS} dBFS")
 
@@ -115,8 +115,20 @@ class Audio:
         :param filename: The name of the input WAV file (should end with .wav).
         """
         audio = AudioSegment.from_wav(filename)  # type: ignore
-        trimmed_audio = audio.strip_silence(
+        trimmed_audio = audio.strip_silence(  # type: ignore
             silence_len=100, silence_thresh=-60
         )
         trimmed_audio.export(filename, format="wav")  # type: ignore
         logging.debug(f"Trimmed trailing silence from {filename}")
+
+    @staticmethod
+    def trim_trailing_ms(filename: str, duration_ms: int) -> None:
+        """
+        Trims a specified duration from the end of a WAV file.
+        :param filename: The name of the input WAV file (should end with .wav).
+        :param duration_ms: The duration in milliseconds to trim from the end of the file.
+        """
+        audio = AudioSegment.from_wav(filename)  # type: ignore
+        trimmed_audio = audio[:-duration_ms]  # type: ignore
+        trimmed_audio.export(filename, format="wav")  # type: ignore
+        logging.debug(f"Trimmed {duration_ms}ms from the end of {filename}")

@@ -5,11 +5,33 @@ import random
 from pydantic import BaseModel
 
 
+class Duration:
+    name: str
+    duration: float
+    trim: int
+
+    def __init__(self, name: str, duration: float, trim: int) -> None:
+        self.name = name
+        self.duration = duration
+        self.trim = trim
+
+    def get_duration(self) -> float:
+        return self.duration
+
+    def get_name(self) -> str:
+        return self.name
+
+    def get_trim(self) -> int:
+        return self.trim
+
+
 class Durations(Enum):
-    very_short = 1
-    short = 2
-    medium = 4
-    long = 8
+    quatre = Duration(name="0_25", duration=0.25, trim=2700)
+    half = Duration(name="0_5", duration=0.5, trim=2500)
+    one = Duration(name="1", duration=1, trim=2500)
+    two = Duration(name="2", duration=2, trim=2000)
+    four = Duration(name="4", duration=4, trim=2000)
+    eight = Duration(name="8", duration=8, trim=2500)
 
 
 class Interval(BaseModel):
@@ -179,6 +201,16 @@ class Chords(Enum):
             Intervals.minor_third.value,
             Intervals.diminished_fifth.value,
             Intervals.diminished_seventh.value,
+        ],
+    )
+    augmented_seventh = Chord(
+        name="augmented_seventh",
+        display_name="augmented seventh",
+        intervals=[
+            Intervals.unison.value,
+            Intervals.major_third.value,
+            Intervals.augmented_fifth.value,
+            Intervals.minor_seventh.value,
         ],
     )
     augmented_major_seventh = Chord(

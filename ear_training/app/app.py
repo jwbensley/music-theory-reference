@@ -92,6 +92,13 @@ class EarTraining:
         Midi.generate_all_sounds(out_dir=EarTraining.base_dir)
         Audio.generate_all_silences(out_dir=EarTraining.base_dir)
 
+    @staticmethod
+    def get_output_filename(exercise_type: str, key: str) -> str:
+        return os.path.join(
+            EarTraining.rendered_dir,
+            f"et_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{exercise_type}_{key}.mp3",
+        )
+
     def generate_exercise(self) -> str:
 
         random.seed()
@@ -110,27 +117,18 @@ class EarTraining:
             ):
                 if isinstance(obj, Chord):
                     sound_files.append(
-                        Midi.get_filename(octave=self.octave, key=self.key)
-                    )
-                    sound_files.append(Audio.get_filename(1000))
-                    sound_files.append(
                         Midi.get_filename(
-                            octave=self.octave, key=self.key, chord=obj
+                            octave=self.octave,
+                            key=self.key,
+                            duration=Durations.four.value,
                         )
                     )
-                    sound_files.append(Audio.get_filename(1000))
-                    sound_files.append(
-                        Midi.get_filename(
-                            octave=self.octave, key=self.key, chord=obj
+                    for i in range(3):
+                        sound_files.append(
+                            Midi.get_filename(
+                                octave=self.octave, key=self.key, chord=obj
+                            )
                         )
-                    )
-                    sound_files.append(Audio.get_filename(1000))
-                    sound_files.append(
-                        Midi.get_filename(
-                            octave=self.octave, key=self.key, chord=obj
-                        )
-                    )
-                    sound_files.append(Audio.get_filename(1000))
                     sound_files.append(
                         Narration.get_filename(Phrases.that_was.value)
                     )
@@ -140,22 +138,26 @@ class EarTraining:
 
                 elif isinstance(obj, Interval):
                     sound_files.append(
-                        Midi.get_filename(octave=self.octave, key=self.key)
+                        Midi.get_filename(
+                            octave=self.octave,
+                            key=self.key,
+                            duration=Durations.four.value,
+                        )
                     )
                     for i in range(3):
-                        sound_files.append(Audio.get_filename(1000))
+                        sound_files.append(Audio.get_filename(500))
                         sound_files.append(
                             Midi.get_filename(
                                 octave=self.octave,
                                 key=self.key,
-                                duration=Durations.very_short,
+                                duration=Durations.one.value,
                             )
                         )
                         sound_files.append(
                             Midi.get_filename(
                                 octave=self.octave,
                                 key=self.key,
-                                duration=Durations.short,
+                                duration=Durations.two.value,
                                 interval=obj,
                             )
                         )
@@ -174,9 +176,9 @@ class EarTraining:
                     for i in range(3):
                         # Alternate between short and long durations for the scale tones
                         if i % 2 == 0:
-                            duration = Durations.very_short
+                            duration = Durations.quatre.value
                         else:
-                            duration = Durations.medium
+                            duration = Durations.half.value
 
                         for interval in obj.get_intervals() + list(
                             reversed(obj.get_intervals())
@@ -217,10 +219,3 @@ class EarTraining:
         logging.info(f"Generated sound at {output_file}")
 
         return output_file
-
-    @staticmethod
-    def get_output_filename(exercise_type: str, key: str) -> str:
-        return os.path.join(
-            EarTraining.rendered_dir,
-            f"et_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{exercise_type}_{key}.mp3",
-        )

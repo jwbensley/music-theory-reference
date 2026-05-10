@@ -1,94 +1,118 @@
-References:
-https://en.wikipedia.org/wiki/Accidental_(music)
-https://de.wikipedia.org/wiki/Aufl%C3%B6sungszeichen
-https://en.wikipedia.org/wiki/Augmented_unison
-https://de.wikipedia.org/wiki/B_(Notenschrift)
-https://en.wikipedia.org/wiki/Chromatic_scale
-https://en.wikipedia.org/wiki/Degree_(music)
-https://en.wikipedia.org/wiki/Diatonic_scale
-https://de.wikipedia.org/wiki/Ditonus
-https://en.wikipedia.org/wiki/Enharmonic
-https://de.wikipedia.org/wiki/Enharmonische_Verwechslung
-https://en.wikipedia.org/wiki/Equal_temperament
-https://en.wikipedia.org/wiki/Flat_(music)
-https://de.wikipedia.org/wiki/Ganzton
-https://en.wikipedia.org/wiki/Interval_(music)
-https://de.wikipedia.org/wiki/Intervall_(Musik)
-https://en.wikipedia.org/wiki/Just_intonation
-https://de.wikipedia.org/wiki/Kreuz_(Notenschrift)
-https://en.wikipedia.org/wiki/Quartal_and_quintal_harmony
-https://en.wikipedia.org/wiki/Suspended_chord
-https://en.wikipedia.org/wiki/Tertian
-https://en.wikipedia.org/wiki/Triad_(music)
-https://de.wikipedia.org/wiki/Tritonus
-https://de.wikipedia.org/wiki/Versetzungszeichen
+# Music Theory Reference
 
-https://hellomusictheory.com/learn/inverted-intervals/
+This page provides a reference for music theory concepts.
 
-Glossary / Das Glossar
+It is a work in progress.
 
-English	Deutsch	Beispiel
-12 tone equal temperament	Die zwölftönig gleichstufigen Stimmung	Zwölftönig gleichstufigen Stimmung teilt die Oktave in zwölf gleiche Teile.
-6th Chord		
-7th Chord		
-9th Chord		
-Accidental	Das Versetzungszeichen
-	
-Augmented	Übermäßige	
-Breve		
-Chord	Der Akkord	
-Crotchet		
-Demisemiquaver		
-Diminished	Vermindert	
-Ditone	Der Ditonus	
-Dominant Chord		
-Double Flat	Das Doppel-b	
-Double Sharp	Das Doppelkreuz	
-Enharmonic	Enharmonische	Zwei Noten können enharmonisch gleichwertig sein.
-Fifth	Die Quinte	
-Flat	Das b	
-Fourth	Die Quarte	
-Interval	Das Intervall	
-Interval number	Die Intervallnummer 	
-Inversion	Die Umkerung	
-Major	Dur	
-Mediant chord		
-Minim		
-Minor	Moll	
-Natural	Das Auflösungszeichen	
-Natural note	Der Stammton	
-Ninth	Die None	
-Note	Die Note	
-Octave	Die Oktave	
-Perfect	Die Prime	
-Pitch	Die Tonhöhe	
-Quaver		
-Root, 1st, 2nd	Grund, erste, zweite	
-Scale	Die Tonleiter	
-Scale interval / scale degree	Die Stufe	
-Second	Die Sekunde	
-Semibreath		
-semiquaver		
-Semitone	Der Halbton	Der Halbton ist das kleinste Intervall, das in der Westlichen Musik üblicheweise benutzt ist.
-Seventh	Die Septime	
-Sharp	Das Kreuz	
-Sixth	Die Sexte	
-Solfège		
-Subdominant chord		
-Submediant chord		
-Subtonic chord		
-Supertonic chord		
-Third	Die Terz	
-Tonic Chord		
-Triad		
-Tritone	Der Tritonus / Die Halboktave	
-Whole tone	Der Ganzton	Ein Ganzton entsteht aus zwei Halbtönen.
+It is written in English and German so that I can practice my German, but English is the primary language.
 
+## Glossary / Das Glossar
 
-Tuning
-Just Intonation and Equal Temperament
+| English | Deutsch | Beispiel |
+| ------- | ------- | -------- |
+| 12 tone equal temperament | Die zwölftönig gleichstufigen Stimmung | Zwölftönig gleichstufigen Stimmung teilt die Oktave in zwölf gleiche Teile. |
+| 6th Chord | | |
+| 7th Chord | | |
+| 9th Chord | | |
+| Accidental | Das Versetzungszeichen | |
+| Augmented | Übermäßige | |
+| Breve | | |
+| Chord | Der Akkord | |
+| Crotchet | | |
+| Demisemiquaver | | |
+| Diminished | Vermindert | |
+| Ditone | Der Ditonus | |
+| Dominant Chord | | |
+| Double Flat | Das Doppel-b | |
+| Double Sharp | Das Doppelkreuz | |
+| Enharmonic | Enharmonische | Zwei Noten können enharmonisch gleichwertig sein. |
+| Fifth | Die Quinte | |
+| Flat | Das b | |
+| Fourth | Die Quarte | |
+| Interval | Das Intervall | |
+| Interval number | Die Intervallnummer | |
+| Inversion | Die Umkerung | |
+| Major | Dur | |
+| Mediant chord | | |
+| Minim | | |
+| Minor | Moll | |
+| Natural | Das Auflösungszeichen | |
+| Natural note | Der Stammton | |
+| Ninth | Die None | |
+| Note | Die Note | |
+| Octave | Die Oktave | |
+| Perfect | Die Prime | |
+| Pitch | Die Tonhöhe | |
+| Quaver | | |
+| Root, 1st, 2nd | Grund, erste, zweite | |
+| Scale | Die Tonleiter | |
+| Scale interval / scale degree | Die Stufe | |
+| Second | Die Sekunde | |
+| Semibreath | | |
+| Semiquaver | | |
+| Semitone | Der Halbton | Der Halbton ist das kleinste Intervall, das in der Westlichen Musik üblicheweise benutzt ist. |
+| Seventh | Die Septime | |
+| Sharp | Das Kreuz | |
+| Sixth | Die Sexte | |
+| Solfège | | |
+| Subdominant chord | | |
+| Submediant chord | | |
+| Subtonic chord | | |
+| Supertonic chord | | |
+| Third | Die Terz | |
+| Tonic Chord | | |
+| Triad | | |
+| Tritone | Der Tritonus / Die Halboktave | |
+| Whole tone | Der Ganzton | Ein Ganzton entsteht aus zwei Halbtönen. |
 
-In music, just intonation or pure intonation is the tuning of musical intervals as whole number ratios (such as 3:2 or 4:3) of frequencies. An interval tuned in this way is said to be pure, and is called a just interval. Just intervals (and chords created by combining them) consist of tones from a single harmonic series of an implied fundamental. For example, if the notes G3 and C4 (labelled 3 and 4) are tuned as members of the harmonic series of the lowest C, their frequencies will be 3 and 4 times the fundamental frequency. The interval ratio between C4 and G3 is therefore 4:3, a “just fourth”.
+## Tuning
+
+### Harmonics
+
+A "complex tone" can be described as a combination of many simple periodic waves (i.e., sine waves) or partials, each with its own frequency of vibration, amplitude, and phase.
+
+A "partial" is any of the sine waves (or "simple tones") of which a complex tone is composed, not necessarily with an integer multiple of the lowest harmonic.
+
+A harmonic is a sinusoidal wave with a frequency that is a positive integer multiple of the fundamental frequency of a periodic signal. The fundamental is a harmonic because it is one times itself, therefore the fundamental frequency is also called the 1st harmonic; the other harmonics are known as higher harmonics. As all harmonics are periodic at the fundamental frequency, the sum of harmonics is also periodic at that frequency. The set of harmonics forms a harmonic series.
+
+For example, if the fundamental frequency is 50 Hz, a common AC power supply frequency, the frequencies of the first three higher harmonics are 100 Hz (2nd harmonic), 150 Hz (3rd harmonic), 200 Hz (4th harmonic) and any addition of waves with these frequencies is periodic at 50 Hz.
+
+Harmonics may be called "overtones", "partials", or "upper partials", and in some music contexts, the terms "harmonic", "overtone" and "partial" are used fairly interchangeably. But more precisely, the term "harmonic" includes all pitches in a harmonic series (including the fundamental frequency) while the term "overtone" only includes pitches above the fundamental.
+
+The fundamental, which is usually perceived as the lowest partial present, is generally perceived as the pitch of a musical tone. The musical timbre of a steady tone from such an instrument is strongly affected by the relative strength of each harmonic.
+
+[[1]] [[2]]
+
+### Frequencies
+
+The second harmonic, whose frequency is twice the fundamental, sounds an octave higher; the third harmonic, three times the frequency of the fundamental, sounds a perfect fifth above the second harmonic. The fourth harmonic vibrates at four times the frequency of the fundamental and sounds a perfect fourth above the third harmonic (two octaves above the fundamental). Double the harmonic number means double the frequency (which sounds an octave higher).
+
+Below is a list of example fundamental frequencies in hertz (cycles per second) of keys from a modern 88-key standard piano in twelve-tone equal temperament, with the 49th key, the fifth A (called A4), tuned to 440 Hz (referred to as A440). Every octave is made of twelve steps called semitones. A jump from the lowest semitone to the highest semitone in one octave doubles the frequency (for example, the fifth A is 440 Hz and the sixth A is 880 Hz). The frequency of a pitch is derived by multiplying (ascending) or dividing (descending) the frequency of the previous pitch by the twelfth root of two (approximately 1.059463). For example, to get the frequency one semitone up from A4 (A♯4), multiply 440 Hz by the twelfth root of two. To go from A4 up two semitones (one whole tone) to B4, multiply 440 twice by the twelfth root of two (or once by the sixth root of two, approximately 1.122462). To go from A4 up three semitones to C5 (a minor third), multiply 440 Hz three times by the twelfth root of two (or once by the fourth root of two, approximately 1.189207).
+
+This list of example frequencies below is for a theoretically ideal piano. On an actual piano, the ratio between semitones is slightly larger, owing to string stiffness that causes inharmonicity, i.e., the tendency for the harmonic makeup of each note to run sharp. To compensate for this, octaves are tuned slightly wide, stretched according to the inharmonic characteristics of each instrument.
+
+On the Piano, for example:
+
+| Key | Harmonic | Theoretically perfect frequency (Hz) | Used Frequency (Hz) |
+| --- | -------- | ------------------------------------ | ------------------- |
+| A4 | 1st harmonic | 440.000 | 440.000 |
+| A5 | 2nd harmonic | 880.000 | 880.000 |
+| E6 | 3rd harmonic | 1320.000 | 1318.510 |
+| A6 | 4th harmonic | 1760.000 | 1760.000 |
+| C♯7 | 5th harmonic | 2200.000 | 2093.005 |
+| E7 | 6th harmonic | 2640.000 | 2637.020 |
+| G7 | 7th harmonic | 3080.000 | 3135.963 |
+| A7 | 8th harmonic | 3520.000 | 3520.000 |
+
+> If the harmonics are octave displaced and compressed into the span of one octave, some of them are approximated by the notes of what the West has adopted as the chromatic scale based on the fundamental tone. The Western chromatic scale has been modified into twelve equal semitones, which is slightly out of tune with many of the harmonics, especially the 7th, 11th, and 13th harmonics.
+
+Not mentioned in the text above, but shown in the list above; the 5th harmonic is also out of tune with the chromatic scale, as the 5th harmonic is a just major third (frequency ratio 5:4 == 1.25) while the chromatic scale's major third is an equal-tempered major third (frequency ratio 2^(1/4) ≈ 1.189207). The 5th harmonic is about 14 cents sharper than the equal-tempered major third.
+
+[[2]] [[3]]
+
+### Just Intonation and Equal Temperament
+
+Just intonation or pure intonation is the tuning of musical intervals as whole number ratios of frequencies (such as 3:2 or 4:3). An interval tuned in this way is said to be _pure_, and is called a _just interval_. Just intervals (and chords created by combining them) consist of tones from a single harmonic series of an implied fundamental. For example, if the notes G3 and C4 (labelled 3 and 4) are tuned as members of the harmonic series of the lowest C, their frequencies will be 3 and 4 times the fundamental frequency. The interval ratio between C4 and G3 is therefore 4:3, a "just fourth".
 
 In Western musical practice, instruments are rarely tuned using only pure intervals; the desire for different keys to have identical intervals in Western music makes this impractical. Some instruments of fixed pitch, such as electric pianos, are commonly tuned using equal temperament, in which all intervals other than octaves consist of irrational-number frequency ratios. Acoustic pianos are usually tuned with the octaves slightly widened, and thus with no pure intervals at all.
 
@@ -96,55 +120,59 @@ An equal temperament is a musical temperament or tuning system that approximates
 
 In classical music and Western music in general, the most common tuning system since the 18th century has been 12-tone equal temperament (12-TET), which divides the octave into 12 parts, all of which are equal in size.
 
-That resulting smallest interval, 1⁄12 the width of an octave (die Oktave), is called a semitone (der Halbton) or half step. This means that an octave is made of 12 semitones / 12 Halbtonschritte.
+That resulting smallest interval, 1/12th the width of an octave (die Oktave), is called a semitone (der Halbton) or half step. This means that an octave is made of 12 semitones (zwölf Halbtonschritte).
 
 In modern times, 12-TET is usually tuned relative to a standard pitch of 440 Hz, called A440, meaning one note, A, is tuned to 440 hertz and all other notes are defined as some multiple of semitones away from it, either higher or lower in frequency. The standard pitch has not always been 440 Hz; it has varied considerably and generally risen over the past few hundred years.
 
-12 tone equal temperament: die zwölftönig gleichstufigen Stimmung
-Equal-tempered scale: die gleichstufig temperierte Tonleiter
-Scale: die Tonleiter
-Step/degree: die Stufe
+* 12 tone equal temperament: die zwölftönig gleichstufigen Stimmung
+* Equal-tempered scale: die gleichstufig temperierte Tonleiter
+* Scale: die Tonleiter
+* Step/degree: die Stufe
 
+[[4]] [[5]]
 
-Enharmonic
+### Enharmonic
 
 In modern musical notation and tuning, an enharmonic equivalent is a note, interval, or key signature that is equivalent to some other note, interval, or key signature but "spelled", or named differently. The enharmonic spelling of a written note, interval, or chord is an alternative way to write that note, interval, or chord.
 
 For example, in any twelve-tone equal temperament (the predominant system of musical tuning in Western music), the notes C♯ and D♭ are enharmonic (or enharmonically equivalent) notes. Namely, they are the same key on a keyboard, and thus they are identical in pitch, although they have different names and different roles in harmony and chord progressions.
 
-In other words, if two notes have the same pitch but have different letter names, we call them enharmonic.
+In other words, if two notes have the same pitch but have different letter names, they are called enharmonic.
 
-Enharmonic change: {f} Enharmonische Verwechslung
+* Enharmonic change: die Enharmonische Verwechslung
 
+[[6]] [[7]]
 
+## Intervals
 
-Intervals / {n} Intervall / {pl} Intervallen
+### Interval Cents
 
-The standard system for comparing interval sizes is with cents. The cent is a logarithmic unit of measurement. If frequency is expressed in a logarithmic scale, and along that scale the distance between a given frequency and its double (also called an octave, {f} Oktave) is divided into 1200 equal parts, each of these parts is one cent. In twelve-tone equal temperament (12-TET), a tuning system in which all semitones have the same size, the size of one semitone is exactly 100 cents. Hence, in 12-TET the cent can be also defined as one hundredth of a semitone.
+The standard system for comparing interval sizes is with cents. The cent is a logarithmic unit of measurement. If frequency is expressed in a logarithmic scale, and along that scale the distance between a given frequency and its double, an octave (die Oktave) is divided into 1200 equal parts, each of these parts is one cent. In twelve-tone equal temperament (12-TET), a tuning system in which all semitones have the same size, the size of one semitone is exactly 100 cents. Hence, in 12-TET the cent can be also defined as one hundredth of a semitone.
 
 Note Intervals
 
-Name	Der Name	Description	Cents	E.g. in Cmaj
-Perfect unison / perfect prime	{f} Prime	The interval (or lack thereof!) formed by two identical notes.	0	C + C
-semitone	{m} Halbton	The interval between two adjacent notes in a chromatic scale.	100	C + C♯ / C + D♭
-whole tone	{m} Ganzton / {pl} Ganztönen 	An interval spanning two semitones (for example, a major second).	200	C + D
-ditone	{m} Ditonus	An interval spanning two whole tones (for example, a major third)	400	C + E / C + F♭
-tritone	{m} Tritonus / {f} Halboktave	An interval spanning three tones, or six semitones (for example, an augmented fourth)	600	C + F♯ / C + G♭
+| Name | Der Name | Description | Cents | E.g. in Cmaj |
+| ---- | -------- | ----------- | ----- | ------------ |
+| Semitone | Der Halbton | The interval between two adjacent notes in a chromatic scale. | 100 | C -> C♯,  C -> D♭ |
+| Whole tone | Der Ganzton | An interval spanning two semitones (for example, a major second). | 200 | C -> D |
+| Ditone | Der Ditonus | An interval spanning two whole tones (for example, a major third) | 400 | C -> E, C -> F♭ |
+| Tritone | Der Tritonus | An interval spanning three tones, or six semitones (for example, an augmented fourth) | 600 | C -> F♯, C -> G♭ |
 
+* Das Intervall / die Intervalle
+* Der Halbton / die Halbtöne
+* Der Ganzton / die Ganztöne
+* Der Ditonus / die Ditonen
+* Der Tritonus / die Tritonen / die Halboktave
 
-Accidentals
-Accidental / Das Versetzungszeichen.
-The Pitch / Die Tonhöhe.
+[[15]] [[16]] [[17]] [[18]] [[19]]
 
-A flat ♭ lowers the pitch by one semitone: C -> C♭. Das b oder Be (♭) bezeichnet in der Notenschrift der Musik die Erniedrigung eines Stammtons (“natural note”) um einen Halbton. An den Notennamen wird das Suffix „-es“ gehängt (z. B. C → Ces, aber: H → B, A → As)
+### Accidentals
 
-A sharp ♯ raise the pitch by one semitone: C -> C♯. Das Kreuz ♯ bezeichnet in der Musik die Erhöhung eines Stammtons um einen Halbton. An den Notennamen wird das Suffix „-is“ gehängt (z. B. C → Cis, H → His).
+A flat ♭ lowers the pitch by one semitone: C -> C♭ (Das b oder Be (♭) bezeichnet in der Notenschrift der Musik die Erniedrigung eines Stammtons ("natural note") um einen Halbton. An den Notennamen wird das Suffix S"-es" gehängt z.B. C → Ces, aber: H → B, A → As).
 
-A natural ♮ indicates the note is plaid in its root form. It is used to cancel the effect of a flat or sharp. Das Auflösungszeichen ♮ ist ein in der Notenschrift angewandtes Schriftzeichen. Es macht Veränderungen der Tonhöhe (Erhöhung oder Erniedrigung), die durch Vor- oder Versetzungszeichen (auch Akzidenzien) gefordert werden, im Takt wieder rückgängig.
+A sharp ♯ raise the pitch by one semitone: C -> C♯ (Das Kreuz ♯ bezeichnet in der Musik die Erhöhung eines Stammtons um einen Halbton. An den Notennamen wird das Suffix "-is" gehängt z.B. C → Cis, H → His).
 
-Die Auflösung “the resolution / solution”.
-Das Zeichen “the sign”.
-Das Auflösungszeichen.
+A natural ♮ indicates the note is plaid in its root form. It is used to cancel the effect of a flat or sharp (Das Auflösungszeichen ♮ ist ein in der Notenschrift angewandtes Schriftzeichen. Es macht Veränderungen der Tonhöhe (Erhöhung oder Erniedrigung), die durch Vor- oder Versetzungszeichen (auch Akzidenzien) gefordert werden, im Takt wieder rückgängig).
 
 Double accidentals raise or lower the pitch of a note by two semitones. This applies to the written note, ignoring key signature.
 
@@ -152,8 +180,15 @@ For example, an F with a double sharp F𝄪 applied raises it a whole step so it
 
 An F with double flat F♭♭ becomes D♯. Das Doppel-b oder Doppel-Be (Doppel-b) bezeichnet in der Musik die Erniedrigung eines Stammtones um zwei chromatische Halbtöne. Zur Benennung des alterierten Tons wird an den Tonnamen des Stammtons die Endung -eses angehängt. Ausnahmen: E wird zu Eses, A wird zu Asas oder Ases. H hingegen wird zu Heses, nicht etwa zu Bes.
 
+* Accidental / Das Versetzungszeichen.
+* The pitch / Die Tonhöhe.
+* The resolution / Die Auflösung.
+* The sign / Das Zeichen.
+* The natural sign / Das Auflösungszeichen.
 
-Interval Numbers
+[[8]] [[9]] [[10]] [[11]] [[12]] [[13]] [[14]]
+
+### Interval Numbers
 
 The number of an interval is the number of letter names or staff positions (lines and spaces) it encompasses, including the positions of both start and end notes forming the interval. For instance, the interval C–G is a fifth because the notes from C to the G above it encompass five letter names (C, D, E, F, G) and occupy five consecutive staff positions, including the positions of C and G.
 
@@ -172,31 +207,34 @@ Die Intervallnummer kommt aus wie viel Notenlinien ein Intervall umfasst. Zum Be
 
 Ein große Sekunde ist wie groß wie eine verminderte Terz.
 
-
 The 2nd scale degree moving upwards is the same as the 7th moving down.  The 3rd moving upwards is the same as the 6th moving down, etc: 4th -> 5th, 5th -> 4th, 6th -> 3rd, 7th -> 2nd. Both numbers add up to 9.
 
-When counting by interval both numbers add up to 7:  1 interval above is the same as 6 intervals below, 4 intervals above is the same as 3 intervals below.
-Interval Sizes
-Size Table
+When counting by interval both numbers add up to 7:
+
+* 1 interval above is the same as 6 intervals below
+* 4 intervals above is the same as 3 intervals below.
+
+### Interval Sizes
+
 The table below shows the size of the intervals in 12-TET:
 
-Semitones
-/ Halbtöne	Cents	Min, maj, or perf		Short	Aug or dim	Short	Alternative names
-0	0	Perfect unison	{f} Prime	P1	Diminished second / vermindert Sekune	d2	
-1	100	Minor second	kleine {f} Sekunde	m2	Augmented unison / übermäßige Prime	A1	Semitone, half tone, half step / Halbton
-2	200	Major second	große {f} Sekunde	M2	Diminished third	d3	Tone, whole tone, whole step / Ganzton
-3	300	Minor third	kleine {f} Terz	m3	Augmented second	A2	
-4	400	Major third	große {f} Terz	M3	Diminished fourth	d4	Ditone / Ditonus
-5	500	Perfect fourth	{f} Quarte	P4	Augmented third	A3	
-6	600		Diminished fifth	D5	Tritone or “TT” / Tritonus
-			Augmented fourth	A4	
-7	700	Perfect fifth	{f} Quinte	P5	Diminished sixth	d6	
-8	800	Minor sixth	kleine {f} Sexte	m6	Augmented fifth	A5	
-9	900	Major sixth	große {f} Sexte	M6	Diminished seventh	d7	
-10	1000	Minor seventh	kleine {f} Septime	m7	Augmented sixth	A6	
-11	1100	Major seventh	große {f} Septime	M7	Diminished octave	d8	
-12	1200	Perfect octave	{f} Oktave	P8	Augmented seventh	A7	
-Unison and Octact Intervals / Die Prime
+| Semitones / Halbtöne | Cents | Minor, major, or perfect | Moll, Dur oder Perfekt | Short name | Aug or dim | Short Name | Alternative names |
+| -------------------- | ----- | ------------------------ | ---------------------- | ---------- | ---------- | ---------- | ----------------- |
+| 0 | 0 | Perfect unison | {f} Prime | P1 | Diminished second / vermindert Sekune | d2 | |
+| 1 | 100 | Minor second | kleine {f} Sekunde | m2 | Augmented unison (übermäßige Prime) | A1 | Semitone, half tone, half step (Halbton) |
+| 2 | 200 | Major second | große {f} Sekunde | M2 | Diminished third | d3 | Tone, whole tone, whole step (Ganzton) |
+| 3 | 300 | Minor third | kleine {f} Terz | m3 | Augmented second | A2 | |
+| 4 | 400 | Major third | große {f} Terz | M3 | Diminished fourth | d4 | Ditone (Ditonus) |
+| 5 | 500 | Perfect fourth | {f} Quarte | P4 | Augmented third | A3 | |
+| 6 | 600 | Diminished fifth | verminderte {f} Quinte | d5 | Tritone (Tritonus) | TT | Augmented fourth A4 (übermäßige {f} Quarte) |
+| 7 | 700 | Perfect fifth | {f} Quinte | P5 | Diminished sixth | d6 | |
+| 8 | 800 | Minor sixth | kleine {f} Sexte | m6 | Augmented fifth | A5 | |
+| 9 | 900 | Major sixth | große {f} Sexte | M6 | Diminished seventh | d7 | |
+| 10 | 1000 | Minor seventh | kleine {f} Septime | m7 | Augmented sixth | A6 | |
+| 11 | 1100 | Major seventh | große {f} Septime | M7 | Diminished octave | d8 | |
+| 12 | 1200 | Perfect octave | {f} Oktave | P8 | Augmented seventh | A7 | |
+
+### Unison and Octave Intervals
 
 A unison or perfect unison is the interval between two of the exact same note. For example C♮ -> C♮ in the same octave (exactly 0 cents higher or lower in 12-TET) is a perfect unison (it’s the same note).
 
@@ -206,9 +244,11 @@ Chromatic Semitone / Augmented Unison / Augmented Prime (Minor Second)
 
 In modern Western tonal music theory an augmented unison or augmented prime is the interval between two notes on the same staff position, or denoted by the same note letter, whose alterations cause them, in ordinary equal temperament, to be one semitone apart. In other words, it is a unison where one note has been altered by a half-step, such as B♭ and B♮ or C♮ and C♯. The interval is often described as a chromatic semitone. In 12-tone equal temperament, it is the enharmonic equivalent of a diatonic semitone or minor second, although in other tunings the diatonic semitone is a different interval.
 
+* Die Prime
+
 Second / Die Sekunde
 
-A “second” is the second note in the scale from the tonic. The interval quality between the tonic and the second can be major or minor.
+A "second" is the second note in the scale from the tonic. The interval quality between the tonic and the second can be major or minor.
 
 A minor second is the interval between two notes which are one semitone apart. A major second is the interval between two notes which are two semitones (one whole tone) apart.
 
@@ -216,10 +256,10 @@ In a diatonic scale such as C-Major, starting from C as the first note, the seco
 
 Staying in C-Major, starting with E as the first note, from here F is the second note, F is a semitone higher than E meaning the interval is a minor second.
 
-From C to D# is 3 semitones so this is an augmented second.
+From C to D♯ is 3 semitones so this is an augmented second.
 Third / Die Terz
 
-A “third” is the third note in the scale from the tonic. The interval quality between the tonic and the third can be major or minor.
+A "third" is the third note in the scale from the tonic. The interval quality between the tonic and the third can be major or minor.
 
 Thirds follow the same logic as seconds, sometimes they are minor thirds and sometimes they are major thirds. In C-Major, starting from C as the first note with E as the third note, C -> E is a major third, while D -> F is a minor third.
 
@@ -287,61 +327,58 @@ Conversely, other kinds of intervals have the opposite quality with respect to t
 
 When inverting an interval, the size of the old note interval plus the size of the new note interval always adds up to 9:
 
-Interval	Inverted Interval	Sum
-Diminished 2nd	Augmented 7th	2(nd) + 7(th) = 9(th)
-Minor 2nd	Major 7th	2(nd) + 7(th) = 9(th)
-Major 2nd	Minor 7th	2(nd) + 7(th) = 9(th)
-Augmented 2nd	Diminished 7th	2(nd) + 7(th) = 9(th)
-Diminished 3rd	Augmented 6th	3(rd) + 6(th) = 9(th)
-Minor 3rd	Major 6th	3(rd) + 6(th) = 9(th)
-Major 3rd	Minor 6th	3(rd) + 6(th) = 9(th)
-Augmented 3rd	Diminished 6th	3(rd) + 6(th) = 9(th)
-Diminished 4th	Augmented 5th	4(th) + 5(th) = 9(th)
-Perfect 4th	Perfect 5th	4(th) + 5(th) = 9(th)
-Augmented 4th	Diminished 5th	4(th) + 5(th) = 9(th)
-Diminished 5th	Augmented 4th	5(th) + 4(th) = 9(th)
-Perfect 5th	Perfect 4th	5(th) + 4(th) = 9(th)
-Augmented 5th	Diminished 4th	5(th) + 4(th) = 9(th)
-Diminished 6th	Augmented 3rd	6(th) + 3(rd) = 9(th)
-Minor 6th	Major 3rd	6(th) + 3(rd) = 9(th)
-Major 6th	Minor 3rd	6(th) + 3(rd) = 9(th)
-Augmented 6th	Diminished 3rd	6(th) + 3(rd) = 9(th)
-Diminished 7th	Augmented 2nd	7(th) + 2(nd) = 9(th)
-Minor 7th	Major 2nd	7(th) + 2(nd) = 9(th)
-Major 7th	Minor 2nd	7(th) + 2(nd) = 9(th)
-Augmented 7th	Diminished 2nd	7(th) + 2(nd) = 9(th)
-
-
-
+| Interval | Inverted Interval | Sum
+| Diminished 2nd | Augmented 7th | 2(nd) + 7(th) = 9(th)
+| Minor 2nd | Major 7th | 2(nd) + 7(th) = 9(th)
+| Major 2nd | Minor 7th | 2(nd) + 7(th) = 9(th)
+| Augmented 2nd | Diminished 7th | 2(nd) + 7(th) = 9(th)
+| Diminished 3rd | Augmented 6th | 3(rd) + 6(th) = 9(th)
+| Minor 3rd | Major 6th | 3(rd) + 6(th) = 9(th)
+| Major 3rd | Minor 6th | 3(rd) + 6(th) = 9(th)
+| Augmented 3rd | Diminished 6th | 3(rd) + 6(th) = 9(th)
+| Diminished 4th | Augmented 5th | 4(th) + 5(th) = 9(th)
+| Perfect 4th | Perfect 5th | 4(th) + 5(th) = 9(th)
+| Augmented 4th | Diminished 5th | 4(th) + 5(th) = 9(th)
+| Diminished 5th | Augmented 4th | 5(th) + 4(th) = 9(th)
+| Perfect 5th | Perfect 4th | 5(th) + 4(th) = 9(th)
+| Augmented 5th | Diminished 4th | 5(th) + 4(th) = 9(th)
+| Diminished 6th | Augmented 3rd | 6(th) + 3(rd) = 9(th)
+| Minor 6th | Major 3rd | 6(th) + 3(rd) = 9(th)
+| Major 6th | Minor 3rd | 6(th) + 3(rd) = 9(th)
+| Augmented 6th | Diminished 3rd | 6(th) + 3(rd) = 9(th)
+| Diminished 7th | Augmented 2nd | 7(th) + 2(nd) = 9(th)
+| Minor 7th | Major 2nd | 7(th) + 2(nd) = 9(th)
+| Major 7th | Minor 2nd | 7(th) + 2(nd) = 9(th)
+| Augmented 7th | Diminished 2nd | 7(th) + 2(nd) = 9(th)
 
 Scales / Die Tonleiter
+
 Types of Scale
 
 Scales may be described according to the number of different pitch classes they contain:
 
-    • Chromatic, or dodecatonic (12 notes per octave)
-    • Nonatonic (9 notes per octave): a chromatic variation of the heptatonic blues scale
-    • Octatonic (8 notes per octave): used in jazz and modern classical music
-    • Heptatonic (7 notes per octave): the most common modern Western scale
-    • Hexatonic (6 notes per octave): common in Western folk music
-    • Pentatonic (5 notes per octave): the anhemitonic form (lacking semitones) is common in folk music, especially in Asian music; also known as the "black note" scale
-    • Tetratonic (4 notes), tritonic (3 notes), and ditonic (2 notes): generally limited to prehistoric ("primitive") music
+* Chromatic, or dodecatonic (12 notes per octave)
+* Nonatonic (9 notes per octave): a chromatic variation of the heptatonic blues scale
+* Octatonic (8 notes per octave): used in jazz and modern classical music
+* Heptatonic (7 notes per octave): the most common modern Western scale
+* Hexatonic (6 notes per octave): common in Western folk music
+* Pentatonic (5 notes per octave): the anhemitonic form (lacking semitones) is common in folk music, especially in Asian music; also known as the "black note" scale
+* Tetratonic (4 notes), tritonic (3 notes), and ditonic (2 notes): generally limited to prehistoric ("primitive") music
 
 In the 19th century (to a certain extent), but more in the 20th century, additional types of scales were explored:
 
-    • The chromatic scale (twelve notes)
-    • The whole-tone scale (six notes)
-    • The pentatonic scale (five notes)
-    • The octatonic or diminished scales (eight notes)
+* The chromatic scale (twelve notes)
+* The whole-tone scale (six notes)
+* The pentatonic scale (five notes)
+* The octatonic or diminished scales (eight notes)
 
 A large variety of other scales exists, some of the more common being:
 
-    • The Phrygian dominant scale (a mode of the harmonic minor scale)
-    • The Arabic scales
-    • The Hungarian minor scale
-    • The Byzantine music scales (called echoi)
-    • The Persian scale
-
+* The Phrygian dominant scale (a mode of the harmonic minor scale)
+* The Arabic scales
+* The Hungarian minor scale
+* The Byzantine music scales (called echoi)
+* The Persian scale
 
 Chromatic Scale / Die chromatische Tonleiter
 
@@ -351,7 +388,6 @@ The chromatic scale is a musical scale with twelve pitches, each a semitone, als
 
 In equal temperament, all the semitones have the same size (100 cents), and there are twelve semitones in an octave (1200 cents). As a result, the notes of an equal-tempered chromatic scale are equally-spaced.
 
-
 Diatonic Scale / Die diatonische Tonleiter
 
 In music theory, a diatonic scale is any heptatonic (7 note) scale that includes five whole steps (whole tones) and two half steps (semitones) in each octave, in which the two half steps are separated from each other by either two or three whole steps, depending on their position in the scale. This pattern ensures that, in a diatonic scale spanning more than one octave, all the half steps are maximally separated from each other (i.e. separated by at least two whole steps).
@@ -360,8 +396,7 @@ Any sequence of seven successive natural notes, such as C–D–E–F–G–A–
 
 There are three diatonic scales which have a major third/first triad: Ionian, Lydian, and Mixolydian, and three which have a minor one: Dorian, Phrygian, and Aeolian. To these may be added the seventh diatonic scale, with a diminished fifth above the reference note, the Locrian scale. These could be transposed not only to include one flat in the signature, but to all twelve notes of the chromatic scale, resulting in a total of eighty-four diatonic scales.
 
-The pattern of elementary intervals forming the diatonic scale can be represented either by the letters T (Tone) and S (Semitone) respectively. With this abbreviation, major scale, for instance, can be represented as: 	T–T–S–T–T–T–S
-
+The pattern of elementary intervals forming the diatonic scale can be represented either by the letters T (Tone) and S (Semitone) respectively. With this abbreviation, major scale, for instance, can be represented as: T–T–S–T–T–T–S
 
 Major Scale
 
@@ -369,14 +404,14 @@ The major scale or Ionian mode is one of the diatonic scales. It is made up of s
 
 Notes in C major:     C    D    E   F     G    A    B  C
 Degrees in solfège:  Do  Re  Mi  Fa  Sol  La  Ti  Do
-Interval sequence:        T    T    S   T     T     T   S    
+Interval sequence:        T    T    S   T     T     T   S
 
 Natural Minor Scale
 
 For each major scale, there is a corresponding natural minor scale, sometimes called its relative minor. It uses the same sequence of notes as the corresponding major scale but starts from a different note. That is, it begins on the sixth degree of the related major scale and proceeds step-by-step to the first octave of the sixth degree. A sequence of successive natural notes starting from A is an example of a natural minor scale, called the A natural minor scale:
 
 Notes in A minor:     A    B   C    D   E   F   G   A
-Interval sequence:      T    S    T    T   S   T   T      
+Interval sequence:      T    S    T    T   S   T   T
 
 Harmonic Minor Scale
 
@@ -403,8 +438,7 @@ Ascending interval sequence: T, S, T, T, T, T, S
 
 Descending note in A minor:
 Descending positions: 8, ♭7, ♭6, 5, 4, ♭3, 2, 1
-Descending interval sequence: T, S, T, T, S, T, T    
- 
+Descending interval sequence: T, S, T, T, S, T, T
 
 
 https://en.wikipedia.org/wiki/Common_tone_(scale)
@@ -412,7 +446,6 @@ https://en.wikipedia.org/wiki/Common_tone_(scale)
 https://en.wikipedia.org/wiki/Relative_key
 
 https://en.wikipedia.org/wiki/Enharmonic_equivalence
-
 
 Modes
 
@@ -422,28 +455,29 @@ As explained above, all major scales use the same interval sequence T–T–S–
 
 The first column examples shown above are formed by natural notes (i.e. neither sharps nor flats, also called "white-notes", as they can be played using the white keys of a piano keyboard). However, any transposition of each of these scales (or of the system underlying them) is a valid example of the corresponding mode. In other words, transposition preserves mode. This is shown in the second column, with each mode transposed to start on C.
 
-Mode	Also known as	Starting note relative
-to major scale	Interval sequence	Example with white keys	Example with tonic C
-Ionian	Major scale	I	T–T–S–T–T–T–S	C–D–E–F–G–A–B–C
-Dorian		II	T–S–T–T–T–S–T	D–E–F–G–A–B–C–D	C–D–E♭–F–G–A–B♭–C
-Phrygian		III	S–T–T–T–S–T–T	E–F–G–A–B–C–D–E	C–D♭–E♭–F–G–A♭–B♭–C
-Lydian		IV	T–T–T–S–T–T–S	F–G–A–B–C–D–E–F	C–D–E–F♯–G–A–B–C
-Mixolydian		V	T–T–S–T–T–S–T	G–A–B–C–D–E–F–G	C–D–E–F–G–A–B♭–C
-Aeolian	Natural minor scale	VI	T–S–T–T–S–T–T	A–B–C–D–E–F–G–A	C–D–E♭–F–G–A♭–B♭–C
-Locrian		VII	S–T–T–S–T–T–T	B–C–D–E–F–G–A–B	C–D♭–E♭–F–G♭–A♭–B♭–C
+| Mode | Also known as | Starting note relative to major scale | Interval sequence | Example with white keys | Example with tonic C |
+| ---- | ------------- | ------------------------------------- | ----------------- | ----------------------- | -------------------- |
+| Ionian | Major scale | I | T–T–S–T–T–T–S | C–D–E–F–G–A–B–C | C–D–E–F–G–A–B–C |
+| Dorian | | II | T–S–T–T–T–S–T | D–E–F–G–A–B–C–D | C–D–E♭–F–G–A–B♭–C |
+| Phrygian | | III | S–T–T–T–S–T–T | E–F–G–A–B–C–D–E | C–D♭–E♭–F–G–A♭–B♭–C |
+| Lydian | | IV | T–T–T–S–T–T–S | F–G–A–B–C–D–E–F | C–D–E–F♯–G–A–B–C |
+| Mixolydian | | V | T–T–S–T–T–S–T | G–A–B–C–D–E–F–G | C–D–E–F–G–A–B♭–C |
+| Aeolian | Natural minor scale | VI | T–S–T–T–S–T–T | A–B–C–D–E–F–G–A | C–D–E♭–F–G–A♭–B♭–C |
+| Locrian | | VII | S–T–T–S–T–T–T | B–C–D–E–F–G–A–B | C–D♭–E♭–F–G♭–A♭–B♭–C |
+
 Scale Degree Names
 
-Degree	Name	Corresponding mode (major key)	Corresponding mode (minor key)	Meaning	Note (in C major)	Note (in C minor)	Semitones
-1	Tonic	Ionian	Aeolian	Tonal center, note of final resolution	C	C	0
-2	Supertonic	Dorian	Locrian	One whole step above the tonic	D	D	2
-3	Mediant	Phrygian	Ionian	Midway between tonic and dominant, (in minor key) root of relative major key	E	E♭	3-4
-4	Subdominant	Lydian	Dorian	Lower dominant, same interval below tonic as dominant is above tonic	F	F	5
-5	Dominant	Mixolydian	Phrygian	Second in importance to the tonic	G	G	7
-6	Submediant	Aeolian	Lydian	Lower mediant, midway between tonic and subdominant, (in major key) root of relative minor key	A	A♭	8-9
-7	Subtonic (in the natural minor scale)		Mixolydian	One whole step below tonic in natural minor scale.		B♭	10
-	Leading tone (in the major scale)	Locrian		One half step below tonic. Melodically strong affinity for and leads to tonic	B		11
-1	Tonic (octave)	Ionian	Aeolian	Tonal center, note of final resolution	C	C	12
-
+| Degree | Name | Corresponding mode (major key) | Corresponding mode (minor key) | Meaning | Note (in C major) | Note (in C minor) | Semitones |
+| ------ | ---- | ------------------------------ | ------------------------------ | ------- | ----------------- | ----------------- | --------- |
+| 1 | Tonic | Ionian | Aeolian | Tonal center, note of final resolution | C | C | 0 |
+| 2 | Supertonic | Dorian | Locrian | One whole step above the tonic | D | D | 2 |
+| 3 | Mediant | Phrygian | Ionian | Midway between tonic and dominant, (in minor key) root of relative major key | E | E♭ | 3-4 |
+| 4 | Subdominant | Lydian | Dorian | Lower dominant, same interval below tonic as dominant is above tonic | F | F | 5 |
+| 5 | Dominant | Mixolydian | Phrygian | Second in importance to the tonic | G | G | 7 |
+| 6 | Submediant | Aeolian | Lydian | Lower mediant, midway between tonic and subdominant, (in major key) root of relative minor key | A | A♭ | 8-9 |
+| 7 | Subtonic (in the natural minor scale) | | Mixolydian | One whole step below tonic in natural minor scale. | | B♭ | 10 |
+| 8 | Leading tone (in the major scale) | Locrian | | One half step below tonic. Melodically strong affinity for and leads to tonic | B | | 11 |
+| 1 | Tonic (octave) | Ionian | Aeolian | Tonal center, note of final resolution | C | C | 12 |
 
 
 Key Signature
@@ -459,23 +493,17 @@ https://en.wikipedia.org/wiki/Interval_(music)#Intervals_in_chords
 
 Tertian Harmony
 
-Tertian describes a chord constructed from the intervals of thirds (e.g., a diminished/minor/major/or augmented third). Tertian harmony (or “tertiary harmony”) principally uses chords based on thirds; the term is typically used to contrast with quartal and quintal harmony which uses chords based on fourths or fifths respectively.
+Tertian describes a chord constructed from the intervals of thirds (e.g., a diminished/minor/major/or augmented third). Tertian harmony (or "tertiary harmony") principally uses chords based on thirds; the term is typically used to contrast with quartal and quintal harmony which uses chords based on fourths or fifths respectively.
 
 Quartal harmony builds harmonic structures such as chords from the intervals of the perfect fourth, the augmented fourth, and the diminished fourth. For instance, a three-note quartal chord on C can be built by stacking perfect fourths, C–F–B♭.
 
 Regarding chords built from perfect fourths alone, composer Vincent Persichetti writes that:
 
-“Chords by perfect fourth are ambiguous in that, like all chords built by equidistant intervals (diminished seventh chords or augmented triads), any member can function as the root. The indifference of this rootless harmony to tonality places the burden of key verification upon the voice with the most active melodic line.”
+"Chords by perfect fourth are ambiguous in that, like all chords built by equidistant intervals (diminished seventh chords or augmented triads), any member can function as the root. The indifference of this rootless harmony to tonality places the burden of key verification upon the voice with the most active melodic line."
 
 Quintal harmony builds harmonic structures such as chords from the intervals of the perfect fifth, the augmented fifth, and the diminished fifth. For instance, a three-note quintal chord on C can be built by stacking perfect fifths, C–G–D.
 
 Quintal harmony (the harmonic layering of fifths specifically) is a lesser-used term, and since the fifth is the inversion or complement of the fourth, it is usually considered indistinct from quartal harmony. Because of this relationship, any quartal chord can be rewritten as a quintal chord by changing the order of its pitches.
-
-
-
-
-
-
 
 tonic chord
 supertonic chord
@@ -562,5 +590,56 @@ https://en.wikipedia.org/wiki/Scientific_pitch_notation
 https://en.wikipedia.org/wiki/A440_(pitch_standard)
 https://en.wikipedia.org/wiki/Musical_note#Distinguishing_duration
 
+## References
+
+* [1] [https://en.wikipedia.org/wiki/Harmonic][1]
+* [2] [https://en.wikipedia.org/wiki/Harmonic_series_(music)][2]
+* [3] [https://en.wikipedia.org/wiki/Piano_key_frequencies][3]
+* [4] [https://en.wikipedia.org/wiki/Equal_temperament][4]
+* [5] [https://en.wikipedia.org/wiki/Just_intonation][5]
+* [6] [https://en.wikipedia.org/wiki/Enharmonic][6]
+* [7] [https://de.wikipedia.org/wiki/Enharmonische_Verwechslung][7]
+* [8] [https://en.wikipedia.org/wiki/Accidental_(music)][8]
+* [9] [https://de.wikipedia.org/wiki/Aufl%C3%B6sungszeichen][9]
+* [10] [https://en.wikipedia.org/wiki/Flat_(music)][10]
+* [11] [https://en.wikipedia.org/wiki/Sharp_(music)][11]
+* [12] [https://de.wikipedia.org/wiki/B_(Notenschrift)][12]
+* [13] [https://de.wikipedia.org/wiki/Kreuz_(Notenschrift)][13]
+* [14] [https://de.wikipedia.org/wiki/Versetzungszeichen][14]
+* [15] [https://en.wikipedia.org/wiki/Interval_(music)][15]
+* [16] [https://de.wikipedia.org/wiki/Intervall_(Musik)][16]
+* [17] [https://en.wikipedia.org/wiki/Ganzton][17]
+* [18] [https://en.wikipedia.org/wiki/Ditonus][18]
+* [19] [https://en.wikipedia.org/wiki/Tritonus][19]
+
+[1]: https://en.wikipedia.org/wiki/Harmonic
+[2]: https://en.wikipedia.org/wiki/Harmonic_series_(music)
+[3]: https://en.wikipedia.org/wiki/Piano_key_frequencies
+[4]: https://en.wikipedia.org/wiki/Equal_temperament
+[5]: https://en.wikipedia.org/wiki/Just_intonation
+[6]: https://en.wikipedia.org/wiki/Enharmonic
+[7]: https://de.wikipedia.org/wiki/Enharmonische_Verwechslung
+[8]: https://en.wikipedia.org/wiki/Accidental_(music)
+[9]: https://de.wikipedia.org/wiki/Aufl%C3%B6sungszeichen
+[10]: https://en.wikipedia.org/wiki/Flat_(music)
+[11]: https://en.wikipedia.org/wiki/Sharp_(music)
+[12]: https://de.wikipedia.org/wiki/B_(Notenschrift)
+[13]: https://de.wikipedia.org/wiki/Kreuz_(Notenschrift)
+[14]: https://de.wikipedia.org/wiki/Versetzungszeichen
+[15]: https://en.wikipedia.org/wiki/Interval_(music)
+[16]: https://de.wikipedia.org/wiki/Intervall_(Musik)
+[17]: https://de.wikipedia.org/wiki/Ganzton
+[18]: https://de.wikipedia.org/wiki/Ditonus
+[19]: https://de.wikipedia.org/wiki/Tritonus
 
 
+https://en.wikipedia.org/wiki/Augmented_unison
+https://en.wikipedia.org/wiki/Chromatic_scale
+https://en.wikipedia.org/wiki/Degree_(music)
+https://en.wikipedia.org/wiki/Diatonic_scale
+https://en.wikipedia.org/wiki/Quartal_and_quintal_harmony
+https://en.wikipedia.org/wiki/Suspended_chord
+https://en.wikipedia.org/wiki/Tertian
+https://en.wikipedia.org/wiki/Triad_(music)
+
+https://hellomusictheory.com/learn/inverted-intervals/

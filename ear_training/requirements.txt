@@ -8,7 +8,7 @@ click==8.1.8
 fastapi==0.134.0
 gTTS==2.5.4
 gunicorn==25.1.0
-idna==3.11
+idna==3.15
 midi2audio==0.1.1
 MIDIUtil==1.2.1
 mypy==1.19.1

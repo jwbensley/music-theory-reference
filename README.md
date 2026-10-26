@@ -30,3 +30,26 @@ Start the docker container to expose the app web UI and API:
 ```shell
 docker compose up ear_training
 ```
+
+### Testing
+
+The MP3 tests are skipped if ffmpeg isn't installed.
+
+Run inside the container:
+
+```shell
+docker compose run --rm -e PYTHONDONTWRITEBYTECODE=1 --entrypoint sh ear_training \
+  -c 'pip install -q --root-user-action=ignore -r requirements-dev.txt && pytest -p no:cacheprovider'
+
+docker compose run --rm --entrypoint sh ear_training \
+  -c 'pip install -q --root-user-action=ignore -r requirements-dev.txt && vulture app api.py cli.py vulture_whitelist.py'
+```
+
+Run locally:
+
+```shell
+cd ear_training
+pip install -r requirements-dev.txt
+pytest
+vulture app api.py cli.py vulture_whitelist.py
+```

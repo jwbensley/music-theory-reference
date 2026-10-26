@@ -40,9 +40,10 @@ class Audio:
         :param out_dir: The directory where the output files will be saved.
         """
 
-        if not os.path.exists(out_dir):
-            os.makedirs(out_dir)
-            logging.debug(f"Created directory {out_dir}")
+        silences_dir = os.path.join(out_dir, Audio.get_sub_dir())
+        if not os.path.exists(silences_dir):
+            os.makedirs(silences_dir)
+            logging.debug(f"Created directory {silences_dir}")
 
         for i in range(250, 3001, 250):
             filename = os.path.join(out_dir, Audio.get_filename(i))

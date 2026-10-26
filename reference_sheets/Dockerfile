@@ -1,4 +1,4 @@
-FROM python:3-slim
+FROM python:3.14-slim
 LABEL description="Render music theory reference sheets using LilyPond and Python"
 ARG ARCH="x64"
 ARG OS="linux"

@@ -1,4 +1,4 @@
-FROM python:3-slim
+FROM python:3.14-slim
 LABEL description="Generate sound files for ear training exercises"
 ARG APP_PATH
 ARG LISTEN_PORT

@@ -226,7 +226,9 @@ class Midi:
                     chord_midi: list[int] = []
                     for interval in chord.value.get_intervals():
                         chord_midi.append(
-                            octave_midi + interval.get_semitones()
+                            octave_midi
+                            + key.value.get_midi_offset()
+                            + interval.get_semitones()
                         )
 
                     Midi._generate_midi_file(

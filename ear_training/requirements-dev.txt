@@ -1,6 +1,6 @@
 -r requirements.txt
 h11==0.16.0
-httpcore2==2.3.0
+httpcore2==2.10.0
 httpx2==2.3.0
 iniconfig==2.3.1
 pluggy==1.7.0

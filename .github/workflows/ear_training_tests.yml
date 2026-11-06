@@ -3,6 +3,10 @@ name: Ear Training Tests
 
 on:
   pull_request:
+    paths:
+      - "ear_training/**/*.py"
+      - "ear_training/requirements.txt"
+      - "ear_training/requirements-dev.txt"
 
 permissions:
   contents: read
